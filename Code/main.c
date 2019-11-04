@@ -33,6 +33,7 @@ int main(int argc, char **argv)
         if (syntax_correct && lexical_correct)
         {
             symbolTable = initializeHashSet(HASH_SIZE);
+            addReadAndWrite(symbolTable);
             SemanticAnalysisLog = initLog();
             SemanticError = initLog();
             //printTotalGrammarTree(root, 0);

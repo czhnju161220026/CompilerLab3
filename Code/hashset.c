@@ -122,3 +122,20 @@ void outputHashSet(HashSet *hashSet)
         }
     }
 }
+
+bool addReadAndWrite(HashSet *hashSet) {
+    Symbol* read = createSymbol();
+    setSymbolName(read, "read");
+    setSymbolType(read, FUNC_SYMBOL);
+    setFuncReturnValue(read, _INT_TYPE_, NULL);
+    Symbol* arg = createSymbol();
+    setSymbolName(arg, "$$");
+    setSymbolType(arg, INT_SYMBOL);
+    insert(hashSet, arg);
+    Symbol* write = createSymbol();
+    setSymbolName(write, "write");
+    setSymbolType(write, FUNC_SYMBOL);
+    setFuncReturnValue(write, _INT_TYPE_, NULL);
+    addFuncArgument(write, "$$");
+    return insert(hashSet, read) && insert(hashSet, write); 
+}
