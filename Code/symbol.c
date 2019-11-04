@@ -17,6 +17,7 @@ Symbol *createSymbol()
     }
     s->next = NULL;
     s->name = NULL;
+    s->variable = NULL;
     s->symbol_type = 0;
     return s;
 }
@@ -46,6 +47,22 @@ bool setSymbolName(Symbol *s, char *name)
     }
     strcpy(s->name, name);
     return true;
+}
+
+bool setSymbolVariable(Symbol *s, char *name) {
+    if (s == NULL) {
+        return false;
+    }
+    if (s->variable != NULL) {
+        return false;
+    }
+    if (s->symbol_type == INT_SYMBOL || s->symbol_type == FLOAT_SYMBOL || s->symbol_type == ARRAY_SYMBOL || s->symbol_type == STRUCT_VAL_SYMBOL) {
+        s->variable = (char *)malloc(sizeof(char) * strlen(name) + 1);
+        strcpy(s->variable, name);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool setSymbolType(Symbol *s, SymbolTypes type)
@@ -330,6 +347,15 @@ bool outputSymbol(Symbol *s)
     {
         printf("Symbol name is NULL\n");
         return false;
+    }
+
+    if (s->variable != NULL)
+    {
+        printf("Symbol variable: %s\n", s->variable);
+    }
+    else
+    {
+        printf("Symbol variable: %s\n", "NULL");
     }
 
     if (s->symbol_type == INT_SYMBOL)

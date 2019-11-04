@@ -111,6 +111,7 @@ typedef struct ParaType
 typedef struct Symbol
 {
     char *name;
+    char* variable;
     SymbolTypes symbol_type;
     union {
         IntContent *int_content;
@@ -125,6 +126,7 @@ typedef struct Symbol
 
 Symbol *createSymbol();
 bool setSymbolName(Symbol *s, char *name);
+bool setSymbolVariable(Symbol *s, char *name);
 bool setSymbolType(Symbol *s, SymbolTypes type);
 bool addArrayDimension(Symbol *s, int size);
 bool setArrayType(Symbol *s, ValueTypes type, char *name);

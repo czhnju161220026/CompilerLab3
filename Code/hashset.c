@@ -1,5 +1,6 @@
 #include "hashset.h"
 #include "symbol.h"
+#include "utils.h"
 HashSet *symbolTable = NULL;
 HashSet *initializeHashSet(int size)
 {
@@ -104,6 +105,7 @@ bool insert(HashSet *hashSet, Symbol *symbol)
         unsigned int val = pjwHash(symbol->name) % HASH_SIZE;
         symbol->next = hashSet->buckets[val].head;
         hashSet->buckets[val].head = symbol;
+        setSymbolVariable(symbol, getTemp());
         return true;
     }
 }
