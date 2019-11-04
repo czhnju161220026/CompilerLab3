@@ -42,7 +42,7 @@ char* getVariable() {
 
 char* getLabel() {
     char str[256];
-    sprintf(str, "l%d", global_label_num++);
+    sprintf(str, "label%d", global_label_num++);
     char* temp = (char*) malloc(strlen(str) + 1);
     strcpy(temp, str);
     return temp;
