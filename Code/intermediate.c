@@ -452,11 +452,8 @@ char *translateDefList(Morpheme *defList, HashSet *symTable)
     {
         char *code, *code1, *code2;
         code1 = translateDef(c, symTable);
-        printf("code1 = %s", code1);
         code2 = translateDefList(c->siblings, symTable);
-        printf("code2 = %s", code2);
         code = concat(2, code1, code2);
-        printf("code = %s", code);
         return code;
     }
     printf("\033[31mBad DefList node.\n\033[0m");
@@ -574,7 +571,8 @@ char *translateVarDec(Morpheme *varDec, HashSet *symTable)
             char* code;
             char str[256];
             sprintf(str, "%s %s %d\n", "DEC", variable, size);
-            code = str;
+            code = (char*)malloc(strlen(str));
+            strcpy(code, str);
             return code;
         }
         case ARRAY_SYMBOL: {
@@ -584,7 +582,8 @@ char *translateVarDec(Morpheme *varDec, HashSet *symTable)
             char* code;
             char str[256];
             sprintf(str, "%s %s %d\n", "DEC", variable, size);
-            code = str;
+            code = (char*)malloc(strlen(str));
+            strcpy(code, str);
             //printf("code = %s\n", code);
             return code;
         }
