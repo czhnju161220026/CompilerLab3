@@ -71,7 +71,7 @@ char* translateExp(Morpheme* exp, HashSet* symTable, char* place) {
         sprintf(str, "%s := #0 - %s\n", place, t1);
         char* code2 = (char*) malloc(strlen(str) + 1);
         strcpy(code2, str);
-        return concat(2, code1, code2);
+        return concat(2, code1, code2)
     } else if ((c->type == _Exp && c->siblings != NULL && (c->siblings->type == _RELOP || c->siblings->type == _AND || c->siblings->type == _OR) && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp) || (c->type == _NOT && c->siblings != NULL && c->siblings->type == _Exp)) {
         char* label1 = getLabel();
         char* label2 = getLabel();
