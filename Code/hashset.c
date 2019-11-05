@@ -105,9 +105,19 @@ bool insert(HashSet *hashSet, Symbol *symbol)
         unsigned int val = pjwHash(symbol->name) % HASH_SIZE;
         symbol->next = hashSet->buckets[val].head;
         hashSet->buckets[val].head = symbol;
-        setSymbolVariable(symbol, getTemp());
+        setSymbolVariable(symbol, getVariable());
         return true;
     }
+}
+
+// rename the binding variable
+bool overwriteVariable(HashSet *hashSet, char* name, char* variable) {
+    Symbol* symbol = get(hashSet, name);
+    if(symbol == NULL) {
+        return false;
+    }
+    setSymbolVariable(symbol, variable);
+    return true;
 }
 
 void outputHashSet(HashSet *hashSet)
