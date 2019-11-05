@@ -6,8 +6,6 @@ int main(){
 	b = a + tt - pp;
 	c = a + b * pp;
 	write(c);
-	c = c * (a + b) / 25;
-	b = (b + c) - a / c + pp * 12;
 	write(c);
 	write(b);
 	return 0;

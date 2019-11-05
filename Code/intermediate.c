@@ -35,7 +35,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         return code;
     }
     // EXP -> ID
-    else if (c->type == _ID)
+    else if (c->type == _ID && c->siblings == NULL)
     {
         Symbol *s = get(symTable, c->idName);
         char *variable = s->variable;
@@ -55,7 +55,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             char *t1 = getTemp();
             char *code1 = translateExp(c->siblings->siblings, symTable, t1);
             char str[256];
-            sprintf(str, "%s := %s\n%s := %s", variable, t1, place, variable);
+            sprintf(str, "%s := %s\n%s := %s\n", variable, t1, place, variable);
             char *code2 = (char *)malloc(strlen(str) + 1);
             strcpy(code2, str);
             return concat(2, code1, code2);
@@ -146,7 +146,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
     else if (c->type == _ID && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Args && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP)
     {
         Argument *arglist = NULL;
-        char *code0 = translateArgs(c->siblings->siblings, symTable, arglist);
+        char *code0 = translateArgs(c->siblings->siblings, symTable, &arglist);
         //case WRITE arg
         if (strcmp(c->idName, "write") == 0)
         {
@@ -202,7 +202,7 @@ char *translateCond(Morpheme *exp, char *label_true, char *label_false, HashSet 
 
 //TODO: implement translate args
 //Attention: The third parameter 'arglist' stores the temp name for the args.
-char *translateArgs(Morpheme *args, HashSet *symTable, Argument *arglist)
+char *translateArgs(Morpheme *args, HashSet *symTable, Argument **arglist)
 {
     if (args == NULL || args->type != _Args)
     {
@@ -222,8 +222,8 @@ char *translateArgs(Morpheme *args, HashSet *symTable, Argument *arglist)
         char *code1 = translateExp(c, symTable, t1);
         Argument *arg = (Argument *)malloc(sizeof(Argument));
         arg->name = t1;
-        arg->next = arglist;
-        arglist = arg;
+        arg->next = *arglist;
+        *arglist = arg;
         return code1;
     }
     // Args -> Exp COMMA Args
@@ -233,8 +233,8 @@ char *translateArgs(Morpheme *args, HashSet *symTable, Argument *arglist)
         char *code1 = translateExp(c, symTable, t1);
         Argument *arg = (Argument *)malloc(sizeof(Argument));
         arg->name = t1;
-        arg->next = arglist;
-        arglist = arg;
+        arg->next = *arglist;
+        *arglist = arg;
         char *code2 = translateArgs(c->siblings->siblings, symTable, arglist);
         char *code = concat(2, code1, code2);
         return code;
@@ -327,7 +327,6 @@ char *translateFunDec(Morpheme *funDec, HashSet *symTable)
 
         char *code;
         code = concat(3, "FUNCTION ", c->idName, " :\n");
-        printf("%s", code);
         return code;
     }
     // FunDec -> ID (VarList)

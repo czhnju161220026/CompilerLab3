@@ -37,7 +37,7 @@ int main(int argc, char **argv)
             addReadAndWrite(symbolTable);
             SemanticAnalysisLog = initLog();
             SemanticError = initLog();
-            //printTotalGrammarTree(root, 0);
+            printTotalGrammarTree(root, 0);
             handleProgram(root);
             //outputLog(SemanticAnalysisLog);
             //outputHashSet(symbolTable);

@@ -1,5 +1,10 @@
 # 编译原理实验3: 中间代码生成
 
+### 11.5 TODO
++ translateDefList
++ translateStmt
++ A1用例的9和10行段错误，增加了一个A0用例用于测试
+
 ### 11.4 21:55
 * 完成了utils部分，实现了concat,getTemp,getLabel,getVariable函数
 * 修改了HashSet部分，在实例符号插入时分配三地址语言里的临时变量
