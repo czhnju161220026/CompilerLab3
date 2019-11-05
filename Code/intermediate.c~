@@ -40,7 +40,7 @@ char* translateExp(Morpheme* exp, HashSet* symTable, char* place) {
             char* t1 = getTemp();
             char* code1 = translateExp(c->siblings->siblings, symTable, t1);
             char str[256];
-            sprintf(str, "%s := %s\n%s := %s", variable, t1, place, variable);
+            sprintf(str, "%s := #%s\n%s := %s", variable, t1, place, variable);
             char* code2 = (char*) malloc(strlen(str) + 1);
             strcpy(code2, str);
             return concat(2, code1, code2);
@@ -67,28 +67,12 @@ char* translateExp(Morpheme* exp, HashSet* symTable, char* place) {
         char* t1 = getTemp();
         char* code1 = translateExp(c->siblings, symTable, t1);
         char str[256];
-        sprintf(str, "%s := #0 - %s\n", place, t1);
+        sprintf(str, "%s := %0 - %s\n", place, t1);
         char* code2 = (char*) malloc(strlen(str) + 1);
         strcpy(code2, str);
         return concat(2, code1, code2)
     } else if ((c->type == _EXP && c->siblings != NULL && (c->siblings->type == _RELOP || c->siblings->type == _AND || c->siblings->type == _OR) && s->siblings->siblings != NULL && c->siblings->siblings->type == _EXP) || (c->type == _NOT && c->siblings != NULL && c->siblings->type == _EXP)) {
-        char* label1 = getLabel();
-        char* label2 = getLabel();
-        char str[256];
-        sprintf(str, "%s := #0\n", place);
-        char* code0 = (char*) malloc(strlen(str) + 1);
-        strcpy(code0, str);
-
-        char* code1 = translateCond(c, label1, label2, symTable);
-        sprintf(str, "LABEL %s :\n%s := 1\n", label1, place);
-        char* code2 = (char*) malloc(strlen(str) + 1);
-        strcpy(code2, str);
-
-        sprintf(str, "LABEL %s :\n", label2);
-        char* code3 = (char*) malloc(strlen(str) + 1);
-        strcpy(code3, str);
-
-        return concat(4, code0, code1, code2, code3);
+        
     }
     return NULL;
 }
