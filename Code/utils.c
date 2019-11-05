@@ -47,3 +47,8 @@ char* getLabel() {
     strcpy(temp, str);
     return temp;
 }
+
+int calcBias(Symbol* symbol, char* fieldName) {
+    //TODO
+    return 0;
+}

@@ -110,6 +110,16 @@ bool insert(HashSet *hashSet, Symbol *symbol)
     }
 }
 
+// rename the binding variable
+bool overwriteVariable(HashSet *hashSet, char* name, char* variable) {
+    Symbol* symbol = get(hashSet, name);
+    if(symbol == NULL) {
+        return false;
+    }
+    setSymbolVariable(symbol, variable);
+    return true;
+}
+
 void outputHashSet(HashSet *hashSet)
 {
     for (int i = 0; i < hashSet->size; i++)
