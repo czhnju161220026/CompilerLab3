@@ -197,7 +197,7 @@ char *translateStmt(Morpheme *stmt, HashSet *symTable)
     }
     else
     {
-        return "";
+        return NULL;
     }
     return NULL;
 }
@@ -294,7 +294,7 @@ char *translateExtDefList(Morpheme *extDefList, HashSet *symtable)
     // ExtDefList -> empty
     if (c->type == _BLANK)
     {
-        return "";
+        return NULL;
     }
     // ExtDefList -> ExtDef ExtDefList
     else if (c->type == _ExtDef && c->siblings != NULL && c->siblings->type == _ExtDefList && c->siblings->siblings == NULL)
@@ -331,7 +331,7 @@ char *translateExtDef(Morpheme *extDef, HashSet *symTable)
     else
     {
         //We do not care about other cases.
-        return "";
+        return NULL;
     }
 }
 char *translateFunDec(Morpheme *funDec, HashSet *symTable)
@@ -414,7 +414,7 @@ char *translateStmtList(Morpheme *stmtList, HashSet *symTable)
     //stmtlist -> empty
     if (c->type == _BLANK)
     {
-        return "";
+        return NULL;
     }
     //stmtlist -> stmt stmtlist
     else if (c->type == _Stmt && c->siblings != NULL && c->siblings->type == _StmtList)
@@ -445,7 +445,7 @@ char *translateDefList(Morpheme *defList, HashSet *symTable)
     // DefList -> empty
     else if (c->type == _BLANK)
     {
-        return "";
+        return NULL;
     }
     // DefList -> Def DefList
     else if (c->type == _Def && c->siblings != NULL && c->siblings->type == _DefList && c->siblings->siblings == NULL)
@@ -456,6 +456,7 @@ char *translateDefList(Morpheme *defList, HashSet *symTable)
         code2 = translateDefList(c->siblings, symTable);
         printf("code2 = %s", code2);
         code = concat(2, code1, code2);
+        printf("code = %s", code);
         return code;
     }
     printf("\033[31mBad DefList node.\n\033[0m");
@@ -589,7 +590,7 @@ char *translateVarDec(Morpheme *varDec, HashSet *symTable)
         }
         default:
         {
-            return "";
+            return NULL;
         }
         }
     }
@@ -625,7 +626,7 @@ char *translateVarDecWithAssignop(Morpheme *varDec, HashSet *symTable, char **sy
             printf("\033[31mUnsupport symbol type\n\033[0m");
             return NULL;
         }
-        return "";
+        return NULL;
     }
     printf("\033[31mUnsupport vardec\n\033[0m");
     return NULL;

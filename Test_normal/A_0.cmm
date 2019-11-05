@@ -6,7 +6,5 @@ struct Student {
     } c;
 };
 int main(){
-	int e[10];
-    int f[5];
     struct Student s;
 }
