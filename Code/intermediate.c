@@ -80,7 +80,7 @@ char* translateExp(Morpheme* exp, HashSet* symTable, char* place) {
         char* code0 = (char*) malloc(strlen(str) + 1);
         strcpy(code0, str);
 
-        char* code1 = translateCond(c, label1, label2, symTable);
+        char* code1 = translateCond(s, label1, label2, symTable);
         sprintf(str, "LABEL %s :\n%s := 1\n", label1, place);
         char* code2 = (char*) malloc(strlen(str) + 1);
         strcpy(code2, str);
@@ -116,6 +116,25 @@ char* translateStmt(Morpheme* stmt, HashSet* symTable) {
 }
 
 char* translateCond(Morpheme* exp, char* label_true, char* label_false, HashSet* symTable) {
+    if (exp == NULL) {
+        printf("\033[31mThis exp is NULL\n\033[0m");
+        return NULL;
+    }
+    if (exp->type != _Exp) {
+        printf("\033[31mThis exp is not _EXP\n\033[0m");
+        return NULL;
+    }
+    Morpheme* c = exp->child;
+    if (c == NULL) {
+        printf("\033[31mThis child is NULL\n\033[0m");
+        return NULL;
+    }
+
+    if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _RELOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp) {
+        char* t1 = getTemp();
+        char* t2 = getTemp();
+        
+    }
     return NULL;
 }
 
