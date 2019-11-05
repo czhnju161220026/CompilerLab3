@@ -62,6 +62,10 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         }
         //TODO : array and struct
     }
+    //Exp -> LP Exp RP
+    else if (c->type == _LP && c->siblings != NULL && c->siblings->type == _Exp && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP) {
+        return translateExp(c->siblings, symTable, place);
+    }
     //Exp -> Exp op Exp
     else if (c->type == _Exp && c->siblings != NULL && (c->siblings->type == _PLUS || c->siblings->type == _MINUS || c->siblings->type == _STAR || c->siblings->type == _DIV) && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp)
     {
@@ -111,7 +115,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         char *code0 = (char *)malloc(strlen(str) + 1);
         strcpy(code0, str);
 
-        char* code1 = translateCond(s, label1, label2, symTable);
+        char* code1 = translateCond(exp, label1, label2, symTable);
         sprintf(str, "LABEL %s :\n%s := 1\n", label1, place);
         char *code2 = (char *)malloc(strlen(str) + 1);
         strcpy(code2, str);
