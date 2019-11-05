@@ -7,6 +7,7 @@
 #include <string.h>
 char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
 {
+    //printf("Translating Exp\n");
     if (exp == NULL)
     {
         printf("\033[31mThis exp is NULL\n\033[0m");
@@ -59,8 +60,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             strcpy(code2, str);
             return concat(2, code1, code2);
         }
-        //TODO : array and struct 
-
+        //TODO : array and struct
     }
     //Exp -> Exp op Exp
     else if (c->type == _Exp && c->siblings != NULL && (c->siblings->type == _PLUS || c->siblings->type == _MINUS || c->siblings->type == _STAR || c->siblings->type == _DIV) && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp)
@@ -173,12 +173,25 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
 
 char *translateStmt(Morpheme *stmt, HashSet *symTable)
 {
+    //printf("Translating Stmt\n");
     if (stmt == NULL || stmt->type != _Stmt)
     {
         printf("\033[31mNot a stmt\n\033[0m");
         return NULL;
     }
-
+    //TODO: 目前只实现了Stmt -> Exp Semi
+    Morpheme *c = stmt->child;
+    //Stmt -> Exp Semi
+    if (c != NULL && c->type == _Exp && c->siblings != NULL && c->siblings->type == _SEMI)
+    {
+        //printf("Stmt -> Exp ;\n");
+        char* t1 = getTemp();
+        char* code = translateExp(c, symTable, t1);
+        return code;
+    }
+    else {
+        return "";
+    }
     return NULL;
 }
 
@@ -232,6 +245,7 @@ char *translateArgs(Morpheme *args, HashSet *symTable, Argument *arglist)
 
 char *translateProgram(Morpheme *prog, HashSet *symtable)
 {
+    //printf("Translating program\n");
     if (prog == NULL || prog->type != _Program)
     {
         printf("\033[31mInvalid program node.\n\033[0m");
@@ -243,53 +257,155 @@ char *translateProgram(Morpheme *prog, HashSet *symtable)
 }
 char *translateExtDefList(Morpheme *extDefList, HashSet *symtable)
 {
-    if(extDefList == NULL || extDefList->type != _ExtDefList) 
+    //printf("Translating ExtDefList\n");
+    if (extDefList == NULL || extDefList->type != _ExtDefList)
     {
         printf("\033[31mBad extDefList.\n\033[0m");
         return NULL;
     }
-    Morpheme* c = extDefList->child;
+    Morpheme *c = extDefList->child;
     // ExtDefList -> empty
-    if(c == NULL) 
+    if (c->type == _BLANK)
     {
         return "";
     }
     // ExtDefList -> ExtDef ExtDefList
-    else if(c->type == _ExtDef && c->siblings != NULL && c->siblings->type == _ExtDefList && c->siblings->siblings == NULL)
+    else if (c->type == _ExtDef && c->siblings != NULL && c->siblings->type == _ExtDefList && c->siblings->siblings == NULL)
     {
-        char* code1, *code2;
+        char *code1, *code2;
         code1 = translateExtDef(c, symtable);
         code2 = translateExtDefList(c->siblings, symtable);
-        char* code = concat(2, code1, code2);
+        char *code = concat(2, code1, code2);
         return code;
     }
     printf("\033[31mInvalid extDefList node.\n\033[0m");
     return NULL;
 }
-char *translateExtDef(Morpheme *extDef, HashSet* symTable) {
-    if(extDef == NULL || extDef->type != _ExtDef) 
+char *translateExtDef(Morpheme *extDef, HashSet *symTable)
+{
+    //printf("Translating ExtDef\n");
+    if (extDef == NULL || extDef->type != _ExtDef)
     {
         printf("\033[31mBad ExtDef node.\n\033[0m");
         return NULL;
     }
 
-    Morpheme* c = extDef->child;
-    // Becase there is no global variable in this lab, 
+    Morpheme *c = extDef->child;
+    // Becase there is no global variable in this lab,
     // We only need to translate case: ExtDef -> Specifier FunDec Compst
-    if(c != NULL && c->type == _Specifier && c->siblings != NULL && c->siblings->type == _FunDec && c->siblings->siblings != NULL && c->siblings->siblings->type == _ExtDefList && c->siblings->siblings->siblings == NULL)
+    if (c != NULL && c->type == _Specifier && c->siblings != NULL && c->siblings->type == _FunDec && c->siblings->siblings != NULL && c->siblings->siblings->type == _CompSt && c->siblings->siblings->siblings == NULL)
     {
-        char* code;
-        
+        char *code;
+        char *code1 = translateFunDec(c->siblings, symTable);
+        char *code2 = translateCompSt(c->siblings->siblings, symTable);
+        code = concat(2, code1, code2);
+        return code;
     }
-    else {
-        //We do not care about other cases. 
+    else
+    {
+        //We do not care about other cases.
         return "";
     }
 }
-char *translateFunDec(Morpheme *m);
-char *translateCompSt(Morpheme *m);
-char *translateStmtList(Morpheme *m);
-char *translateDefList(Morpheme *m);
+char *translateFunDec(Morpheme *funDec, HashSet *symTable)
+{
+    //printf("Translating FunDec\n");
+    if (funDec == NULL || funDec->type != _FunDec)
+    {
+        printf("\033[31mBad FunDec node.\n\033[0m");
+        return NULL;
+    }
+    Morpheme *c = funDec->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty FunDec node.\n\033[0m");
+        return NULL;
+    }
+    // FunDec -> ID ()
+    else if (c->type == _ID && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP)
+    {
+
+        char *code;
+        code = concat(3, "FUNCTION ", c->idName, " :\n");
+        printf("%s", code);
+        return code;
+    }
+    // FunDec -> ID (VarList)
+    else if (c->type == _ID && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _VarList && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP)
+    {
+        char *code;
+        char *code1 = concat(3, "FUNCTION ", c->idName, " :\n");
+        char *code2 = translateVarList(c->siblings->siblings, symTable);
+        code = concat(2, code1, code2);
+        return code;
+    }
+
+    printf("\033[31mBad FunDec node.\n\033[0m");
+    return NULL;
+}
+
+// TODO: translate Varlist
+char *translateVarList(Morpheme *varList, HashSet *symTable)
+{
+    return NULL;
+}
+
+char *translateCompSt(Morpheme *compSt, HashSet *symTable)
+{
+    //printf("Translating Compst\n");
+    if (compSt == NULL || compSt->type != _CompSt)
+    {
+        printf("\033[31mBad Compst node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = compSt->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty CompSt node.\n\033[0m");
+        return NULL;
+    }
+    // CompSt -> { DefList StmtList }
+    if (c->type == _LC && c->siblings != NULL && c->siblings->type == _DefList && c->siblings->siblings != NULL && c->siblings->siblings->type == _StmtList && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RC)
+    {
+        char *code1, *code2;
+        code1 = translateDefList(c->siblings, symTable);
+        code2 = translateStmtList(c->siblings->siblings, symTable);
+        char *code = concat(2, code1, code2);
+        return code;
+    }
+}
+char *translateStmtList(Morpheme *stmtList, HashSet *symTable)
+{
+    //printf("Translating stmtlist\n");
+    if (stmtList == NULL || stmtList->type != _StmtList)
+    {
+        printf("\033[31mBad stmtList node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = stmtList->child;
+    //stmtlist -> empty
+    if (c->type == _BLANK)
+    {
+        return "";
+    }
+    //stmtlist -> stmt stmtlist
+    else if (c->type == _Stmt && c->siblings != NULL && c->siblings->type == _StmtList)
+    {
+        char *code;
+        char *code1 = translateStmt(c, symTable);
+        char *code2 = translateStmtList(c->siblings, symTable);
+        code = concat(2, code1, code2);
+        return code;
+    }
+}
+//TODO
+char *translateDefList(Morpheme *defList, HashSet *symTable)
+{
+    //printf("Translating Def list\n");
+    return "TODO: implement translate DefList\n";
+}
 char *translateDef(Morpheme *m);
 char *translateDecList(Morpheme *m);
 char *translateDec(Morpheme *m);
