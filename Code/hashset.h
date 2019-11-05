@@ -25,4 +25,5 @@ bool insert(HashSet *hashSet, Symbol *symbol);
 Symbol *get(HashSet *hashSet, char *name);
 void outputHashSet(HashSet *hashSet);
 bool addReadAndWrite(HashSet *hashSet);
+bool overwriteVariable(HashSet *hashSet, char* name, char* variable);
 #endif

@@ -1,0 +1,47 @@
+----------------------------------
+Symbol name: a
+Symbol variable: t4
+Symbol type: INT
+----------------------------------
+Symbol name: b
+Symbol variable: t5
+Symbol type: INT
+----------------------------------
+Symbol name: c
+Symbol variable: t6
+Symbol type: INT
+----------------------------------
+Symbol name: t
+Symbol variable: t7
+Symbol type: INT
+----------------------------------
+Symbol name: $$
+Symbol variable: t0
+Symbol type: INT
+----------------------------------
+Symbol name: pp
+Symbol variable: t8
+Symbol type: INT
+----------------------------------
+Symbol name: tt
+Symbol variable: t9
+Symbol type: INT
+----------------------------------
+Symbol name: write
+Symbol variable: NULL
+Symbol type: FUNC
+Return Type: INT
+Arguments: 
+	$$
+----------------------------------
+Symbol name: main
+Symbol variable: NULL
+Symbol type: FUNC
+Return Type: INT
+Arguments: 
+----------------------------------
+Symbol name: read
+Symbol variable: NULL
+Symbol type: FUNC
+Return Type: INT
+Arguments: 

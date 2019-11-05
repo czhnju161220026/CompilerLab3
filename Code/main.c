@@ -5,6 +5,7 @@
 #include "hashset.h"
 #include "log.h"
 #include "utils.h"
+#include "intermediate.h"
 extern void yyrestart(FILE *);
 extern void yyparse(void);
 extern Morpheme *root;
@@ -41,6 +42,8 @@ int main(int argc, char **argv)
             //outputLog(SemanticAnalysisLog);
             outputHashSet(symbolTable);
             outputLog(SemanticError);
+            char* code = translateProgram(root, symbolTable);
+            printf("%s", code);
         }
         destructMorpheme(root);
         return 0;
