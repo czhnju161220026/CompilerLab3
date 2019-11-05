@@ -48,7 +48,3 @@ char* getLabel() {
     return temp;
 }
 
-int calcBias(Symbol* symbol, char* fieldName) {
-    //TODO
-    return 0;
-}

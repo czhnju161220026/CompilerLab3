@@ -143,4 +143,8 @@ bool arrayTypeEqual(ArrayContent *a1, ArrayContent *a2, bool useLength);
 bool isField(StructTypeContent *s, char *fieldName);
 bool argsMatch(Argument* args, ParaType* parameters);
 
+int calcSize(char* symbolName);
+int calcBias(char* symbolName, char* filedName);
+
+
 #endif
