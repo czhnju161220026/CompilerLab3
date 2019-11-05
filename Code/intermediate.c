@@ -218,7 +218,42 @@ char* translateCond(Morpheme* exp, char* label_true, char* label_false, HashSet*
     if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _RELOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp) {
         char* t1 = getTemp();
         char* t2 = getTemp();
-        
+        char* code1 = translateExp(c, symTable, t1);
+        char* code2 = translateExp(c->siblings->siblings, symTable, t2);
+        char* op = c->siblings->idName;
+        char str[256];
+        sprintf(str, "IF %s %s %s GOTO %s\nGOTO %s", t1, op, t2, label_true, label_false);
+        char *code3 = (char *)malloc(strlen(str) + 1);
+        strcpy(code3, str);
+        return concat(3, code1, code2, code3);
+    } else if (c->type == _NOT && c->siblings != NULL && c->siblings->type == _Exp) {
+        return translateCond(c->siblings, label_false, label_true, symTable);
+    } else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _AND && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp) {
+        char* label1 = getLabel();
+        char* code1 = translateCond(c, label1, label_false, symTable);
+        char* code2 = translateCond(c->siblings->siblings, label_true, label_false, symTable);
+        char str[256];
+        sprintf(str, "LABEL %s :\n", label1);
+        char *code3 = (char *)malloc(strlen(str) + 1);
+        strcpy(code3, str);
+        return concat(3, code1, code3, code2);
+    } else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _OR && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp) {
+        char* label1 = getLabel();
+        char* code1 = translateCond(c, label_true, label1, symTable);
+        char* code2 = translateCond(c->siblings->siblings, label_true, label_false, symTable);
+        char str[256];
+        sprintf(str, "LABEL %s :\n", label1);
+        char *code3 = (char *)malloc(strlen(str) + 1);
+        strcpy(code3, str);
+        return concat(3, code1, code3, code2);
+    } else {
+        char* t1 = getTemp();
+        char* code1 = translateExp(exp, symTable, t1);
+        char str[256];
+        sprintf(str, "IF %s != #0 GOTO %s\nGOTO %s\n", t1, label_true, label_false);
+        char *code2 = (char *)malloc(strlen(str) + 1);
+        strcpy(code2, str);
+        return concat(2, code1, code2);
     }
 }
 //TODO: implement translate args

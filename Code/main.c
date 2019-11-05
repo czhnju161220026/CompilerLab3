@@ -40,7 +40,7 @@ int main(int argc, char **argv)
             //printTotalGrammarTree(root, 0);
             handleProgram(root);
             //outputLog(SemanticAnalysisLog);
-            outputHashSet(symbolTable);
+            //outputHashSet(symbolTable);
             outputLog(SemanticError);
             char* code = translateProgram(root, symbolTable);
             printf("%s", code);
