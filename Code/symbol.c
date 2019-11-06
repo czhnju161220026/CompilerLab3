@@ -71,6 +71,29 @@ bool setSymbolVariable(Symbol *s, char *name)
     }
 }
 
+bool overWriteSymbolVariable(Symbol *s, char *name)
+{
+    if (s == NULL)
+    {
+        return false;
+    }
+    if (s->variable == NULL)
+    {
+        return false;
+    }
+    if (s->symbol_type == INT_SYMBOL || s->symbol_type == FLOAT_SYMBOL || s->symbol_type == ARRAY_SYMBOL || s->symbol_type == STRUCT_VAL_SYMBOL)
+    {
+        free(s->variable);
+        s->variable = (char *)malloc(sizeof(char) * strlen(name) + 1);
+        strcpy(s->variable, name);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 bool setSymbolType(Symbol *s, SymbolTypes type)
 {
     //设置symbol的类型

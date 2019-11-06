@@ -49,7 +49,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
     //EXP -> Exp assignop Exp
     else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _ASSIGNOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp)
     {
-        if (c->child->type == _ID)
+        if (c->child->type == _ID && c->child->siblings == NULL)
         {
             Symbol *s = get(symTable, c->child->idName);
             char *variable = s->variable;
@@ -60,7 +60,18 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             char *code2 = (char *)malloc(strlen(str) + 1);
             strcpy(code2, str);
             return concat(2, code1, code2);
+        } else {
+            char* t1 = getTemp();
+            char* t2 = getTemp();
+            char* code1 = translateExp(c, symTable, t1);
+            char* code2 = translateExp(c->siblings->siblings, symTable, t2);
+            char str[256];
+            sprintf(str, "%s := %s\n%s := %s\n", t1, t2, place, t2);
+            char *code3 = (char *)malloc(strlen(str) + 1);
+            strcpy(code3, str);
+            return concat(3, code1, code2, code3);
         }
+        
         //TODO : array and struct
     }
     //Exp -> LP Exp RP
@@ -172,6 +183,21 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             char *code = concat(6, code0, code1, place, " := CALL ", c->idName, "\n");
             return code;
         }
+    } else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _LB && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RB && c->siblings->siblings->siblings->siblings == NULL) {
+        char* t1 = getTemp(); //addr
+        char* t2 = getTemp(); //offset
+        char* t3 = getTemp(); //4 * offset
+        char* t4 = getTemp(); //final addr
+        char* code1 = translateExp(c, symTable, t1);
+        char* code2 = translateExp(c->siblings->siblings, symTable, t2);
+        char str[256];
+        sprintf(str, "%s := #4 * %s\n%s := %s + %s\n%s := %s\n", t3, t2, t4, t1, t3, place, t4);
+        char* code3 = (char*) malloc(strlen(str) + 1);
+        strcpy(code3, str);
+        char* temp = (char*) malloc(strlen(place) + 1);
+        strcpy(temp, place);
+        sprintf(place, "*%s", temp);
+        return concat(3, code1, code2, code3);
     }
 
     return NULL;
