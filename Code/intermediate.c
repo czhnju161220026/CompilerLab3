@@ -3,6 +3,7 @@
 #include "hashset.h"
 #include "semantic.h"
 #include "utils.h"
+#include "symbol.h"
 #include <stdio.h>
 #include <string.h>
 char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
@@ -63,7 +64,8 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         //TODO : array and struct
     }
     //Exp -> LP Exp RP
-    else if (c->type == _LP && c->siblings != NULL && c->siblings->type == _Exp && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP) {
+    else if (c->type == _LP && c->siblings != NULL && c->siblings->type == _Exp && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP)
+    {
         return translateExp(c->siblings, symTable, place);
     }
     //Exp -> Exp op Exp
@@ -115,7 +117,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         char *code0 = (char *)malloc(strlen(str) + 1);
         strcpy(code0, str);
 
-        char* code1 = translateCond(exp, label1, label2, symTable);
+        char *code1 = translateCond(exp, label1, label2, symTable);
         sprintf(str, "LABEL %s :\n%s := 1\n", label1, place);
         char *code2 = (char *)malloc(strlen(str) + 1);
         strcpy(code2, str);
@@ -189,28 +191,32 @@ char *translateStmt(Morpheme *stmt, HashSet *symTable)
     if (c != NULL && c->type == _Exp && c->siblings != NULL && c->siblings->type == _SEMI)
     {
         //printf("Stmt -> Exp ;\n");
-        char* t1 = getTemp();
-        char* code = translateExp(c, symTable, t1);
+        char *t1 = getTemp();
+        char *code = translateExp(c, symTable, t1);
         return code;
     }
-    else {
-        return "";
+    else
+    {
+        return NULL;
     }
     return NULL;
 }
 
-
-char* translateCond(Morpheme* exp, char* label_true, char* label_false, HashSet* symTable) {
-    if (exp == NULL) {
+char *translateCond(Morpheme *exp, char *label_true, char *label_false, HashSet *symTable)
+{
+    if (exp == NULL)
+    {
         printf("\033[31mThis exp is NULL\n\033[0m");
         return NULL;
     }
-    if (exp->type != _Exp) {
+    if (exp->type != _Exp)
+    {
         printf("\033[31mThis exp is not _EXP\n\033[0m");
         return NULL;
     }
-    Morpheme* c = exp->child;
-    if (c == NULL) {
+    Morpheme *c = exp->child;
+    if (c == NULL)
+    {
         printf("\033[31mThis child is NULL\n\033[0m");
         return NULL;
     }
@@ -323,7 +329,7 @@ char *translateExtDefList(Morpheme *extDefList, HashSet *symtable)
     // ExtDefList -> empty
     if (c->type == _BLANK)
     {
-        return "";
+        return NULL;
     }
     // ExtDefList -> ExtDef ExtDefList
     else if (c->type == _ExtDef && c->siblings != NULL && c->siblings->type == _ExtDefList && c->siblings->siblings == NULL)
@@ -360,7 +366,7 @@ char *translateExtDef(Morpheme *extDef, HashSet *symTable)
     else
     {
         //We do not care about other cases.
-        return "";
+        return NULL;
     }
 }
 char *translateFunDec(Morpheme *funDec, HashSet *symTable)
@@ -443,7 +449,7 @@ char *translateStmtList(Morpheme *stmtList, HashSet *symTable)
     //stmtlist -> empty
     if (c->type == _BLANK)
     {
-        return "";
+        return NULL;
     }
     //stmtlist -> stmt stmtlist
     else if (c->type == _Stmt && c->siblings != NULL && c->siblings->type == _StmtList)
@@ -459,8 +465,204 @@ char *translateStmtList(Morpheme *stmtList, HashSet *symTable)
 char *translateDefList(Morpheme *defList, HashSet *symTable)
 {
     //printf("Translating Def list\n");
-    return "TODO: implement translate DefList\n";
+    if (defList == NULL || defList->type != _DefList)
+    {
+        printf("\033[31mBad defList node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = defList->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty defList node.\n\033[0m");
+        return NULL;
+    }
+    // DefList -> empty
+    else if (c->type == _BLANK)
+    {
+        return NULL;
+    }
+    // DefList -> Def DefList
+    else if (c->type == _Def && c->siblings != NULL && c->siblings->type == _DefList && c->siblings->siblings == NULL)
+    {
+        char *code, *code1, *code2;
+        code1 = translateDef(c, symTable);
+        code2 = translateDefList(c->siblings, symTable);
+        code = concat(2, code1, code2);
+        return code;
+    }
+    printf("\033[31mBad DefList node.\n\033[0m");
+    return NULL;
 }
-char *translateDef(Morpheme *m);
-char *translateDecList(Morpheme *m);
-char *translateDec(Morpheme *m);
+char *translateDef(Morpheme *def, HashSet *symTable)
+{
+    if (def == NULL || def->type != _Def)
+    {
+        printf("\033[31mBad def node.\n\033[0m");
+        return NULL;
+    }
+    Morpheme *c = def->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty stmtList node.\n\033[0m");
+        return NULL;
+    }
+    // Def -> Specifier DecList Semi
+    else if (c->type == _Specifier && c->siblings != NULL && c->siblings->type == _DecList && c->siblings->siblings != NULL && c->siblings->siblings->type == _SEMI && c->siblings->siblings->siblings == NULL)
+    {
+        //由于我们已经进行了语义分析，所以Specifier中的信息已经获取了，直接处理DecList
+        char* code = translateDecList(c->siblings, symTable);
+        printf("def code = %s", code);
+        return code;
+    }
+}
+char *translateDecList(Morpheme *decList, HashSet *symTable)
+{
+    if (decList == NULL || decList->type != _DecList)
+    {
+        printf("\033[31mBad decList node.\n\033[0m");
+        return NULL;
+    }
+    Morpheme *c = decList->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty DecList node.\n\033[0m");
+        return NULL;
+    }
+    // DecList -> Dec
+    else if (c->type == _Dec && c->siblings == NULL)
+    {
+        char* code = translateDec(c, symTable);
+        //printf("deccode = %s", code);
+        return code;
+    }
+    // DecList -> Dec Comma DecList
+    else if (c->type == _Dec && c->siblings != NULL && c->siblings->type == _COMMA && c->siblings->siblings != NULL && c->siblings->siblings->type == _DecList && c->siblings->siblings->siblings == NULL)
+    {
+        char *code1, *code2;
+        code1 = translateDec(c, symTable);
+        code2 = translateDecList(c->siblings->siblings, symTable);
+        char *code = concat(2, code1, code2);
+        return code;
+    }
+}
+char *translateDec(Morpheme *dec, HashSet *symTable)
+{
+    if (dec == NULL || dec->type != _Dec)
+    {
+        printf("\033[31mBad dec node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = dec->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty dec node.\n\033[0m");
+        return NULL;
+    }
+    // Dec -> VarDec
+    else if (c->type == _VarDec && c->siblings == NULL)
+    {
+        return translateVarDec(c, symTable);
+    }
+    // Dec -> VarDec ASSIGNOP EXP
+    else if (c->type == _VarDec && c->siblings != NULL && c->siblings->type == _ASSIGNOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings == NULL)
+    {
+        char *symbolName = "";
+        char *code1 = translateVarDecWithAssignop(c, symTable, &symbolName);
+        Symbol *s = get(symTable, symbolName);
+        char *code2 = translateExp(c->siblings->siblings, symTable, s->variable);
+        char *code = concat(2, code1, code2);
+        return code;
+    }
+}
+//没有初始化赋值的变量声明
+char *translateVarDec(Morpheme *varDec, HashSet *symTable)
+{
+    if (varDec == NULL || varDec->type != _VarDec)
+    {
+        printf("\033[31mBad varDec node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = varDec->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty vardec node.\n\033[0m");
+        return NULL;
+    }
+    // VarDec -> ID
+    else if (c->type == _ID && c->siblings == NULL)
+    {
+        char *name = c->idName;
+        Symbol *s = get(symTable, name);
+        switch (s->symbol_type)
+        {
+        //只有结构体和数组我们分配空间，int和float的话不分配空间
+        case STRUCT_VAL_SYMBOL:{
+            char* variable = s->variable;
+            int size = calcSize(s->name);
+            //printf("Size = %d\n", size);
+            char* code;
+            char str[256];
+            sprintf(str, "%s %s %d\n", "DEC", variable, size);
+            code = (char*)malloc(strlen(str));
+            strcpy(code, str);
+            return code;
+        }
+        case ARRAY_SYMBOL: {
+            char* variable = s->variable;
+            int size = calcSize(s->name);
+            //printf("Size = %d\n", size);
+            char* code;
+            char str[256];
+            sprintf(str, "%s %s %d\n", "DEC", variable, size);
+            code = (char*)malloc(strlen(str));
+            strcpy(code, str);
+            //printf("code = %s\n", code);
+            return code;
+        }
+        default:
+        {
+            return NULL;
+        }
+        }
+    }
+    // VarDec -> VarDec LB INT RB
+    else if (c->type == _VarDec && c->siblings != NULL && c->siblings->type == _LB && c->siblings->siblings != NULL && c->siblings->siblings->type == _INT && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RB)
+    {
+        return translateVarDec(c, symTable);
+    }
+}
+
+//有初始化赋值的变量声明， 通过symbolName返回变量的名称
+char *translateVarDecWithAssignop(Morpheme *varDec, HashSet *symTable, char **symbolName)
+{
+    if (varDec == NULL || varDec->type != _VarDec)
+    {
+        printf("\033[31mBad varDec node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = varDec->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty vardec node.\n\033[0m");
+        return NULL;
+    }
+
+    //由于数组和结构体不会被直接赋值，所以此时的vardec一定是一个ID
+    if (c->type == _ID && c->siblings == NULL) {
+        *symbolName = c->idName;
+        Symbol* s = get(symTable, c->idName);
+        if(s->symbol_type != INT_SYMBOL && s->symbol_type != FLOAT_SYMBOL)
+        {
+            printf("\033[31mUnsupport symbol type\n\033[0m");
+            return NULL;
+        }
+        return NULL;
+    }
+    printf("\033[31mUnsupport vardec\n\033[0m");
+    return NULL;
+
+}
