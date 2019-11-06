@@ -408,9 +408,55 @@ char *translateFunDec(Morpheme *funDec, HashSet *symTable)
 // TODO: translate Varlist
 char *translateVarList(Morpheme *varList, HashSet *symTable)
 {
+    if(varList == NULL || varList->type != _VarList) 
+    {
+        printf("\033[31mBad VarList node.\n\033[0m");
+        return NULL;
+    }
+    Morpheme* c = varList->child;
+    if(c == NULL ) {
+        printf("\033[31mEmpty VarList node.\n\033[0m");
+        return NULL;
+    }
+    // VarList -> ParamDec Comma VarList
+    else if(c->type == _ParamDec && c->siblings != NULL && c->siblings->type == _COMMA && c->siblings->siblings!=NULL && c->siblings->siblings->type == _VarList && c->siblings->siblings->siblings == NULL)
+    {
+        char* code1 = translateParamDec(c, symTable);
+        char* code2 = translateVarList(c->siblings->siblings, symTable);
+        char* code = concat(2, code1, code2);
+        return code;
+    } 
+    // VarList -> ParamDec
+    else if(c->type == _ParamDec && c->siblings == NULL)
+    {
+         char* code = translateParamDec(c, symTable);
+         return code;
+    }
     return NULL;
 }
 
+char* translateParamDec(Morpheme* paramDec, HashSet* symTable) 
+{   
+    if(paramDec == NULL || paramDec->type != _ParamDec)
+    {
+        printf("\033[31mBad ParamDec node.\n\033[0m");
+        return NULL;
+    }
+    Morpheme* c = paramDec->child;
+    if(c == NULL)
+    {
+        printf("\033[31mEmpty ParamDec node.\n\033[0m");
+        return NULL;
+    }
+    else if(c->type == _Specifier && c->siblings != NULL && c->siblings->type == _VarDec)
+    {
+        char* code = translateVarDecFromParamDec(c->siblings, symTable);
+        return code;
+    }
+
+    printf("\033[31mBad ParamDec node.\n\033[0m");
+    return NULL;
+}
 char *translateCompSt(Morpheme *compSt, HashSet *symTable)
 {
     //printf("Translating Compst\n");
@@ -461,7 +507,7 @@ char *translateStmtList(Morpheme *stmtList, HashSet *symTable)
         return code;
     }
 }
-//TODO
+
 char *translateDefList(Morpheme *defList, HashSet *symTable)
 {
     //printf("Translating Def list\n");
@@ -512,7 +558,7 @@ char *translateDef(Morpheme *def, HashSet *symTable)
     {
         //由于我们已经进行了语义分析，所以Specifier中的信息已经获取了，直接处理DecList
         char* code = translateDecList(c->siblings, symTable);
-        printf("def code = %s", code);
+        //printf("def code = %s", code);
         return code;
     }
 }
@@ -605,9 +651,12 @@ char *translateVarDec(Morpheme *varDec, HashSet *symTable)
             //printf("Size = %d\n", size);
             char* code;
             char str[256];
+            char str2[256];
             sprintf(str, "%s %s %d\n", "DEC", variable, size);
-            code = (char*)malloc(strlen(str));
-            strcpy(code, str);
+            char* newVariable = getVariable();
+            sprintf(str2, "%s := &%s\n", newVariable, variable);
+            overwriteVariable(symTable, s->name, newVariable);
+            code = concat(2, str, str2);
             return code;
         }
         case ARRAY_SYMBOL: {
@@ -616,9 +665,12 @@ char *translateVarDec(Morpheme *varDec, HashSet *symTable)
             //printf("Size = %d\n", size);
             char* code;
             char str[256];
+            char str2[256];
             sprintf(str, "%s %s %d\n", "DEC", variable, size);
-            code = (char*)malloc(strlen(str));
-            strcpy(code, str);
+            char* newVariable = getVariable();
+            sprintf(str2, "%s := &%s\n", newVariable, variable);
+            overwriteVariable(symTable, s->name, newVariable);
+            code = concat(2, str, str2);
             //printf("code = %s\n", code);
             return code;
         }
@@ -661,6 +713,34 @@ char *translateVarDecWithAssignop(Morpheme *varDec, HashSet *symTable, char **sy
             return NULL;
         }
         return NULL;
+    }
+    printf("\033[31mUnsupport vardec\n\033[0m");
+    return NULL;
+
+}
+
+//翻译形参中的vardec
+char* translateVarDecFromParamDec(Morpheme* varDec, HashSet *symTable)
+{
+    if(varDec == NULL || varDec->type != _VarDec) 
+    {
+        printf("\033[31mBad VarDec node.\n\033[0m");
+        return NULL;
+    }
+
+    Morpheme *c = varDec->child;
+    if (c == NULL)
+    {
+        printf("\033[31mEmpty vardec node.\n\033[0m");
+        return NULL;
+    }
+
+    //由于数组和结构体不会被直接赋值，所以此时的vardec一定是一个ID
+    if (c->type == _ID && c->siblings == NULL) {
+        char* name = c->idName;
+        Symbol* s = get(symTable, name);
+        char* code = concat(3, "PARAM ", s->variable, " \n");
+        return code;
     }
     printf("\033[31mUnsupport vardec\n\033[0m");
     return NULL;

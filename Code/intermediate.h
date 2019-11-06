@@ -12,6 +12,7 @@ char* translateExtDefList(Morpheme* extDefList, HashSet* symTable);
 char* translateExtDef(Morpheme* extDef, HashSet* symTable);
 char* translateFunDec(Morpheme* funDec, HashSet* symTable);
 char* translateVarList(Morpheme* varList, HashSet* symTable);
+char* translateParamDec(Morpheme* paramDec, HashSet* symTable);
 char* translateCompSt(Morpheme* compSt, HashSet* symTable);
 char* translateStmtList(Morpheme* stmtList, HashSet* symTable);
 char* translateDefList(Morpheme* defList, HashSet* symTable);
@@ -19,5 +20,6 @@ char* translateDef(Morpheme* def, HashSet* symTable);
 char* translateDecList(Morpheme* decList, HashSet* symTable);
 char* translateDec(Morpheme *dec, HashSet* symTable);
 char* translateVarDec(Morpheme* varDec, HashSet* symTable); 
-char *translateVarDecWithAssignop(Morpheme *varDec, HashSet *symTable, char **symbolName);
+char* translateVarDecWithAssignop(Morpheme *varDec, HashSet *symTable, char **symbolName);
+char* translateVarDecFromParamDec(Morpheme* varDec, HashSet *symTable); 
 #endif
