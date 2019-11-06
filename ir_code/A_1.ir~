@@ -49,6 +49,3 @@ t39 := v6
 WRITE t39
 t41 := v5
 WRITE t41
-t42 := #0
-RETURN t42
-

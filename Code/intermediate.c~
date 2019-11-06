@@ -292,7 +292,7 @@ char *translateCond(Morpheme *exp, char *label_true, char *label_false, HashSet 
         char* code2 = translateExp(c->siblings->siblings, symTable, t2);
         char* op = c->siblings->idName;
         char str[256];
-        sprintf(str, "IF %s %s %s GOTO %s\nGOTO %s\n", t1, op, t2, label_true, label_false);
+        sprintf(str, "IF %s %s %s GOTO %s\nGOTO %s", t1, op, t2, label_true, label_false);
         char *code3 = (char *)malloc(strlen(str) + 1);
         strcpy(code3, str);
         return concat(3, code1, code2, code3);
