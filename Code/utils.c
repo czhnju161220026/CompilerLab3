@@ -13,13 +13,20 @@ char* concat(int n, ...) {
     va_start(argp, n);
     int length = 0;
     for (int i = 0; i < n; i++) {
-        length += strlen(va_arg(argp, char*));
+        char* s = va_arg(argp, char*);
+        if(s != NULL) {
+            length += strlen(s);
+        }
     }
     va_end(argp);
     char* str = (char*) malloc(length + 1);
+    memset(str, length, 0);
     va_start(argp, n);
     for (int i = 0; i < n; i++) {
-        strcat(str, va_arg(argp, char*));
+        char* s = va_arg(argp, char*);
+        if(s != NULL) {
+            strcat(str, s);
+        }
     }
     return str;
 }
@@ -48,7 +55,3 @@ char* getLabel() {
     return temp;
 }
 
-int calcBias(Symbol* symbol, char* fieldName) {
-    //TODO
-    return 0;
-}
