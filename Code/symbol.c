@@ -49,18 +49,24 @@ bool setSymbolName(Symbol *s, char *name)
     return true;
 }
 
-bool setSymbolVariable(Symbol *s, char *name) {
-    if (s == NULL) {
+bool setSymbolVariable(Symbol *s, char *name)
+{
+    if (s == NULL)
+    {
         return false;
     }
-    if (s->variable != NULL) {
+    if (s->variable != NULL)
+    {
         return false;
     }
-    if (s->symbol_type == INT_SYMBOL || s->symbol_type == FLOAT_SYMBOL || s->symbol_type == ARRAY_SYMBOL || s->symbol_type == STRUCT_VAL_SYMBOL) {
+    if (s->symbol_type == INT_SYMBOL || s->symbol_type == FLOAT_SYMBOL || s->symbol_type == ARRAY_SYMBOL || s->symbol_type == STRUCT_VAL_SYMBOL)
+    {
         s->variable = (char *)malloc(sizeof(char) * strlen(name) + 1);
         strcpy(s->variable, name);
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
@@ -444,10 +450,12 @@ bool expTpyeEqual(ExpType *t1, ExpType *t2)
     if (t1->type == _STRUCT_TYPE_)
     {
         //PROBELM
-        if(strcmp(t1->typeName, t2->typeName) == 0) {
+        if (strcmp(t1->typeName, t2->typeName) == 0)
+        {
             return true;
         }
-        else {
+        else
+        {
             return structTypeEqual(get(symbolTable, t1->typeName)->struct_def, get(symbolTable, t2->typeName)->struct_def);
         }
     }
@@ -506,11 +514,14 @@ bool structTypeEqual(StructTypeContent *s1, StructTypeContent *s2)
 //比较两个数组是否同类型， useLength控制是否考虑每一维的长度
 bool arrayTypeEqual(ArrayContent *a1, ArrayContent *a2, bool useLength)
 {
-    if(a1->type != a2->type) {
+    if (a1->type != a2->type)
+    {
         return false;
     }
-    else if(a1->type == _STRUCT_TYPE_){
-        if(!structTypeEqual(get(symbolTable, a1->typeName)->struct_def, get(symbolTable, a2->typeName)->struct_def)) {
+    else if (a1->type == _STRUCT_TYPE_)
+    {
+        if (!structTypeEqual(get(symbolTable, a1->typeName)->struct_def, get(symbolTable, a2->typeName)->struct_def))
+        {
             return false;
         }
     }
@@ -539,10 +550,13 @@ bool arrayTypeEqual(ArrayContent *a1, ArrayContent *a2, bool useLength)
 }
 
 //filedName这个字段是否是struct类型s的field
-bool isField(StructTypeContent* s, char* fieldName) {
-    Field* f = s->fields;
-    while(f != NULL) {
-        if(strcmp(f->name, fieldName) == 0) {
+bool isField(StructTypeContent *s, char *fieldName)
+{
+    Field *f = s->fields;
+    while (f != NULL)
+    {
+        if (strcmp(f->name, fieldName) == 0)
+        {
             return true;
         }
         f = f->next;
@@ -552,59 +566,74 @@ bool isField(StructTypeContent* s, char* fieldName) {
 
 //基本类型 int float
 //结构体类型调用structTypeEqual
-bool argsMatch(Argument* args, ParaType* parameters) {
+bool argsMatch(Argument *args, ParaType *parameters)
+{
     //TODO
     //printf("call argsMatch\n");
-    if(args == NULL && parameters == NULL) {
+    if (args == NULL && parameters == NULL)
+    {
         return true;
     }
-    else if( (args == NULL && parameters != NULL) || (args != NULL && parameters == NULL)) {
+    else if ((args == NULL && parameters != NULL) || (args != NULL && parameters == NULL))
+    {
         return false;
     }
-    else {
-        Symbol* s1 = get(symbolTable, args->name);
+    else
+    {
+        Symbol *s1 = get(symbolTable, args->name);
         //printf("get s1:%s\n", s1->name);
         switch (s1->symbol_type)
         {
         case INT_SYMBOL:
-            if(parameters->type != _INT_TYPE_) {
+            if (parameters->type != _INT_TYPE_)
+            {
                 return false;
             }
-            else {
+            else
+            {
                 return argsMatch(args->next, parameters->next);
             }
             break;
         case FLOAT_SYMBOL:
-            if(parameters->type != _FLOAT_TYPE_) {
+            if (parameters->type != _FLOAT_TYPE_)
+            {
                 return false;
             }
-            else {
+            else
+            {
                 return argsMatch(args->next, parameters->next);
             }
             break;
         case ARRAY_SYMBOL:
-            if(parameters->type != _ARRAY_TYPE_ || (!arrayTypeEqual(s1->array_content, parameters->arrayContent, true))) {
+            if (parameters->type != _ARRAY_TYPE_ || (!arrayTypeEqual(s1->array_content, parameters->arrayContent, true)))
+            {
                 return false;
             }
-            else {
+            else
+            {
                 return argsMatch(args->next, parameters->next);
             }
             break;
         case STRUCT_VAL_SYMBOL:
-            if(parameters->type != _STRUCT_TYPE_) {
+            if (parameters->type != _STRUCT_TYPE_)
+            {
                 return false;
             }
-            else if(strcmp(parameters->typeName, s1->struct_value->typeName) == 0) {
+            else if (strcmp(parameters->typeName, s1->struct_value->typeName) == 0)
+            {
                 return true;
             }
-            else {
-                StructTypeContent* struct1 = get(symbolTable, s1->struct_value->typeName)->struct_def;
-                StructTypeContent* struct2 = get(symbolTable, parameters->typeName)->struct_def;
+            else
+            {
+                StructTypeContent *struct1 = get(symbolTable, s1->struct_value->typeName)->struct_def;
+                StructTypeContent *struct2 = get(symbolTable, parameters->typeName)->struct_def;
                 //printf("s1:%s, p:%s\n", s1->struct_value->typeName, parameters->typeName);
-                if(!structTypeEqual(struct1, struct2)) {
+                if (!structTypeEqual(struct1, struct2))
+                {
                     return false;
                 }
-                else {
+                else
+                {
                     return argsMatch(args->next, parameters->next);
                 }
             }
@@ -614,4 +643,52 @@ bool argsMatch(Argument* args, ParaType* parameters) {
     }
 }
 
+// 计算变量所占的空间大小
+// 主要是数组和结构体
+int calcSize(char *symbolName)
+{
+    Symbol *s = get(symbolTable, symbolName);
+    switch (s->symbol_type)
+    {
+    case ARRAY_SYMBOL:
+    {
+        int length = 1;
+        //支持多维数组，但是应该只有一维数组
+        ArrayContent* arrayContent = s->array_content;
+        for(int i = 0;i < arrayContent->dimensions; i++) {
+            length *= arrayContent->size[i];
+        }
+        if(arrayContent->type == _INT_TYPE_ || arrayContent->type == _FLOAT_TYPE_) {
+            return length * 4;
+        }
+        else if(arrayContent->type == _STRUCT_TYPE_){
+            return length * calcSize(arrayContent->typeName);
+        }
 
+    }
+    case STRUCT_VAL_SYMBOL: {
+        return calcSize(s->struct_value->typeName);
+    }
+    case STRUCT_TYPE_SYMBOL: {
+        Field* fields = s->struct_def->fields;
+        int size = 0;
+        for(Field* f = fields; f != NULL; f=f->next) {
+            size += calcSize(f->name);
+        }
+        return size;
+    }
+    case INT_SYMBOL: {
+        return 4;
+    }
+    case FLOAT_SYMBOL: {
+        return 4;
+    }
+    default: {
+        printf("Error: wrong symbol type at calcSize() in symbol.c .\n");
+        return 0;
+    }
+    }
+}
+int calcBias(char *symbolName, char *filedName)
+{
+}
