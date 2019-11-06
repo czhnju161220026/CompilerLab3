@@ -689,6 +689,25 @@ int calcSize(char *symbolName)
     }
     }
 }
-int calcBias(char *symbolName, char *filedName)
+int calcBias(char *symbolName, char *fieldName)
 {
+    Symbol* s = get(symbolTable, symbolName);
+    if(s == NULL || s->symbol_type != STRUCT_VAL_SYMBOL) {
+        printf("Error: wrong symbol type at calcBias in symbol.c . Expect Struct_val_symbol\n");
+        return 0;
+    }
+    Field* fields = get(symbolTable, s->struct_value->typeName)->struct_def->fields;
+    int bias = 0;
+    for(Field* f = fields; f != NULL; f = f->next)
+    {
+        if(strcmp(f->name, fieldName) == 0)
+        {
+            break;
+        }
+        else {
+            bias += calcSize(f->name);
+        }
+    }
+    
+    return bias;
 }
