@@ -127,6 +127,7 @@ typedef struct Symbol
 Symbol *createSymbol();
 bool setSymbolName(Symbol *s, char *name);
 bool setSymbolVariable(Symbol *s, char *name);
+bool overWriteSymbolVariable(Symbol *s, char *name);
 bool setSymbolType(Symbol *s, SymbolTypes type);
 bool addArrayDimension(Symbol *s, int size);
 bool setArrayType(Symbol *s, ValueTypes type, char *name);

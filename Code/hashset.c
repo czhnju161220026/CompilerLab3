@@ -116,7 +116,7 @@ bool overwriteVariable(HashSet *hashSet, char* name, char* variable) {
     if(symbol == NULL) {
         return false;
     }
-    setSymbolVariable(symbol, variable);
+    overWriteSymbolVariable(symbol, variable);
     return true;
 }
 

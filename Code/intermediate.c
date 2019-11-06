@@ -49,7 +49,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
     //EXP -> Exp assignop Exp
     else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _ASSIGNOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp)
     {
-        if (c->child->type == _ID)
+        if (c->child->type == _ID && c->child->siblings == NULL)
         {
             Symbol *s = get(symTable, c->child->idName);
             char *variable = s->variable;
@@ -60,7 +60,18 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             char *code2 = (char *)malloc(strlen(str) + 1);
             strcpy(code2, str);
             return concat(2, code1, code2);
+        } else {
+            char* t1 = getTemp();
+            char* t2 = getTemp();
+            char* code1 = translateExp(c, symTable, t1);
+            char* code2 = translateExp(c->siblings->siblings, symTable, t2);
+            char str[256];
+            sprintf(str, "%s := %s\n%s := %s\n", t1, t2, place, t2);
+            char *code3 = (char *)malloc(strlen(str) + 1);
+            strcpy(code3, str);
+            return concat(3, code1, code2, code3);
         }
+        
         //TODO : array and struct
     }
     //Exp -> LP Exp RP
@@ -172,6 +183,21 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
             char *code = concat(6, code0, code1, place, " := CALL ", c->idName, "\n");
             return code;
         }
+    } else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _LB && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RB && c->siblings->siblings->siblings->siblings == NULL) {
+        char* t1 = getTemp(); //addr
+        char* t2 = getTemp(); //offset
+        char* t3 = getTemp(); //4 * offset
+        char* t4 = getTemp(); //final addr
+        char* code1 = translateExp(c, symTable, t1);
+        char* code2 = translateExp(c->siblings->siblings, symTable, t2);
+        char str[256];
+        sprintf(str, "%s := #4 * %s\n%s := %s + %s\n%s := %s\n", t3, t2, t4, t1, t3, place, t4);
+        char* code3 = (char*) malloc(strlen(str) + 1);
+        strcpy(code3, str);
+        char* temp = (char*) malloc(strlen(place) + 1);
+        strcpy(temp, place);
+        sprintf(place, "*%s", temp);
+        return concat(3, code1, code2, code3);
     }
 
     return NULL;
@@ -194,6 +220,70 @@ char *translateStmt(Morpheme *stmt, HashSet *symTable)
         char *t1 = getTemp();
         char *code = translateExp(c, symTable, t1);
         return code;
+    } else if (c->type == _CompSt && c->siblings == NULL) {
+        return translateCompSt(c, symTable);
+    } else if (c->type == _RETURN && c->siblings != NULL && c->siblings->type == _Exp && c->siblings->siblings != NULL && c->siblings->siblings->type == _SEMI) {
+        char* t1 = getTemp();
+        char* code1 = translateExp(c->siblings, symTable, t1);
+        char str[256];
+        sprintf(str, "RETURN %s\n", t1);
+        char* code2 = (char*) malloc(strlen(str) + 1);
+        strcpy(code2, str);
+        return concat(2, code1, code2);
+    } else if (c->type == _IF && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP && c->siblings->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->siblings->type == _Stmt && c->siblings->siblings->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->siblings->siblings->type == _ELSE && c->siblings->siblings->siblings->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->siblings->siblings->siblings->type == _Stmt) {
+        char* label1 = getLabel();
+        char* label2 = getLabel();
+        char* label3 = getLabel();
+        char* code1 = translateCond(c->siblings->siblings, label1, label2, symTable);
+        char* code2 = translateStmt(c->siblings->siblings->siblings->siblings, symTable);
+        char* code3 = translateStmt(c->siblings->siblings->siblings->siblings->siblings->siblings, symTable);
+        char str[256];
+        sprintf(str, "LABEL %s :\n", label1);
+        char* code11 = (char*) malloc(strlen(str) + 1);
+        strcpy(code11, str);
+        sprintf(str, "GOTO %s\n", label3);
+        char* code22 = (char*) malloc(strlen(str) + 1);
+        strcpy(code22, str);
+        sprintf(str, "LABEL %s :\n", label2);
+        char* code33 = (char*) malloc(strlen(str) + 1);
+        strcpy(code33, str);
+        sprintf(str, "LABEL %s :\n", label3);
+        char* code44 = (char*) malloc(strlen(str) + 1);
+        strcpy(code44, str);
+        return concat(7, code1, code11, code2, code22, code33, code3, code44);
+    } else if (c->type == _IF && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP && c->siblings->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->siblings->type == _Stmt && c->siblings->siblings->siblings->siblings->siblings == NULL) {
+        char* label1 = getLabel();
+        char* label2 = getLabel();
+        char* code1 = translateCond(c->siblings->siblings, label1, label2, symTable);
+        char* code2 = translateStmt(c->siblings->siblings->siblings->siblings, symTable);
+        char str[256];
+        sprintf(str, "LABEL %s :\n", label1);
+        char* code11 = (char*) malloc(strlen(str) + 1);
+        strcpy(code11, str);
+        sprintf(str, "LABEL %s :\n", label2);
+        char* code22 = (char*) malloc(strlen(str) + 1);
+        strcpy(code22, str);
+        return concat(4, code1, code11, code2, code22);
+    } else if (c->type == _WHILE && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP && c->siblings->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->siblings->type == _Stmt) {
+        char* label1 = getLabel();
+        char* label2 = getLabel();
+        char* label3 = getLabel();
+        char* code1 = translateCond(c->siblings->siblings, label2, label3, symTable);
+        char* code2 = translateStmt(c->siblings->siblings->siblings->siblings, symTable);
+        char str[256];
+        sprintf(str, "LABEL %s :\n", label1);
+        char* code11 = (char*) malloc(strlen(str) + 1);
+        strcpy(code11, str);
+        sprintf(str, "LABEL %s :\n", label2);
+        char* code22 = (char*) malloc(strlen(str) + 1);
+        strcpy(code22, str);
+        sprintf(str, "GOTO %s\n", label1);
+        char* code33 = (char*) malloc(strlen(str) + 1);
+        strcpy(code33, str);
+        sprintf(str, "LABEL %s :\n", label3);
+        char* code44 = (char*) malloc(strlen(str) + 1);
+        strcpy(code44, str);
+        return concat(6, code11, code1, code22, code2, code33, code44);
     }
     else
     {
@@ -228,7 +318,7 @@ char *translateCond(Morpheme *exp, char *label_true, char *label_false, HashSet 
         char* code2 = translateExp(c->siblings->siblings, symTable, t2);
         char* op = c->siblings->idName;
         char str[256];
-        sprintf(str, "IF %s %s %s GOTO %s\nGOTO %s", t1, op, t2, label_true, label_false);
+        sprintf(str, "IF %s %s %s GOTO %s\nGOTO %s\n", t1, op, t2, label_true, label_false);
         char *code3 = (char *)malloc(strlen(str) + 1);
         strcpy(code3, str);
         return concat(3, code1, code2, code3);
