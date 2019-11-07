@@ -22,16 +22,14 @@ t15 := t16 - #2
 IF v9 > t15 GOTO label1
 GOTO label2
 LABEL label1 :
-t27 := v11 * v8
-v11 := t27
-t26 := v11
-t36 := #2 * #1
-t34 := t36 * v9
-t35 := #1 * v9
-t32 := t34 - t35
-t31 := t32 - #1
-v9 := t31
-t30 := v9
+t26 := v11 * v8
+v11 := t26
+t34 := #2 * #1
+t32 := t34 * v9
+t33 := #1 * v9
+t30 := t32 - t33
+t29 := t30 - #1
+v9 := t29
 GOTO label0
 LABEL label2 :
 RETURN v11
@@ -41,35 +39,31 @@ v14 := #0
 IF v12 < #0 GOTO label3
 GOTO label4
 LABEL label3 :
-t46 := #0 - #1
-RETURN t46
+t44 := #0 - #1
+RETURN t44
 LABEL label4 :
 LABEL label5 :
 IF v12 > #0 GOTO label6
 GOTO label7
 LABEL label6 :
-t51 := v12 / #10
-v12 := t51
-t50 := v12
-t55 := v14 + #2
-v14 := t55
-t54 := v14
-t59 := v14 + #2
-v14 := t59
-t58 := v14
-t63 := v14 - #3
-v14 := t63
-t62 := v14
+t48 := v12 / #10
+v12 := t48
+t51 := v14 + #2
+v14 := t51
+t54 := v14 + #2
+v14 := t54
+t57 := v14 - #3
+v14 := t57
 GOTO label5
 LABEL label7 :
 RETURN v14
 FUNCTION isNarcissistic :
 PARAM v15 
-t69 := #1 + v15
-t68 := t69 - #1
-ARG t68
-t67 := CALL getNumDigits
-v17 := t67
+t63 := #1 + v15
+t62 := t63 - #1
+ARG t62
+t61 := CALL getNumDigits
+v17 := t61
 v18 := #0
 v19 := v15
 LABEL label8 :
@@ -78,19 +72,16 @@ GOTO label10
 LABEL label9 :
 ARG #10
 ARG v19
-t78 := CALL mod
-v20 := t78
-t77 := v20
-t83 := v19 - v20
-t82 := t83 / #10
-v19 := t82
-t81 := v19
+t71 := CALL mod
+v20 := t71
+t75 := v19 - v20
+t74 := t75 / #10
+v19 := t74
 ARG v17
 ARG v20
-t90 := CALL power
-t88 := v18 + t90
-v18 := t88
-t87 := v18
+t81 := CALL power
+t79 := v18 + t81
+v18 := t79
 GOTO label8
 LABEL label10 :
 IF v18 == v15 GOTO label11
@@ -109,18 +100,16 @@ IF v23 < #500 GOTO label15
 GOTO label16
 LABEL label15 :
 ARG v23
-t101 := CALL isNarcissistic
-IF t101 == #1 GOTO label17
+t92 := CALL isNarcissistic
+IF t92 == #1 GOTO label17
 GOTO label18
 LABEL label17 :
 WRITE v23
-t107 := v22 + #1
-v22 := t107
-t106 := v22
+t96 := v22 + #1
+v22 := t96
 LABEL label18 :
-t111 := v23 + #1
-v23 := t111
-t110 := v23
+t99 := v23 + #1
+v23 := t99
 GOTO label14
 LABEL label16 :
 WRITE v22

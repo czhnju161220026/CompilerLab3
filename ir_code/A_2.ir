@@ -1,22 +1,20 @@
 FUNCTION main :
+READ t0
+v4 := t0
 READ t1
-v4 := t1
-t0 := v4
-READ t3
-v5 := t3
-t2 := v5
+v5 := t1
 IF v4 > v5 GOTO label0
 GOTO label1
 LABEL label0 :
-t7 := v5 * #2
-IF v4 > t7 GOTO label3
+t5 := v5 * #2
+IF v4 > t5 GOTO label3
 GOTO label4
 LABEL label3 :
 WRITE v4
 GOTO label5
 LABEL label4 :
-t13 := v5 * #2
-WRITE t13
+t9 := v5 * #2
+WRITE t9
 LABEL label5 :
 GOTO label2
 LABEL label1 :
@@ -33,15 +31,15 @@ WRITE v5
 LABEL label11 :
 GOTO label8
 LABEL label7 :
-t24 := v4 * #2
-IF t24 < v5 GOTO label12
+t18 := v4 * #2
+IF t18 < v5 GOTO label12
 GOTO label13
 LABEL label12 :
 WRITE v5
 GOTO label14
 LABEL label13 :
-t31 := v4 * #2
-WRITE t31
+t23 := v4 * #2
+WRITE t23
 LABEL label14 :
 LABEL label8 :
 LABEL label2 :

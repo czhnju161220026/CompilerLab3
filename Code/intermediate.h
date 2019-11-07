@@ -3,6 +3,7 @@
 #include "grammarTree.h"
 #include "hashset.h"
 char* translateExp(Morpheme* exp, HashSet* symTable, char* place);
+char* translateExpLikeExpSemi(Morpheme* exp, HashSet* symTable);
 char* translateStmt(Morpheme* stmt, HashSet* symTable);
 char* translateCond(Morpheme* exp, char* label_true, char* label_false, HashSet* symTable);
 char* translateFunc(Morpheme* exp, HashSet* symTable, char* place);

@@ -1,7 +1,8 @@
 # 编译原理实验3: 中间代码生成
 ### 11.7
 + 通过了所有normal用例
-+ 需要进行代码优化
++ 优化了Exp->Int, Exp->Id
++ TODO: 常量折叠
 ### 11.5 TODO
 + translateDefList
 + translateStmt

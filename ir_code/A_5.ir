@@ -23,80 +23,69 @@ v14 := &v10
 DEC v11 20
 v15 := &v11
 v12 := #0
-t10 := v12
 LABEL label4 :
 IF v12 < #10 GOTO label5
 GOTO label6
 LABEL label5 :
-t19 := #4 * v12
-t20 := v14 + t19
-t15 := t20
-READ t16
-*t15 := t16
-t14 := t16
-t22 := v12 + #1
-v12 := t22
-t21 := v12
+t17 := #4 * v12
+t18 := v14 + t17
+t13 := t18
+READ t14
+*t13 := t14
+t19 := v12 + #1
+v12 := t19
 GOTO label4
 LABEL label6 :
 v12 := #0
-t25 := v12
 v13 := #0
-t27 := v13
 LABEL label7 :
 IF v12 < #10 GOTO label8
 GOTO label9
 LABEL label8 :
-t36 := #4 * v13
-t37 := v15 + t36
-t32 := t37
-t41 := #4 * v12
-t42 := v14 + t41
-t38 := t42
-t45 := v12 + #1
-t46 := #4 * t45
-t47 := v14 + t46
-t43 := t47
-ARG *t43
-ARG *t38
-t33 := CALL compare
-*t32 := t33
-t31 := t33
-t51 := v12 + #2
-v12 := t51
-t50 := v12
-t55 := v13 + #1
-v13 := t55
-t54 := v13
+t30 := #4 * v13
+t31 := v15 + t30
+t26 := t31
+t35 := #4 * v12
+t36 := v14 + t35
+t32 := t36
+t39 := v12 + #1
+t40 := #4 * t39
+t41 := v14 + t40
+t37 := t41
+ARG *t37
+ARG *t32
+t27 := CALL compare
+*t26 := t27
+t44 := v12 + #2
+v12 := t44
+t47 := v13 + #1
+v13 := t47
 GOTO label7
 LABEL label9 :
 v12 := #0
-t58 := v12
 LABEL label10 :
 IF v12 < #5 GOTO label11
 GOTO label12
 LABEL label11 :
+t57 := #4 * v12
+t58 := v15 + t57
+t53 := t58
+t62 := #4 * v12
+t63 := v15 + t62
+t59 := t63
 t67 := #4 * v12
-t68 := v15 + t67
-t63 := t68
+t68 := v14 + t67
+t64 := t68
+ARG *t64
+ARG *t59
+t54 := CALL add
+*t53 := t54
 t72 := #4 * v12
 t73 := v15 + t72
 t69 := t73
-t77 := #4 * v12
-t78 := v14 + t77
-t74 := t78
-ARG *t74
-ARG *t69
-t64 := CALL add
-*t63 := t64
-t62 := t64
-t83 := #4 * v12
-t84 := v15 + t83
-t80 := t84
-WRITE *t80
-t86 := v12 + #1
-v12 := t86
-t85 := v12
+WRITE *t69
+t74 := v12 + #1
+v12 := t74
 GOTO label10
 LABEL label12 :
 RETURN #0

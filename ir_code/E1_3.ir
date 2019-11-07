@@ -30,9 +30,8 @@ t23 := t20 + t22
 t19 := t23
 RETURN *t19
 LABEL label4 :
-t29 := v12 + #1
-v12 := t29
-t28 := v12
+t28 := v12 + #1
+v12 := t28
 GOTO label0
 LABEL label2 :
 RETURN #0
@@ -42,55 +41,49 @@ v18 := &v14
 v15 := #0
 DEC v17 80
 v19 := &v17
-t42 := #0 + v19
-t37 := t42
-t39 := #4 * #0
-t40 := t37 + t39
+t40 := #0 + v19
 t35 := t40
-READ t36
-*t35 := t36
-t34 := t36
-t51 := #40 + v19
-t46 := t51
-t48 := #4 * #0
-t49 := t46 + t48
-t44 := t49
-*t44 := #0
-t43 := #0
-t56 := #80 + v18
-t53 := t56
-*t53 := #0
-t52 := #0
+t37 := #4 * #0
+t38 := t35 + t37
+t33 := t38
+READ t34
+*t33 := t34
+t48 := #40 + v19
+t43 := t48
+t45 := #4 * #0
+t46 := t43 + t45
+t41 := t46
+*t41 := #0
+t52 := #80 + v18
+t49 := t52
+*t49 := #0
 LABEL label5 :
 IF v15 < #10 GOTO label6
 GOTO label7
 LABEL label6 :
-t68 := #0 + v18
-t66 := t68
-t69 := #0 + t66
-t62 := t69
-t64 := #4 * v15
-t65 := t62 + t64
-t60 := t65
-*t60 := v15
-t59 := v15
-t79 := #0 + v18
-t77 := t79
-t80 := #40 + t77
-t73 := t80
-t75 := #4 * v15
-t76 := t73 + t75
-t71 := t76
-t72 := v15 * v15
-*t71 := t72
-t70 := t72
-t84 := v15 + #1
-v15 := t84
-t83 := v15
+t63 := #0 + v18
+t61 := t63
+t64 := #0 + t61
+t57 := t64
+t59 := #4 * v15
+t60 := t57 + t59
+t55 := t60
+*t55 := v15
+t73 := #0 + v18
+t71 := t73
+t74 := #40 + t71
+t67 := t74
+t69 := #4 * v15
+t70 := t67 + t69
+t65 := t70
+t66 := v15 * v15
+*t65 := t66
+t77 := v15 + #1
+v15 := t77
 GOTO label5
 LABEL label7 :
 ARG v19
 ARG v18
-t88 := CALL isStudentInClass
-WRITE t88
+t80 := CALL isStudentInClass
+WRITE t80
 RETURN #0
