@@ -3,3 +3,4 @@ Code/lex.yy.c
 Code/parser
 Code/syntax.tab.*
 Code/syntax.output
+ir_code/*

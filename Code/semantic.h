@@ -27,4 +27,5 @@ bool handleStmtList(Morpheme *root);
 bool handleStmt(Morpheme *root);
 bool handleExp(Morpheme* root, ExpType* expType);
 bool handleArgs(Morpheme* root, ParaType* parameters);
+bool foldConstant(Morpheme* root, Morpheme* left, Morpheme* right, Types op);
 #endif

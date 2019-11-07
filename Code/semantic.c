@@ -1288,6 +1288,7 @@ bool handleExp(Morpheme *root, ExpType *expType)
         //pass
         expType->leftValue = false;
         expType->type = type1->type;
+        foldConstant(root, c, c->siblings->siblings, c->siblings->type);
         return true;
     }
     // case : EXP->EXP MINUS EXP
@@ -1318,6 +1319,7 @@ bool handleExp(Morpheme *root, ExpType *expType)
         //pass
         expType->leftValue = false;
         expType->type = type1->type;
+        foldConstant(root, c, c->siblings->siblings, c->siblings->type);
         return true;
     }
     // case : EXP->EXP STAR EXP
@@ -1348,6 +1350,7 @@ bool handleExp(Morpheme *root, ExpType *expType)
         //pass
         expType->leftValue = false;
         expType->type = type1->type;
+        foldConstant(root, c, c->siblings->siblings, c->siblings->type);
         return true;
     }
     // case : EXP->EXP DIV EXP
@@ -1378,6 +1381,7 @@ bool handleExp(Morpheme *root, ExpType *expType)
         //pass
         expType->leftValue = false;
         expType->type = type1->type;
+        foldConstant(root, c, c->siblings->siblings, c->siblings->type);
         return true;
     }
     // case : EXP->EXP RELOP EXP
@@ -1689,4 +1693,50 @@ bool handleArgs(Morpheme *root, ParaType *parameters)
         parameters->next = paraType;
         return true;
     }
+}
+
+bool foldConstant(Morpheme* root, Morpheme* left, Morpheme* right, Types op) {
+    if (root == NULL || left == NULL || right == NULL) {
+        return false;
+    }
+    int value = 0;
+    if (left->child->type == _INT && right->child->type == _INT) {
+        if (op == _PLUS) {
+            value = left->child->intValue + right->child->intValue;
+        } else if (op == _MINUS) {
+            value = left->child->intValue - right->child->intValue;
+        } else if (op == _STAR) {
+            value = left->child->intValue * right->child->intValue;
+        } else if (op == _DIV) {
+            value = left->child->intValue / right->child->intValue;
+        } else {
+            return false;
+        }
+        Morpheme* newChild = createMorpheme(_INT);
+        newChild->father = root;
+        newChild->child = NULL;
+        newChild->siblings = NULL;
+        newChild->intValue = value;
+        root->child = newChild;
+        return true;
+    } else if (left->child->type == _Exp && right->child->type == _INT) {
+        if (left->child->siblings != NULL &&  left->child->siblings->type == op && left->child->siblings->siblings != NULL && left->child->siblings->siblings->type == _Exp && left->child->siblings->siblings->child->type == _INT) {
+            if (op == _PLUS || op == _MINUS) {
+                value = left->child->siblings->siblings->child->intValue + right->child->intValue;
+            } else {
+                value = left->child->siblings->siblings->child->intValue * right->child->intValue;
+            }
+            
+            right->child->intValue = value;
+            left->child->siblings = root->child->siblings;
+            root->child = left->child;
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+    
+    return true;
 }
