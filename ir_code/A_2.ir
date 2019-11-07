@@ -5,66 +5,44 @@ t0 := v4
 READ t3
 v5 := t3
 t2 := v5
-t4 := v4
-t5 := v5
-IF t4 > t5 GOTO label0
+IF v4 > v5 GOTO label0
 GOTO label1
 LABEL label0 :
-t6 := v4
-t8 := v5
-t9 := #2
-t7 := t8 * t9
-IF t6 > t7 GOTO label3
+t7 := v5 * #2
+IF v4 > t7 GOTO label3
 GOTO label4
 LABEL label3 :
-t11 := v4
-WRITE t11
+WRITE v4
 GOTO label5
 LABEL label4 :
-t14 := v5
-t15 := #2
-t13 := t14 * t15
+t13 := v5 * #2
 WRITE t13
 LABEL label5 :
 GOTO label2
 LABEL label1 :
-t16 := v4
-t17 := v5
-IF t16 == t17 GOTO label6
+IF v4 == v5 GOTO label6
 GOTO label7
 LABEL label6 :
-t18 := v5
-t19 := #100
-IF t18 > t19 GOTO label9
+IF v5 > #100 GOTO label9
 GOTO label10
 LABEL label9 :
-t21 := #100
-WRITE t21
+WRITE #100
 GOTO label11
 LABEL label10 :
-t23 := v5
-WRITE t23
+WRITE v5
 LABEL label11 :
 GOTO label8
 LABEL label7 :
-t26 := v4
-t27 := #2
-t24 := t26 * t27
-t25 := v5
-IF t24 < t25 GOTO label12
+t24 := v4 * #2
+IF t24 < v5 GOTO label12
 GOTO label13
 LABEL label12 :
-t29 := v5
-WRITE t29
+WRITE v5
 GOTO label14
 LABEL label13 :
-t32 := v4
-t33 := #2
-t31 := t32 * t33
+t31 := v4 * #2
 WRITE t31
 LABEL label14 :
 LABEL label8 :
 LABEL label2 :
-t34 := #0
-RETURN t34
-
+RETURN #0

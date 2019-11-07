@@ -34,7 +34,7 @@ char* concat(int n, ...) {
 char* getTemp() {
     char str[256];
     sprintf(str, "t%d", global_temp_num++);
-    char* temp = (char*) malloc(strlen(str) + 2);
+    char* temp = (char*) malloc(strlen(str) + 32);
     strcpy(temp, str);
     return temp;
 }

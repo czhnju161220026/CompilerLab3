@@ -28,22 +28,31 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
     //EXP -> INT
     if (c->type == _INT)
     {
+        //进行一个小优化，将place直接设置为#val
         int value = c->intValue;
-        char str[256];
+        /*char str[256];
         sprintf(str, "%s := #%d\n", place, value);
         char *code = (char *)malloc(strlen(str) + 1);
         strcpy(code, str);
+        return code;*/
+        sprintf(place, "#%d", value);
+        char *code = (char *)malloc(1);
+        code[0] = '\0';
         return code;
     }
     // EXP -> ID
     else if (c->type == _ID && c->siblings == NULL)
     {
+        //进行一个小优化，将place直接设置为variable， code为空
         Symbol *s = get(symTable, c->idName);
         char *variable = s->variable;
-        char str[256];
-        sprintf(str, "%s := %s\n", place, variable);
-        char *code = (char *)malloc(strlen(str) + 1);
-        strcpy(code, str);
+        //char str[256];
+        //sprintf(str, "%s := %s\n", place, variable);
+        //char *code = (char *)malloc(strlen(str) + 1);
+        //strcpy(code, str);
+        sprintf(place, "%s", variable);
+        char *code = (char *)malloc(1);
+        code[0] = '\0';
         return code;
     }
     //EXP -> Exp assignop Exp
@@ -205,37 +214,37 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         return concat(3, code1, code2, code3);
     }
     // Exp -> Exp.id
-    else if(c->type == _Exp && c->siblings != NULL && c->siblings->type == _DOT && c->siblings->siblings != NULL && c->siblings->siblings->type == _ID && c->siblings->siblings->siblings == NULL)
+    else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _DOT && c->siblings->siblings != NULL && c->siblings->siblings->type == _ID && c->siblings->siblings->siblings == NULL)
     {
-        char* t1 = getTemp(); //addr
-        char* code1 = translateExp(c, symTable, t1); //Get addr
-        Morpheme* fieldId = c->siblings->siblings;
-        Symbol* fieldSymbol = get(symTable, fieldId->idName);
+        char *t1 = getTemp();                        //addr
+        char *code1 = translateExp(c, symTable, t1); //Get addr
+        Morpheme *fieldId = c->siblings->siblings;
+        Symbol *fieldSymbol = get(symTable, fieldId->idName);
         //这种情况要给place之前加上星号
-        if(fieldSymbol->symbol_type == INT_SYMBOL || fieldSymbol->symbol_type == FLOAT_SYMBOL)
+        if (fieldSymbol->symbol_type == INT_SYMBOL || fieldSymbol->symbol_type == FLOAT_SYMBOL)
         {
-            char* finalAddr = getTemp();
+            char *finalAddr = getTemp();
             int offset = calcFieldOffset(fieldSymbol->name);
             char str[256];
             sprintf(str, "%s := #%d + %s\n%s := %s\n", finalAddr, offset, t1, place, finalAddr);
-            char* code2 = (char*)malloc(strlen(str) + 1);
+            char *code2 = (char *)malloc(strlen(str) + 1);
             strcpy(code2, str);
-            char* code = concat(2, code1, code2);
+            char *code = concat(2, code1, code2);
             char *temp = (char *)malloc(strlen(place) + 1);
             strcpy(temp, place);
             sprintf(place, "*%s", temp);
             return code;
         }
         //这种情况直接把地址返回给place就可以
-        else if(fieldSymbol->symbol_type == ARRAY_SYMBOL || fieldSymbol->symbol_type == STRUCT_VAL_SYMBOL)
+        else if (fieldSymbol->symbol_type == ARRAY_SYMBOL || fieldSymbol->symbol_type == STRUCT_VAL_SYMBOL)
         {
-            char* finalAddr = getTemp();
+            char *finalAddr = getTemp();
             int offset = calcFieldOffset(fieldSymbol->name);
             char str[256];
             sprintf(str, "%s := #%d + %s\n%s := %s\n", finalAddr, offset, t1, place, finalAddr);
-            char* code2 = (char*)malloc(strlen(str) + 1);
+            char *code2 = (char *)malloc(strlen(str) + 1);
             strcpy(code2, str);
-            char* code = concat(2, code1, code2);
+            char *code = concat(2, code1, code2);
             return code;
         }
     }
@@ -767,8 +776,11 @@ char *translateDec(Morpheme *dec, HashSet *symTable)
         char *symbolName = "";
         char *code1 = translateVarDecWithAssignop(c, symTable, &symbolName);
         Symbol *s = get(symTable, symbolName);
-        char *code2 = translateExp(c->siblings->siblings, symTable, s->variable);
-        char *code = concat(2, code1, code2);
+        char * temp = getTemp();
+        char *code2 = translateExp(c->siblings->siblings, symTable, temp);
+        char code3[256];
+        sprintf(code3, "%s := %s\n", s->variable, temp);
+        char *code = concat(3, code1, code2, code3);
         return code;
     }
 }
