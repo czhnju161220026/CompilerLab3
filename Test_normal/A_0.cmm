@@ -5,8 +5,11 @@ struct Student {
         int d[2];
     } c;
 };
+
+
 int main(){
-    int e[10];
-    int f[6];
     struct Student s;
+    s.a = 1;
+    s.b[2] = 2;
+    s.c.d[0] = 3;
 }

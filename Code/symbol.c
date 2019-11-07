@@ -712,14 +712,13 @@ int calcSize(char *symbolName)
     }
     }
 }
-int calcBias(char *symbolName, char *fieldName)
+int calcBias(Symbol* structDefSymbol, char *fieldName)
 {
-    Symbol* s = get(symbolTable, symbolName);
-    if(s == NULL || s->symbol_type != STRUCT_VAL_SYMBOL) {
-        printf("Error: wrong symbol type at calcBias in symbol.c . Expect Struct_val_symbol\n");
+    if(structDefSymbol == NULL || structDefSymbol->symbol_type != STRUCT_TYPE_SYMBOL) {
+        printf("Error: wrong symbol type at calcBias in symbol.c . Expect Struct_type_symbol\n");
         return 0;
     }
-    Field* fields = get(symbolTable, s->struct_value->typeName)->struct_def->fields;
+    Field* fields = structDefSymbol->struct_def->fields;
     int bias = 0;
     for(Field* f = fields; f != NULL; f = f->next)
     {
@@ -731,6 +730,30 @@ int calcBias(char *symbolName, char *fieldName)
             bias += calcSize(f->name);
         }
     }
-    
     return bias;
+}
+
+int calcFieldOffset(char* fieldName)
+{
+    HashSet* hashSet = symbolTable;
+    for(int i = 0; i < hashSet->size; i++) {
+        Symbol *p = hashSet->buckets[i].head;
+        while (p != NULL)
+        {
+            if(p->symbol_type == STRUCT_TYPE_SYMBOL)
+            {
+                Field* fields = p->struct_def->fields;
+                for(Field* f = fields; f != NULL; f = f->next)
+                {
+                    if(strcmp(f->name, fieldName) == 0)
+                    {
+                        return calcBias(p, fieldName);
+                    }
+                }
+            }
+            p = p->next;
+        }
+    }
+    printf("Error: not found a struct that contains filed: %s\n", fieldName);
+    return 0;
 }
