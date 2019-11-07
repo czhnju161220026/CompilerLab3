@@ -3,126 +3,94 @@ PARAM v9
 PARAM v10 
 v12 := #0
 LABEL label0 :
-t0 := v12
-t1 := #10
-IF t0 < t1 GOTO label1
+IF v12 < #10 GOTO label1
 GOTO label2
 LABEL label1 :
-t9 := v9
-t10 := #0 + t9
-t8 := t10
-t11 := #0 + t8
-t4 := t11
-t5 := v12
-t6 := #4 * t5
-t7 := t4 + t6
-t2 := t7
-t16 := v10
-t17 := #0 + t16
-t12 := t17
-t13 := #0
-t14 := #4 * t13
-t15 := t12 + t14
-t3 := t15
-IF *t2 == *t3 GOTO label3
+t11 := #0 + v9
+t9 := t11
+t12 := #0 + t9
+t5 := t12
+t7 := #4 * v12
+t8 := t5 + t7
+t3 := t8
+t18 := #0 + v10
+t13 := t18
+t15 := #4 * #0
+t16 := t13 + t15
+t4 := t16
+IF *t3 == *t4 GOTO label3
 GOTO label4
 LABEL label3 :
-t24 := v9
-t25 := #0 + t24
-t23 := t25
-t26 := #40 + t23
-t19 := t26
-t20 := v12
-t21 := #4 * t20
-t22 := t19 + t21
-t18 := t22
-RETURN *t18
+t26 := #0 + v9
+t24 := t26
+t27 := #40 + t24
+t20 := t27
+t22 := #4 * v12
+t23 := t20 + t22
+t19 := t23
+RETURN *t19
 LABEL label4 :
-t29 := v12
-t30 := #1
-t28 := t29 + t30
-v12 := t28
-t27 := v12
+t29 := v12 + #1
+v12 := t29
+t28 := v12
 GOTO label0
 LABEL label2 :
-t31 := #0
-RETURN t31
+RETURN #0
 FUNCTION main :
 DEC v14 84
 v18 := &v14
 v15 := #0
 DEC v17 80
 v19 := &v17
-t39 := v19
-t40 := #0 + t39
+t42 := #0 + v19
+t37 := t42
+t39 := #4 * #0
+t40 := t37 + t39
 t35 := t40
-t36 := #0
-t37 := #4 * t36
-t38 := t35 + t37
-t33 := t38
-READ t34
-*t33 := t34
-t32 := t34
-t48 := v19
-t49 := #40 + t48
+READ t36
+*t35 := t36
+t34 := t36
+t51 := #40 + v19
+t46 := t51
+t48 := #4 * #0
+t49 := t46 + t48
 t44 := t49
-t45 := #0
-t46 := #4 * t45
-t47 := t44 + t46
-t42 := t47
+*t44 := #0
 t43 := #0
-*t42 := t43
-t41 := t43
-t53 := v18
-t54 := #80 + t53
-t51 := t54
+t56 := #80 + v18
+t53 := t56
+*t53 := #0
 t52 := #0
-*t51 := t52
-t50 := t52
 LABEL label5 :
-t55 := v15
-t56 := #10
-IF t55 < t56 GOTO label6
+IF v15 < #10 GOTO label6
 GOTO label7
 LABEL label6 :
-t65 := v18
-t66 := #0 + t65
-t64 := t66
-t67 := #0 + t64
-t60 := t67
-t61 := v15
-t62 := #4 * t61
-t63 := t60 + t62
-t58 := t63
+t68 := #0 + v18
+t66 := t68
+t69 := #0 + t66
+t62 := t69
+t64 := #4 * v15
+t65 := t62 + t64
+t60 := t65
+*t60 := v15
 t59 := v15
-*t58 := t59
-t57 := t59
-t76 := v18
-t77 := #0 + t76
-t75 := t77
-t78 := #40 + t75
-t71 := t78
-t72 := v15
-t73 := #4 * t72
-t74 := t71 + t73
-t69 := t74
-t79 := v15
-t80 := v15
-t70 := t79 * t80
-*t69 := t70
-t68 := t70
+t79 := #0 + v18
+t77 := t79
+t80 := #40 + t77
+t73 := t80
+t75 := #4 * v15
+t76 := t73 + t75
+t71 := t76
+t72 := v15 * v15
+*t71 := t72
+t70 := t72
+t84 := v15 + #1
+v15 := t84
 t83 := v15
-t84 := #1
-t82 := t83 + t84
-v15 := t82
-t81 := v15
 GOTO label5
 LABEL label7 :
-t87 := v18
-t88 := v19
-ARG t88
-ARG t87
-t86 := CALL isStudentInClass
-WRITE t86
-t89 := #0
-RETURN t89
+ARG v19
+ARG v18
+t88 := CALL isStudentInClass
+WRITE t88
+RETURN #0

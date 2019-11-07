@@ -1,36 +1,25 @@
 FUNCTION isPrime :
 PARAM v3 
-t0 := v3
-t1 := #4
-v5 := t0 / t1
+t0 := v3 / #4
+v5 := t0
 v6 := #2
 LABEL label0 :
-t2 := v6
-t3 := v5
-IF t2 < t3 GOTO label1
+IF v6 < v5 GOTO label1
 GOTO label2
 LABEL label1 :
-t4 := v3
-t8 := v3
-t9 := v6
-t6 := t8 / t9
-t7 := v6
-t5 := t6 * t7
-IF t4 == t5 GOTO label3
+t8 := v3 / v6
+t7 := t8 * v6
+IF v3 == t7 GOTO label3
 GOTO label4
 LABEL label3 :
-t10 := #0
-RETURN t10
+RETURN #0
 LABEL label4 :
+t14 := v6 + #1
+v6 := t14
 t13 := v6
-t14 := #1
-t12 := t13 + t14
-v6 := t12
-t11 := v6
 GOTO label0
 LABEL label2 :
-t15 := #1
-RETURN t15
+RETURN #1
 FUNCTION isRever :
 PARAM v7 
 v9 := v7
@@ -39,115 +28,78 @@ v17 := &v10
 v11 := #0
 v12 := #0
 LABEL label5 :
-t16 := v9
-t17 := #0
-IF t16 != t17 GOTO label6
+IF v9 != #0 GOTO label6
 GOTO label7
 LABEL label6 :
-t21 := v17
-t22 := v11
-t23 := #4 * t22
-t24 := t21 + t23
-t19 := t24
-t25 := v9
-t29 := v9
-t30 := #10
-t27 := t29 / t30
-t28 := #10
-t26 := t27 * t28
-t20 := t25 - t26
-*t19 := t20
-t18 := t20
-t33 := v9
-t34 := #10
-t32 := t33 / t34
-v9 := t32
-t31 := v9
-t37 := v11
-t38 := #1
-t36 := t37 + t38
-v11 := t36
-t35 := v11
+t28 := #4 * v11
+t29 := v17 + t28
+t24 := t29
+t32 := v9 / #10
+t31 := t32 * #10
+t25 := v9 - t31
+*t24 := t25
+t23 := t25
+t37 := v9 / #10
+v9 := t37
+t36 := v9
+t41 := v11 + #1
+v11 := t41
+t40 := v11
 GOTO label5
 LABEL label7 :
-t41 := v11
-t42 := #1
-t40 := t41 - t42
-v11 := t40
-t39 := v11
-LABEL label8 :
-t43 := v12
+t45 := v11 - #1
+v11 := t45
 t44 := v11
-IF t43 != t44 GOTO label9
+LABEL label8 :
+IF v12 != v11 GOTO label9
 GOTO label10
 LABEL label9 :
-t47 := v17
-t48 := v12
-t49 := #4 * t48
-t50 := t47 + t49
-t45 := t50
-t51 := v17
-t52 := v11
-t53 := #4 * t52
-t54 := t51 + t53
-t46 := t54
-IF *t45 != *t46 GOTO label11
+t54 := #4 * v12
+t55 := v17 + t54
+t50 := t55
+t58 := #4 * v11
+t59 := v17 + t58
+t51 := t59
+IF *t50 != *t51 GOTO label11
 GOTO label12
 LABEL label11 :
-t55 := #0
-RETURN t55
+RETURN #0
 LABEL label12 :
-t58 := v12
-t59 := #1
-t57 := t58 + t59
-v12 := t57
-t56 := v12
-t62 := v11
-t63 := #1
-t61 := t62 - t63
-v11 := t61
-t60 := v11
+t62 := v12 + #1
+v12 := t62
+t61 := v12
+t66 := v11 - #1
+v11 := t66
+t65 := v11
 GOTO label8
 LABEL label10 :
-t64 := #1
-RETURN t64
+RETURN #1
 FUNCTION main :
 v14 := #100
 v15 := #110
 v16 := v14
 LABEL label13 :
-t65 := v16
-t66 := v15
-IF t65 < t66 GOTO label14
+IF v16 < v15 GOTO label14
 GOTO label15
 LABEL label14 :
-t69 := v16
-ARG t69
-t67 := CALL isPrime
-t68 := #1
-IF t67 == t68 GOTO label16
+ARG v16
+t75 := CALL isPrime
+IF t75 == #1 GOTO label16
 GOTO label17
 LABEL label16 :
-t71 := v16
-WRITE t71
+WRITE v16
 LABEL label17 :
-t74 := v16
-ARG t74
-t72 := CALL isRever
-t73 := #1
-IF t72 == t73 GOTO label18
+ARG v16
+t80 := CALL isRever
+IF t80 == #1 GOTO label18
 GOTO label19
 LABEL label18 :
-t77 := v16
-t76 := #0 - t77
-WRITE t76
+t84 := #0 - v16
+WRITE t84
 LABEL label19 :
-t80 := v16
-t81 := #1
-t79 := t80 + t81
-v16 := t79
-t78 := v16
+t87 := v16 + #1
+v16 := t87
+t86 := v16
 GOTO label13
 LABEL label15 :
-t82 := #0
-RETURN t82
+RETURN #0
