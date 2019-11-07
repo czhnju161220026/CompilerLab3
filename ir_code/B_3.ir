@@ -14,9 +14,8 @@ GOTO label4
 LABEL label3 :
 RETURN #0
 LABEL label4 :
-t14 := v6 + #1
-v6 := t14
-t13 := v6
+t13 := v6 + #1
+v6 := t13
 GOTO label0
 LABEL label2 :
 RETURN #1
@@ -31,46 +30,40 @@ LABEL label5 :
 IF v9 != #0 GOTO label6
 GOTO label7
 LABEL label6 :
-t28 := #4 * v11
-t29 := v17 + t28
-t24 := t29
-t32 := v9 / #10
-t31 := t32 * #10
-t25 := v9 - t31
-*t24 := t25
-t23 := t25
-t37 := v9 / #10
-v9 := t37
-t36 := v9
-t41 := v11 + #1
-v11 := t41
-t40 := v11
+t26 := #4 * v11
+t27 := v17 + t26
+t22 := t27
+t30 := v9 / #10
+t29 := t30 * #10
+t23 := v9 - t29
+*t22 := t23
+t34 := v9 / #10
+v9 := t34
+t37 := v11 + #1
+v11 := t37
 GOTO label5
 LABEL label7 :
-t45 := v11 - #1
-v11 := t45
-t44 := v11
+t40 := v11 - #1
+v11 := t40
 LABEL label8 :
 IF v12 != v11 GOTO label9
 GOTO label10
 LABEL label9 :
-t54 := #4 * v12
-t55 := v17 + t54
-t50 := t55
-t58 := #4 * v11
-t59 := v17 + t58
-t51 := t59
-IF *t50 != *t51 GOTO label11
+t49 := #4 * v12
+t50 := v17 + t49
+t45 := t50
+t53 := #4 * v11
+t54 := v17 + t53
+t46 := t54
+IF *t45 != *t46 GOTO label11
 GOTO label12
 LABEL label11 :
 RETURN #0
 LABEL label12 :
-t62 := v12 + #1
-v12 := t62
-t61 := v12
-t66 := v11 - #1
-v11 := t66
-t65 := v11
+t56 := v12 + #1
+v12 := t56
+t59 := v11 - #1
+v11 := t59
 GOTO label8
 LABEL label10 :
 RETURN #1
@@ -83,23 +76,22 @@ IF v16 < v15 GOTO label14
 GOTO label15
 LABEL label14 :
 ARG v16
-t75 := CALL isPrime
-IF t75 == #1 GOTO label16
+t68 := CALL isPrime
+IF t68 == #1 GOTO label16
 GOTO label17
 LABEL label16 :
 WRITE v16
 LABEL label17 :
 ARG v16
-t80 := CALL isRever
-IF t80 == #1 GOTO label18
+t72 := CALL isRever
+IF t72 == #1 GOTO label18
 GOTO label19
 LABEL label18 :
-t84 := #0 - v16
-WRITE t84
+t75 := #0 - v16
+WRITE t75
 LABEL label19 :
-t87 := v16 + #1
-v16 := t87
-t86 := v16
+t77 := v16 + #1
+v16 := t77
 GOTO label13
 LABEL label15 :
 RETURN #0

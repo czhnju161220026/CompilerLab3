@@ -251,6 +251,104 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
 
     return NULL;
 }
+//如果Exp是Exp Semi的形式，那么只有赋值和函数调用是有意义的，其他的Exp可以不翻译，直接返回空串
+char* translateExpLikeExpSemi(Morpheme* exp, HashSet* symTable) {
+    if (exp == NULL)
+    {
+        printf("\033[31mThis exp is NULL\n\033[0m");
+        return NULL;
+    }
+    if (exp->type != _Exp)
+    {
+        printf("\033[31mThis exp is not _EXP\n\033[0m");
+        return NULL;
+    }
+    Morpheme *c = exp->child;
+    if (c == NULL)
+    {
+        printf("\033[31mThis child is NULL\n\033[0m");
+        return NULL;
+    }
+    //EXP -> Exp assignop Exp
+    else if (c->type == _Exp && c->siblings != NULL && c->siblings->type == _ASSIGNOP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Exp)
+    {
+        if (c->child->type == _ID && c->child->siblings == NULL)
+        {
+            Symbol *s = get(symTable, c->child->idName);
+            char *variable = s->variable;
+            char *t1 = getTemp();
+            char *code1 = translateExp(c->siblings->siblings, symTable, t1);
+            char str[256];
+            sprintf(str, "%s := %s\n", variable, t1);
+            char *code2 = (char *)malloc(strlen(str) + 1);
+            strcpy(code2, str);
+            return concat(2, code1, code2);
+        }
+        else
+        {
+            char *t1 = getTemp();
+            char *t2 = getTemp();
+            char *code1 = translateExp(c, symTable, t1);
+            char *code2 = translateExp(c->siblings->siblings, symTable, t2);
+            char str[256];
+            sprintf(str, "%s := %s\n", t1, t2);
+            char *code3 = (char *)malloc(strlen(str) + 1);
+            strcpy(code3, str);
+            return concat(3, code1, code2, code3);
+        }
+    }
+    //Exp -> LP Exp RP
+    else if (c->type == _LP && c->siblings != NULL && c->siblings->type == _Exp && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP)
+    {
+        return translateExpLikeExpSemi(c->siblings, symTable);
+    }
+    // Exp -> Exp()
+    else if (c->type == _ID && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _RP)
+    {
+        if (strcmp(c->idName, "read") == 0) //对于read的忽略返回值的调用是可以忽略的
+        {
+            char* code = (char*)malloc(1);
+            code[0] = '\0';
+            return code;
+        }
+        else
+        {
+            char* temp = getTemp();
+            char str[256];
+            sprintf(str, "%s := CALL %s\n", temp, c->idName);
+            char *code = (char *)malloc(strlen(str) + 1);
+            strcpy(code, str);
+            return code;
+        }
+    }
+    //Exp -> Exp(Args)
+    else if (c->type == _ID && c->siblings != NULL && c->siblings->type == _LP && c->siblings->siblings != NULL && c->siblings->siblings->type == _Args && c->siblings->siblings->siblings != NULL && c->siblings->siblings->siblings->type == _RP)
+    {
+        Argument *arglist = NULL;
+        char *code0 = translateArgs(c->siblings->siblings, symTable, &arglist);
+        //case WRITE arg
+        if (strcmp(c->idName, "write") == 0)
+        {
+            char *argName = arglist->name;
+            char *code = concat(4, code0, "WRITE ", argName, "\n");
+            return code;
+        }
+        //other case
+        else
+        {
+            char *code1 = "";
+            for (Argument *p = arglist; p != NULL; p = p->next)
+            {
+                char *argName = p->name;
+                code1 = concat(4, code1, "ARG ", argName, "\n");
+            }
+            char* temp = getTemp();
+            char *code = concat(6, code0, code1, temp, " := CALL ", c->idName, "\n");
+            return code;
+        }
+    }
+
+}
 
 char *translateStmt(Morpheme *stmt, HashSet *symTable)
 {
@@ -266,8 +364,8 @@ char *translateStmt(Morpheme *stmt, HashSet *symTable)
     if (c != NULL && c->type == _Exp && c->siblings != NULL && c->siblings->type == _SEMI)
     {
         //printf("Stmt -> Exp ;\n");
-        char *t1 = getTemp();
-        char *code = translateExp(c, symTable, t1);
+        //char *t1 = getTemp();
+        char *code = translateExpLikeExpSemi(c, symTable);
         return code;
     }
     else if (c->type == _CompSt && c->siblings == NULL)
