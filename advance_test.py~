@@ -1,0 +1,6 @@
+import os
+import hashlib
+
+path = 'advance_log/'
+files = os.listdir(path)
+print(files)

@@ -1,0 +1,883 @@
+FUNCTION safe_add :
+PARAM v3 
+PARAM v4 
+t0 := #0
+t1 := #0
+t2 := #0
+IF v3 > #0 GOTO label9
+GOTO label10
+LABEL label9 :
+t2 := #1
+LABEL label10 :
+IF t2 != #0 GOTO label8
+GOTO label6
+LABEL label8 :
+t5 := #0
+IF v4 > #0 GOTO label11
+GOTO label12
+LABEL label11 :
+t5 := #1
+LABEL label12 :
+IF t5 != #0 GOTO label7
+GOTO label6
+LABEL label7 :
+t8 := #0
+t10 := #2147483647 - v4
+IF v3 > t10 GOTO label13
+GOTO label14
+LABEL label13 :
+t8 := #1
+LABEL label14 :
+IF t8 != #0 GOTO label5
+GOTO label6
+LABEL label5 :
+t1 := #1
+LABEL label6 :
+IF t1 != #0 GOTO label2
+GOTO label4
+LABEL label4 :
+t13 := #0
+t14 := #0
+IF v3 < #0 GOTO label19
+GOTO label20
+LABEL label19 :
+t14 := #1
+LABEL label20 :
+IF t14 != #0 GOTO label18
+GOTO label16
+LABEL label18 :
+t17 := #0
+IF v4 < #0 GOTO label21
+GOTO label22
+LABEL label21 :
+t17 := #1
+LABEL label22 :
+IF t17 != #0 GOTO label17
+GOTO label16
+LABEL label17 :
+t20 := #0
+t23 := #0 - #-2147483648
+t22 := t23 - v4
+IF v3 < t22 GOTO label23
+GOTO label24
+LABEL label23 :
+t20 := #1
+LABEL label24 :
+IF t20 != #0 GOTO label15
+GOTO label16
+LABEL label15 :
+t13 := #1
+LABEL label16 :
+IF t13 != #0 GOTO label2
+GOTO label3
+LABEL label2 :
+t0 := #1
+LABEL label3 :
+IF t0 != #0 GOTO label0
+GOTO label1
+LABEL label0 :
+RETURN v3
+LABEL label1 :
+t27 := v3 + v4
+RETURN t27
+FUNCTION safe_sub :
+PARAM v6 
+PARAM v7 
+t30 := #0
+t31 := #0
+IF v6 > #0 GOTO label32
+GOTO label33
+LABEL label32 :
+t31 := #1
+LABEL label33 :
+IF t31 != #0 GOTO label31
+GOTO label29
+LABEL label31 :
+t34 := #0
+IF v7 < #0 GOTO label34
+GOTO label35
+LABEL label34 :
+t34 := #1
+LABEL label35 :
+IF t34 != #0 GOTO label30
+GOTO label29
+LABEL label30 :
+t37 := #0
+t39 := #2147483647 + v7
+IF v6 > t39 GOTO label36
+GOTO label37
+LABEL label36 :
+t37 := #1
+LABEL label37 :
+IF t37 != #0 GOTO label28
+GOTO label29
+LABEL label28 :
+t30 := #1
+LABEL label29 :
+IF t30 != #0 GOTO label25
+GOTO label27
+LABEL label27 :
+t42 := #0
+t43 := #0
+IF v6 < #0 GOTO label42
+GOTO label43
+LABEL label42 :
+t43 := #1
+LABEL label43 :
+IF t43 != #0 GOTO label41
+GOTO label39
+LABEL label41 :
+t46 := #0
+IF v7 > #0 GOTO label44
+GOTO label45
+LABEL label44 :
+t46 := #1
+LABEL label45 :
+IF t46 != #0 GOTO label40
+GOTO label39
+LABEL label40 :
+t49 := #0
+t52 := #0 - #-2147483648
+t51 := t52 + v7
+IF v6 < t51 GOTO label46
+GOTO label47
+LABEL label46 :
+t49 := #1
+LABEL label47 :
+IF t49 != #0 GOTO label38
+GOTO label39
+LABEL label38 :
+t42 := #1
+LABEL label39 :
+IF t42 != #0 GOTO label25
+GOTO label26
+LABEL label25 :
+RETURN v6
+LABEL label26 :
+t56 := v6 - v7
+RETURN t56
+FUNCTION safe_mul :
+PARAM v9 
+PARAM v10 
+t59 := #0
+t60 := #0
+t61 := #0
+IF v9 > #0 GOTO label59
+GOTO label60
+LABEL label59 :
+t61 := #1
+LABEL label60 :
+IF t61 != #0 GOTO label58
+GOTO label56
+LABEL label58 :
+t64 := #0
+IF v10 > #0 GOTO label61
+GOTO label62
+LABEL label61 :
+t64 := #1
+LABEL label62 :
+IF t64 != #0 GOTO label57
+GOTO label56
+LABEL label57 :
+t67 := #0
+t69 := #2147483647 / v10
+IF v9 > t69 GOTO label63
+GOTO label64
+LABEL label63 :
+t67 := #1
+LABEL label64 :
+IF t67 != #0 GOTO label55
+GOTO label56
+LABEL label55 :
+t60 := #1
+LABEL label56 :
+IF t60 != #0 GOTO label50
+GOTO label54
+LABEL label54 :
+t72 := #0
+t73 := #0
+IF v9 > #0 GOTO label69
+GOTO label70
+LABEL label69 :
+t73 := #1
+LABEL label70 :
+IF t73 != #0 GOTO label68
+GOTO label66
+LABEL label68 :
+t76 := #0
+IF v10 <= #0 GOTO label71
+GOTO label72
+LABEL label71 :
+t76 := #1
+LABEL label72 :
+IF t76 != #0 GOTO label67
+GOTO label66
+LABEL label67 :
+t79 := #0
+t82 := #-2147483648 / v9
+t81 := #0 - t82
+IF v10 < t81 GOTO label73
+GOTO label74
+LABEL label73 :
+t79 := #1
+LABEL label74 :
+IF t79 != #0 GOTO label65
+GOTO label66
+LABEL label65 :
+t72 := #1
+LABEL label66 :
+IF t72 != #0 GOTO label50
+GOTO label53
+LABEL label53 :
+t85 := #0
+t86 := #0
+IF v9 <= #0 GOTO label79
+GOTO label80
+LABEL label79 :
+t86 := #1
+LABEL label80 :
+IF t86 != #0 GOTO label78
+GOTO label76
+LABEL label78 :
+t89 := #0
+IF v10 > #0 GOTO label81
+GOTO label82
+LABEL label81 :
+t89 := #1
+LABEL label82 :
+IF t89 != #0 GOTO label77
+GOTO label76
+LABEL label77 :
+t92 := #0
+t95 := #-2147483648 / v10
+t94 := #0 - t95
+IF v9 < t94 GOTO label83
+GOTO label84
+LABEL label83 :
+t92 := #1
+LABEL label84 :
+IF t92 != #0 GOTO label75
+GOTO label76
+LABEL label75 :
+t85 := #1
+LABEL label76 :
+IF t85 != #0 GOTO label50
+GOTO label52
+LABEL label52 :
+t98 := #0
+t99 := #0
+IF v9 <= #0 GOTO label90
+GOTO label91
+LABEL label90 :
+t99 := #1
+LABEL label91 :
+IF t99 != #0 GOTO label89
+GOTO label86
+LABEL label89 :
+t102 := #0
+IF v10 <= #0 GOTO label92
+GOTO label93
+LABEL label92 :
+t102 := #1
+LABEL label93 :
+IF t102 != #0 GOTO label88
+GOTO label86
+LABEL label88 :
+t105 := #0
+IF v9 != #0 GOTO label94
+GOTO label95
+LABEL label94 :
+t105 := #1
+LABEL label95 :
+IF t105 != #0 GOTO label87
+GOTO label86
+LABEL label87 :
+t108 := #0
+t110 := #2147483647 / v9
+IF v10 < t110 GOTO label96
+GOTO label97
+LABEL label96 :
+t108 := #1
+LABEL label97 :
+IF t108 != #0 GOTO label85
+GOTO label86
+LABEL label85 :
+t98 := #1
+LABEL label86 :
+IF t98 != #0 GOTO label50
+GOTO label51
+LABEL label50 :
+t59 := #1
+LABEL label51 :
+IF t59 != #0 GOTO label48
+GOTO label49
+LABEL label48 :
+RETURN v9
+LABEL label49 :
+t114 := v9 * v10
+RETURN t114
+FUNCTION safe_div :
+PARAM v12 
+PARAM v13 
+t117 := #0
+t118 := #0
+IF v13 == #0 GOTO label103
+GOTO label104
+LABEL label103 :
+t118 := #1
+LABEL label104 :
+IF t118 != #0 GOTO label100
+GOTO label102
+LABEL label102 :
+t121 := #0
+t122 := #0
+t124 := #0 - #-2147483648
+IF v12 == t124 GOTO label108
+GOTO label109
+LABEL label108 :
+t122 := #1
+LABEL label109 :
+IF t122 != #0 GOTO label107
+GOTO label106
+LABEL label107 :
+t126 := #0
+t128 := #0 - #1
+IF v13 == t128 GOTO label110
+GOTO label111
+LABEL label110 :
+t126 := #1
+LABEL label111 :
+IF t126 != #0 GOTO label105
+GOTO label106
+LABEL label105 :
+t121 := #1
+LABEL label106 :
+IF t121 != #0 GOTO label100
+GOTO label101
+LABEL label100 :
+t117 := #1
+LABEL label101 :
+IF t117 != #0 GOTO label98
+GOTO label99
+LABEL label98 :
+RETURN v12
+LABEL label99 :
+t131 := v12 / v13
+RETURN t131
+FUNCTION safe_index :
+PARAM v15 
+PARAM v16 
+IF v15 < #0 GOTO label112
+GOTO label114
+LABEL label114 :
+IF v15 >= v16 GOTO label112
+GOTO label113
+LABEL label112 :
+RETURN #0
+LABEL label113 :
+RETURN v15
+FUNCTION i_func_31 :
+PARAM v18 
+PARAM v19 
+PARAM v20 
+PARAM v21 
+PARAM v22 
+PARAM v23 
+IF v23 <= #0 GOTO label115
+GOTO label116
+LABEL label115 :
+t142 := #0 - #302381835
+RETURN t142
+GOTO label117
+LABEL label116 :
+t144 := v23 - #1
+v23 := t144
+LABEL label117 :
+v25 := #1134275686
+t148 := #0 - #1378700962
+v26 := t148
+t150 := #0 - #562507046
+v27 := t150
+v28 := v27
+t153 := #0 - #1572031162
+v29 := t153
+v30 := #1209878642
+v31 := #1012320634
+v32 := #602658984
+t158 := #0 - #1634573943
+v33 := t158
+v34 := #1428795397
+v35 := #1873200945
+t162 := v23 - #3
+v23 := t162
+ARG v23
+ARG v22
+ARG v21
+ARG v20
+ARG v19
+ARG v18
+t166 := CALL i_func_31
+t173 := #0
+IF v25 >= v26 GOTO label118
+GOTO label119
+LABEL label118 :
+t173 := #1
+LABEL label119 :
+v28 := v29
+t176 := v28
+ARG v31
+ARG v30
+t178 := CALL safe_add
+ARG v23
+ARG #923889007
+ARG v35
+ARG v34
+ARG v33
+ARG v32
+t181 := CALL i_func_31
+ARG v23
+ARG t181
+ARG t178
+ARG t176
+ARG t173
+ARG t166
+t165 := CALL i_func_31
+v36 := t165
+t189 := v23 - #1
+v23 := t189
+t196 := #0 - #1894007184
+ARG v23
+ARG v22
+ARG v21
+ARG t196
+ARG v20
+ARG v19
+t193 := CALL i_func_31
+v18 := t193
+t192 := v18
+v37 := t192
+t201 := v23 - #1
+v23 := t201
+t206 := #0 - #1365014783
+t211 := #0 - #1389230652
+ARG v23
+ARG t211
+ARG #724775395
+ARG v20
+ARG v19
+ARG t206
+t205 := CALL i_func_31
+v18 := t205
+t204 := v18
+v38 := t204
+t214 := v23 - #1
+v23 := t214
+t221 := #0 - #918312966
+ARG v23
+ARG v22
+ARG t221
+ARG v21
+ARG v20
+ARG v19
+t217 := CALL i_func_31
+v18 := t217
+WRITE v25
+WRITE v26
+WRITE v27
+WRITE v28
+WRITE v29
+WRITE v30
+WRITE v31
+WRITE v32
+WRITE v33
+WRITE v34
+WRITE v35
+WRITE v36
+WRITE v37
+WRITE v38
+v18 := v19
+t239 := v18
+RETURN t239
+FUNCTION i_func_32 :
+PARAM v39 
+PARAM v40 
+IF v40 <= #0 GOTO label120
+GOTO label121
+LABEL label120 :
+t243 := #0 - #883116517
+RETURN t243
+GOTO label122
+LABEL label121 :
+t245 := v40 - #1
+v40 := t245
+LABEL label122 :
+t248 := #0 - #702969686
+v42 := t248
+v43 := v42
+v43 := #0
+t252 := v43
+v39 := t252
+t251 := v39
+v44 := t251
+t255 := #0
+IF v42 != #0 GOTO label124
+GOTO label123
+LABEL label123 :
+t255 := #1
+LABEL label124 :
+v39 := t255
+t254 := v39
+v45 := t254
+t258 := #0
+t260 := #0 - #1867973143
+IF #772632697 == t260 GOTO label125
+GOTO label126
+LABEL label125 :
+t258 := #1
+LABEL label126 :
+v39 := t258
+t257 := v39
+v46 := t257
+v47 := #1013012951
+t263 := #0 - #509206790
+v48 := t263
+t265 := #0 - #2049117472
+v49 := t265
+v50 := #690524611
+v51 := #979503295
+v52 := #1823781381
+t270 := #0 - #1579093682
+v53 := t270
+t272 := v40 - #4
+v40 := t272
+t275 := v39 - v42
+t281 := #0 - #1031164597
+ARG v40
+ARG v45
+ARG v44
+ARG t281
+ARG v43
+ARG #521171589
+t278 := CALL i_func_31
+ARG v40
+ARG v50
+ARG v49
+ARG v48
+ARG v47
+ARG v46
+t286 := CALL i_func_31
+t293 := #0
+IF v51 != #0 GOTO label127
+GOTO label129
+LABEL label129 :
+IF v52 != #0 GOTO label127
+GOTO label128
+LABEL label127 :
+t293 := #1
+LABEL label128 :
+ARG v40
+ARG v53
+t296 := CALL i_func_32
+ARG v40
+ARG t296
+ARG t293
+ARG t286
+ARG t278
+ARG t275
+t300 := CALL i_func_31
+WRITE v42
+WRITE v43
+WRITE v44
+WRITE v45
+WRITE v46
+WRITE v47
+WRITE v48
+WRITE v49
+WRITE v50
+WRITE v51
+WRITE v52
+WRITE v53
+t314 := #0
+IF v42 != v43 GOTO label130
+GOTO label131
+LABEL label130 :
+t314 := #1
+LABEL label131 :
+v39 := t314
+t313 := v39
+RETURN t313
+FUNCTION top_caller :
+PARAM v54 
+IF v54 <= #0 GOTO label132
+GOTO label133
+LABEL label132 :
+RETURN #560795488
+GOTO label134
+LABEL label133 :
+t320 := v54 - #1
+v54 := t320
+LABEL label134 :
+v56 := #593559260
+v57 := #10552769
+v58 := #407148539
+t326 := v54 - #1
+v54 := t326
+t334 := #0 - #869561237
+ARG v54
+ARG t334
+ARG v58
+ARG v57
+ARG v56
+ARG #1728659619
+t329 := CALL i_func_31
+v59 := t329
+v60 := #1367134795
+t339 := #0
+IF v60 != #0 GOTO label136
+GOTO label135
+LABEL label135 :
+t339 := #1
+LABEL label136 :
+v59 := t339
+t338 := v59
+v61 := t338
+t341 := v54 - #1
+v54 := t341
+ARG v54
+t344 := CALL top_caller
+v62 := t344
+t347 := #0
+IF v57 > v58 GOTO label137
+GOTO label138
+LABEL label137 :
+t347 := #1
+LABEL label138 :
+v56 := t347
+t346 := v56
+v63 := t346
+t350 := v54 - #2
+v54 := t350
+t353 := v54 - #1
+v54 := t353
+ARG v54
+t356 := CALL top_caller
+v64 := t356
+t358 := v54 - #1
+v54 := t358
+ARG v54
+t362 := CALL top_caller
+v56 := t362
+t361 := v56
+v65 := t361
+t366 := #0 - #462249628
+ARG v57
+ARG t366
+t365 := CALL safe_mul
+v56 := t365
+t364 := v56
+v66 := t364
+v67 := #0
+v68 := #0
+LABEL label139 :
+t372 := #0
+IF v57 != v58 GOTO label143
+GOTO label144
+LABEL label143 :
+t372 := #1
+LABEL label144 :
+v56 := t372
+t371 := v56
+IF t371 != #0 GOTO label142
+GOTO label141
+LABEL label142 :
+t375 := #0
+IF v67 < #4 GOTO label145
+GOTO label146
+LABEL label145 :
+t375 := #1
+LABEL label146 :
+IF t375 != #0 GOTO label140
+GOTO label141
+LABEL label140 :
+t379 := #0
+IF v57 != #0 GOTO label149
+GOTO label148
+LABEL label149 :
+IF v58 != #0 GOTO label147
+GOTO label148
+LABEL label147 :
+t379 := #1
+LABEL label148 :
+v56 := t379
+t378 := v56
+v69 := t378
+t383 := #0
+IF v57 != #0 GOTO label150
+GOTO label152
+LABEL label152 :
+IF v58 != #0 GOTO label150
+GOTO label151
+LABEL label150 :
+t383 := #1
+LABEL label151 :
+v56 := t383
+t382 := v56
+v70 := t382
+t386 := v54 - #1
+v54 := t386
+ARG v54
+ARG v57
+t390 := CALL i_func_32
+v56 := t390
+t389 := v56
+v71 := t389
+t393 := v67 + #1
+v67 := t393
+t396 := #0
+IF v57 != #0 GOTO label155
+GOTO label154
+LABEL label155 :
+IF v58 != #0 GOTO label153
+GOTO label154
+LABEL label153 :
+t396 := #1
+LABEL label154 :
+v56 := t396
+t399 := v54 - #1
+v54 := t399
+ARG v54
+ARG v60
+ARG #1034770647
+ARG v59
+ARG v58
+ARG v57
+t402 := CALL i_func_31
+v56 := t402
+WRITE v69
+WRITE v70
+WRITE v71
+GOTO label139
+LABEL label141 :
+ARG v58
+ARG v57
+t412 := CALL safe_mul
+v56 := t412
+LABEL label156 :
+t416 := #0
+IF v57 != #0 GOTO label160
+GOTO label162
+LABEL label162 :
+IF v58 != #0 GOTO label160
+GOTO label161
+LABEL label160 :
+t416 := #1
+LABEL label161 :
+v56 := t416
+t415 := v56
+IF t415 != #0 GOTO label159
+GOTO label158
+LABEL label159 :
+t419 := #0
+IF v68 < #4 GOTO label163
+GOTO label164
+LABEL label163 :
+t419 := #1
+LABEL label164 :
+IF t419 != #0 GOTO label157
+GOTO label158
+LABEL label157 :
+t422 := v54 - #1
+v54 := t422
+ARG v54
+t426 := CALL top_caller
+v56 := t426
+t425 := v56
+v72 := t425
+t428 := v54 - #1
+v54 := t428
+ARG v54
+ARG v57
+t432 := CALL i_func_32
+v56 := t432
+t431 := v56
+v73 := t431
+t436 := #0
+IF #1935733354 <= #1379582149 GOTO label165
+GOTO label166
+LABEL label165 :
+t436 := #1
+LABEL label166 :
+v56 := t436
+t435 := v56
+v74 := t435
+t439 := v68 + #1
+v68 := t439
+t442 := #0
+IF v57 != #0 GOTO label169
+GOTO label168
+LABEL label169 :
+IF v58 != #0 GOTO label167
+GOTO label168
+LABEL label167 :
+t442 := #1
+LABEL label168 :
+v56 := t442
+t445 := v54 - #2
+v54 := t445
+t449 := #0 - #1922365695
+ARG v54
+ARG #1065537927
+ARG v58
+ARG v57
+ARG v56
+ARG t449
+t448 := CALL i_func_31
+ARG v54
+ARG t448
+t457 := CALL i_func_32
+t458 := #0
+IF v57 >= v58 GOTO label170
+GOTO label171
+LABEL label170 :
+t458 := #1
+LABEL label171 :
+v56 := t458
+WRITE v72
+WRITE v73
+WRITE v74
+GOTO label156
+LABEL label158 :
+WRITE v64
+WRITE v65
+WRITE v66
+t467 := v54 - #1
+v54 := t467
+ARG v54
+ARG v61
+ARG v60
+ARG v59
+ARG v58
+ARG v57
+t470 := CALL i_func_31
+v56 := t470
+WRITE v56
+WRITE v57
+WRITE v58
+WRITE v59
+WRITE v60
+WRITE v61
+WRITE v62
+WRITE v63
+t486 := #0
+IF v57 <= v58 GOTO label172
+GOTO label173
+LABEL label172 :
+t486 := #1
+LABEL label173 :
+v56 := t486
+t485 := v56
+RETURN t485
+FUNCTION main :
+ARG #10
+t490 := CALL top_caller
+RETURN #0
