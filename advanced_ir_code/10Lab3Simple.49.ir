@@ -496,13 +496,13 @@ LABEL label137 :
 t198 := v20 - #3
 v20 := t198
 ARG v20
-ARG v19
-ARG v18
-t202 := CALL i_func_55
-ARG v20
 ARG v23
 ARG v22
 t206 := CALL i_func_55
+ARG v20
+ARG v19
+ARG v18
+t202 := CALL i_func_55
 ARG v20
 ARG t206
 ARG t202
@@ -510,16 +510,16 @@ t201 := CALL i_func_55
 v29 := t201
 t211 := v20 - #2
 v20 := t211
+ARG v20
+ARG v19
+ARG #2011827389
+t218 := CALL i_func_55
 t215 := #0
 IF #1872891514 != v18 GOTO label142
 GOTO label143
 LABEL label142 :
 t215 := #1
 LABEL label143 :
-ARG v20
-ARG v19
-ARG #2011827389
-t218 := CALL i_func_55
 ARG v20
 ARG t218
 ARG t215
@@ -553,13 +553,13 @@ v32 := t238
 t240 := v20 - #3
 v20 := t240
 ARG v20
-ARG v19
-ARG v18
-t244 := CALL i_func_55
-ARG v20
 ARG v23
 ARG v22
 t248 := CALL i_func_55
+ARG v20
+ARG v19
+ARG v18
+t244 := CALL i_func_55
 ARG v20
 ARG t248
 ARG t244
@@ -601,16 +601,16 @@ WRITE v23
 WRITE v24
 t278 := v20 - #2
 v20 := t278
-ARG v20
-ARG v19
-ARG v18
-t282 := CALL i_func_55
 t286 := #0
 IF v22 >= v23 GOTO label148
 GOTO label149
 LABEL label148 :
 t286 := #1
 LABEL label149 :
+ARG v20
+ARG v19
+ARG v18
+t282 := CALL i_func_55
 ARG v20
 ARG t286
 ARG t282
@@ -710,6 +710,19 @@ LABEL label161 :
 v35 := t346
 t349 := v40 - #2
 v40 := t349
+t362 := #0
+t363 := #0 - #734478733
+IF t363 != v44 GOTO label165
+GOTO label166
+LABEL label165 :
+t362 := #1
+LABEL label166 :
+ARG v40
+ARG v43
+ARG v42
+t358 := CALL i_func_55
+v38 := v39
+t356 := v38
 t352 := #0
 IF v35 != #0 GOTO label164
 GOTO label163
@@ -719,19 +732,6 @@ GOTO label163
 LABEL label162 :
 t352 := #1
 LABEL label163 :
-v38 := v39
-t356 := v38
-ARG v40
-ARG v43
-ARG v42
-t358 := CALL i_func_55
-t362 := #0
-t363 := #0 - #734478733
-IF t363 != v44 GOTO label165
-GOTO label166
-LABEL label165 :
-t362 := #1
-LABEL label166 :
 ARG v40
 ARG t362
 ARG t358
@@ -813,6 +813,13 @@ t414 := v51
 v57 := t414
 t418 := v49 - #1
 v49 := t418
+t425 := #0
+t427 := #0 - #1444038871
+IF v52 <= t427 GOTO label179
+GOTO label180
+LABEL label179 :
+t425 := #1
+LABEL label180 :
 t421 := #0
 t422 := #0 - #1428240825
 IF t422 != #0 GOTO label178
@@ -823,13 +830,6 @@ GOTO label177
 LABEL label176 :
 t421 := #1
 LABEL label177 :
-t425 := #0
-t427 := #0 - #1444038871
-IF v52 <= t427 GOTO label179
-GOTO label180
-LABEL label179 :
-t425 := #1
-LABEL label180 :
 ARG v49
 ARG t425
 ARG t421

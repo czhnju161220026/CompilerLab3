@@ -464,25 +464,6 @@ v34 := t193
 v35 := #205190313
 t196 := v23 - #2
 v23 := t196
-ARG v19
-ARG v18
-t200 := CALL safe_mul
-ARG v23
-ARG v26
-ARG v25
-ARG v22
-ARG v21
-ARG v20
-t203 := CALL i_func_43
-t210 := #0
-IF v27 <= v31 GOTO label126
-GOTO label127
-LABEL label126 :
-t210 := #1
-LABEL label127 :
-t214 := #0 - #612684670
-v33 := t214
-t213 := v33
 t216 := #0
 IF v34 != #0 GOTO label128
 GOTO label130
@@ -492,6 +473,25 @@ GOTO label129
 LABEL label128 :
 t216 := #1
 LABEL label129 :
+t214 := #0 - #612684670
+v33 := t214
+t213 := v33
+t210 := #0
+IF v27 <= v31 GOTO label126
+GOTO label127
+LABEL label126 :
+t210 := #1
+LABEL label127 :
+ARG v23
+ARG v26
+ARG v25
+ARG v22
+ARG v21
+ARG v20
+t203 := CALL i_func_43
+ARG v19
+ARG v18
+t200 := CALL safe_mul
 ARG v23
 ARG t216
 ARG t213
@@ -511,19 +511,19 @@ v40 := t226
 v41 := #490755305
 t229 := v23 - #4
 v23 := t229
-t233 := #0
-IF v18 == v19 GOTO label131
-GOTO label132
-LABEL label131 :
-t233 := #1
-LABEL label132 :
+t257 := #0
+IF v40 > v41 GOTO label133
+GOTO label134
+LABEL label133 :
+t257 := #1
+LABEL label134 :
 ARG v23
-ARG v26
-ARG v25
-ARG v22
-ARG v21
-ARG v20
-t236 := CALL i_func_43
+ARG v39
+ARG v38
+ARG v37
+ARG v36
+ARG v35
+t250 := CALL i_func_43
 ARG v23
 ARG v34
 ARG v33
@@ -532,18 +532,18 @@ ARG v31
 ARG v27
 t243 := CALL i_func_43
 ARG v23
-ARG v39
-ARG v38
-ARG v37
-ARG v36
-ARG v35
-t250 := CALL i_func_43
-t257 := #0
-IF v40 > v41 GOTO label133
-GOTO label134
-LABEL label133 :
-t257 := #1
-LABEL label134 :
+ARG v26
+ARG v25
+ARG v22
+ARG v21
+ARG v20
+t236 := CALL i_func_43
+t233 := #0
+IF v18 == v19 GOTO label131
+GOTO label132
+LABEL label131 :
+t233 := #1
+LABEL label132 :
 ARG v23
 ARG t257
 ARG t250
@@ -582,6 +582,19 @@ WRITE v28
 WRITE v29
 t284 := v23 - #2
 v23 := t284
+t302 := #0
+IF #149162384 != #0 GOTO label140
+GOTO label139
+LABEL label139 :
+t302 := #1
+LABEL label140 :
+t299 := v28 / v29
+t295 := #0
+IF v25 != v26 GOTO label137
+GOTO label138
+LABEL label137 :
+t295 := #1
+LABEL label138 :
 ARG v23
 ARG v22
 ARG v21
@@ -589,19 +602,6 @@ ARG v20
 ARG v19
 ARG v18
 t288 := CALL i_func_43
-t295 := #0
-IF v25 != v26 GOTO label137
-GOTO label138
-LABEL label137 :
-t295 := #1
-LABEL label138 :
-t299 := v28 / v29
-t302 := #0
-IF #149162384 != #0 GOTO label140
-GOTO label139
-LABEL label139 :
-t302 := #1
-LABEL label140 :
 ARG v23
 ARG t302
 ARG t299
@@ -653,14 +653,9 @@ t328 := #0 - #1121025093
 v53 := t328
 t330 := v43 - #3
 v43 := t330
-t334 := #0
-IF v45 == v46 GOTO label148
-GOTO label149
-LABEL label148 :
-t334 := #1
-LABEL label149 :
-ARG v43
-t337 := CALL top_caller
+ARG v52
+ARG v51
+t346 := CALL safe_div
 ARG v43
 ARG v50
 ARG #1615596809
@@ -668,9 +663,14 @@ ARG v49
 ARG v48
 ARG v47
 t339 := CALL i_func_43
-ARG v52
-ARG v51
-t346 := CALL safe_div
+ARG v43
+t337 := CALL top_caller
+t334 := #0
+IF v45 == v46 GOTO label148
+GOTO label149
+LABEL label148 :
+t334 := #1
+LABEL label149 :
 ARG v43
 ARG v53
 ARG t346
@@ -682,8 +682,6 @@ v54 := t333
 v55 := #0
 t352 := v43 - #2
 v43 := t352
-v45 := v46
-t355 := v45
 ARG v43
 ARG v52
 ARG v51
@@ -691,6 +689,8 @@ ARG v50
 ARG v49
 ARG v48
 t359 := CALL i_func_43
+v45 := v46
+t355 := v45
 ARG v43
 ARG v53
 ARG t359

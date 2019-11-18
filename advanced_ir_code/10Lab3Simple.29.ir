@@ -482,12 +482,6 @@ t207 := v26
 v36 := t207
 t210 := v29 - #1
 v29 := t210
-t214 := #0
-IF v26 > v27 GOTO label127
-GOTO label128
-LABEL label127 :
-t214 := #1
-LABEL label128 :
 t218 := #0
 IF v31 != #0 GOTO label129
 GOTO label131
@@ -497,6 +491,12 @@ GOTO label130
 LABEL label129 :
 t218 := #1
 LABEL label130 :
+t214 := #0
+IF v26 > v27 GOTO label127
+GOTO label128
+LABEL label127 :
+t214 := #1
+LABEL label128 :
 ARG v29
 ARG t218
 ARG v28
@@ -574,13 +574,8 @@ WRITE v33
 WRITE v34
 t276 := v29 - #2
 v29 := t276
-t280 := #0
-t281 := #0 - #1610835678
-IF t281 >= v26 GOTO label137
-GOTO label138
-LABEL label137 :
-t280 := #1
-LABEL label138 :
+ARG v29
+t288 := CALL i_func_29
 t284 := #0
 t286 := #0 - #1048101193
 IF v27 >= t286 GOTO label139
@@ -588,8 +583,13 @@ GOTO label140
 LABEL label139 :
 t284 := #1
 LABEL label140 :
-ARG v29
-t288 := CALL i_func_29
+t280 := #0
+t281 := #0 - #1610835678
+IF t281 >= v26 GOTO label137
+GOTO label138
+LABEL label137 :
+t280 := #1
+LABEL label138 :
 ARG v29
 ARG t288
 ARG t284

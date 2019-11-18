@@ -554,7 +554,7 @@ char *translateArgs(Morpheme *args, HashSet *symTable, Argument **arglist)
         arg->next = *arglist;
         *arglist = arg;
         char *code2 = translateArgs(c->siblings->siblings, symTable, arglist);
-        char *code = concat(2, code1, code2);
+        char *code = concat(2, code2, code1);
         return code;
     }
     printf("\033[31mInvalid Args node.\n\033[0m");

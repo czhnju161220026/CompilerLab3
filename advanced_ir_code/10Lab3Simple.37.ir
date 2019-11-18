@@ -434,19 +434,19 @@ t173 := CALL i_func_42
 v18 := t173
 t178 := v21 - #1
 v21 := t178
-t181 := #0
-IF v18 < v19 GOTO label121
-GOTO label122
-LABEL label121 :
-t181 := #1
-LABEL label122 :
-t184 := v20 / v23
 t187 := #0
 IF v24 > #1817405622 GOTO label123
 GOTO label124
 LABEL label123 :
 t187 := #1
 LABEL label124 :
+t184 := v20 / v23
+t181 := #0
+IF v18 < v19 GOTO label121
+GOTO label122
+LABEL label121 :
+t181 := #1
+LABEL label122 :
 ARG v21
 ARG t187
 ARG t184

@@ -528,23 +528,23 @@ v33 := t263
 t270 := #4 * #1
 t271 := v57 + t270
 t266 := t271
-v29 := v30
-t272 := v29
-ARG v33
-ARG v35
-ARG v32
-ARG #1182304965
-ARG v31
-t274 := CALL i_func_81
+ARG v40
+ARG #2046244553
+t286 := CALL safe_div
 ARG v33
 ARG v39
 ARG v38
 ARG v37
 ARG v36
 t280 := CALL i_func_81
-ARG v40
-ARG #2046244553
-t286 := CALL safe_div
+ARG v33
+ARG v35
+ARG v32
+ARG #1182304965
+ARG v31
+t274 := CALL i_func_81
+v29 := v30
+t272 := v29
 ARG v33
 ARG t286
 ARG t280
@@ -695,8 +695,8 @@ v44 := t419
 t426 := #4 * #0
 t427 := v59 + t426
 t422 := t427
-t431 := #0 - #432575876
 t433 := #0 - #107996053
+t431 := #0 - #432575876
 ARG v44
 ARG t433
 ARG t431

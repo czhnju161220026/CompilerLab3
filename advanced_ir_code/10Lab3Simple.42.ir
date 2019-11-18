@@ -507,12 +507,6 @@ t231 := v28
 v36 := t231
 t233 := v31 - #1
 v31 := t233
-ARG v29
-ARG v28
-t237 := CALL safe_mul
-ARG v33
-ARG v30
-t240 := CALL safe_mul
 t243 := #0
 IF v34 != #0 GOTO label128
 GOTO label127
@@ -522,6 +516,12 @@ GOTO label127
 LABEL label126 :
 t243 := #1
 LABEL label127 :
+ARG v33
+ARG v30
+t240 := CALL safe_mul
+ARG v29
+ARG v28
+t237 := CALL safe_mul
 ARG v31
 ARG t243
 ARG t240
@@ -553,12 +553,13 @@ WRITE v36
 WRITE v37
 t270 := v31 - #1
 v31 := t270
-t274 := #0
-IF v28 != #0 GOTO label130
-GOTO label129
-LABEL label129 :
-t274 := #1
-LABEL label130 :
+t279 := #0
+t281 := #0 - #894611983
+IF #1307942901 >= t281 GOTO label134
+GOTO label135
+LABEL label134 :
+t279 := #1
+LABEL label135 :
 t276 := #0
 IF v29 != #0 GOTO label131
 GOTO label133
@@ -568,13 +569,12 @@ GOTO label132
 LABEL label131 :
 t276 := #1
 LABEL label132 :
-t279 := #0
-t281 := #0 - #894611983
-IF #1307942901 >= t281 GOTO label134
-GOTO label135
-LABEL label134 :
-t279 := #1
-LABEL label135 :
+t274 := #0
+IF v28 != #0 GOTO label130
+GOTO label129
+LABEL label129 :
+t274 := #1
+LABEL label130 :
 ARG v31
 ARG t279
 ARG t276
@@ -611,8 +611,11 @@ t299 := v42
 v44 := t299
 t302 := v38 - #3
 v38 := t302
-t309 := #0 - #1291749938
+t317 := v43 + v44
+ARG v38
+t315 := CALL top_caller
 t312 := #0 - #2007289352
+t309 := #0 - #1291749938
 ARG v38
 ARG t312
 ARG v42
@@ -620,9 +623,6 @@ ARG t309
 ARG v41
 ARG v40
 t306 := CALL i_func_48
-ARG v38
-t315 := CALL top_caller
-t317 := v43 + v44
 ARG v38
 ARG t317
 ARG t315
@@ -663,14 +663,12 @@ t342 := #0 - #1243612269
 v50 := t342
 t344 := v38 - #1
 v38 := t344
-t348 := v40 * v41
-t351 := #0
-IF v42 == v43 GOTO label146
-GOTO label147
-LABEL label146 :
-t351 := #1
-LABEL label147 :
-t354 := v44 + v45
+t360 := #0
+IF v49 >= v50 GOTO label151
+GOTO label152
+LABEL label151 :
+t360 := #1
+LABEL label152 :
 t357 := #0
 IF v46 != #0 GOTO label148
 GOTO label150
@@ -680,12 +678,14 @@ GOTO label149
 LABEL label148 :
 t357 := #1
 LABEL label149 :
-t360 := #0
-IF v49 >= v50 GOTO label151
-GOTO label152
-LABEL label151 :
-t360 := #1
-LABEL label152 :
+t354 := v44 + v45
+t351 := #0
+IF v42 == v43 GOTO label146
+GOTO label147
+LABEL label146 :
+t351 := #1
+LABEL label147 :
+t348 := v40 * v41
 ARG v38
 ARG t360
 ARG t357

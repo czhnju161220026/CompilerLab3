@@ -529,13 +529,13 @@ v18 := t234
 t238 := v20 - #3
 v20 := t238
 ARG v20
-ARG v19
-ARG v18
-t241 := CALL i_func_6
-ARG v20
 ARG v23
 ARG v22
 t245 := CALL i_func_6
+ARG v20
+ARG v19
+ARG v18
+t241 := CALL i_func_6
 ARG v20
 ARG t245
 ARG t241

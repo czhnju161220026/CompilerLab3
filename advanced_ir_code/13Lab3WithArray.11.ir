@@ -473,14 +473,9 @@ t207 := CALL i_func_64
 WRITE v26
 t228 := v22 - #1
 v22 := t228
-t232 := #0
-t233 := #0 - #1461360981
-t234 := #0 - #907033403
-IF t233 != t234 GOTO label120
-GOTO label121
-LABEL label120 :
-t232 := #1
-LABEL label121 :
+ARG v20
+ARG v19
+t255 := CALL safe_div
 t244 := #0 - #809008278
 t241 := t244 + #809008278
 t242 := #4 * t241
@@ -492,9 +487,14 @@ t249 := #4 * t248
 t250 := v40 + t249
 t239 := t250
 t237 := *t238 / *t239
-ARG v20
-ARG v19
-t255 := CALL safe_div
+t232 := #0
+t233 := #0 - #1461360981
+t234 := #0 - #907033403
+IF t233 != t234 GOTO label120
+GOTO label121
+LABEL label120 :
+t232 := #1
+LABEL label121 :
 ARG v22
 ARG t255
 ARG v18

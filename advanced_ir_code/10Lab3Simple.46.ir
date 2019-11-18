@@ -444,17 +444,6 @@ t170 := v18
 v27 := t170
 t174 := v21 - #3
 v21 := t174
-ARG v21
-ARG v20
-ARG v19
-ARG v18
-t178 := CALL i_func_52
-t185 := #0 - #633737217
-ARG v21
-ARG v24
-ARG t185
-ARG v23
-t183 := CALL i_func_52
 t189 := #0
 t191 := #0 - #1126663438
 IF v25 == t191 GOTO label128
@@ -462,6 +451,17 @@ GOTO label129
 LABEL label128 :
 t189 := #1
 LABEL label129 :
+t185 := #0 - #633737217
+ARG v21
+ARG v24
+ARG t185
+ARG v23
+t183 := CALL i_func_52
+ARG v21
+ARG v20
+ARG v19
+ARG v18
+t178 := CALL i_func_52
 ARG v21
 ARG t189
 ARG t183
@@ -545,8 +545,8 @@ v39 := t231
 v40 := #0
 t238 := v35 - #8
 v35 := t238
-t244 := #0 - #55167101
 t246 := #0 - #1460442836
+t244 := #0 - #55167101
 ARG v35
 ARG t246
 ARG t244
@@ -595,12 +595,12 @@ v44 := #0
 t270 := v35 - #2
 v35 := t270
 LABEL label148 :
-t274 := #196155551 - v30
 ARG v35
 ARG v33
 ARG #1848567815
 ARG v32
 t278 := CALL i_func_52
+t274 := #196155551 - v30
 ARG v35
 ARG t278
 ARG v31
@@ -636,17 +636,17 @@ t294 := v30
 v46 := t294
 t302 := v35 - #3
 v35 := t302
+ARG v35
+ARG v34
+ARG v33
+ARG v32
+t312 := CALL i_func_52
 t308 := #0 - #282139346
 ARG v35
 ARG v31
 ARG t308
 ARG v30
 t306 := CALL i_func_52
-ARG v35
-ARG v34
-ARG v33
-ARG v32
-t312 := CALL i_func_52
 ARG v35
 ARG v37
 ARG t312
@@ -670,10 +670,14 @@ v30 := t327
 t334 := v35 - #4
 v35 := t334
 ARG v35
-ARG v32
-ARG v31
-ARG v30
-t337 := CALL i_func_52
+ARG v49
+ARG v48
+ARG v47
+ARG v46
+ARG v45
+t355 := CALL i_func_53
+t352 := v43 + #654293222
+t349 := v41 - v42
 ARG v35
 ARG v39
 ARG v38
@@ -681,15 +685,11 @@ ARG v37
 ARG v34
 ARG v33
 t342 := CALL i_func_53
-t349 := v41 - v42
-t352 := v43 + #654293222
 ARG v35
-ARG v49
-ARG v48
-ARG v47
-ARG v46
-ARG v45
-t355 := CALL i_func_53
+ARG v32
+ARG v31
+ARG v30
+t337 := CALL i_func_52
 ARG v35
 ARG t355
 ARG t352
@@ -731,8 +731,8 @@ GOTO label142
 LABEL label141 :
 t385 := v35 - #1
 v35 := t385
-t390 := #0 - #323078215
 t393 := #0 - #1627926020
+t390 := #0 - #323078215
 ARG v35
 ARG v33
 ARG v32
@@ -808,25 +808,25 @@ v56 := v55
 v57 := #1885308681
 t444 := v35 - #3
 v35 := t444
+v56 := v57
+t464 := v56
 ARG v35
-ARG v32
-ARG v31
-ARG v30
-t448 := CALL i_func_52
-t453 := v33 * v34
+ARG v54
+ARG v53
+ARG v39
+t459 := CALL i_func_52
 t456 := #0
 IF v37 <= v38 GOTO label165
 GOTO label166
 LABEL label165 :
 t456 := #1
 LABEL label166 :
+t453 := v33 * v34
 ARG v35
-ARG v54
-ARG v53
-ARG v39
-t459 := CALL i_func_52
-v56 := v57
-t464 := v56
+ARG v32
+ARG v31
+ARG v30
+t448 := CALL i_func_52
 ARG v35
 ARG t464
 ARG t459
@@ -849,25 +849,25 @@ t467 := v30
 v59 := t467
 t471 := v35 - #2
 v35 := t471
-t478 := #0 - #401185948
-ARG v35
-ARG t478
-ARG v31
-ARG v30
-t475 := CALL i_func_52
-t481 := #0
-IF v32 >= #852978518 GOTO label170
-GOTO label171
-LABEL label170 :
-t481 := #1
-LABEL label171 :
-t484 := v33 / v34
 t487 := #0
 IF v37 >= v38 GOTO label172
 GOTO label173
 LABEL label172 :
 t487 := #1
 LABEL label173 :
+t484 := v33 / v34
+t481 := #0
+IF v32 >= #852978518 GOTO label170
+GOTO label171
+LABEL label170 :
+t481 := #1
+LABEL label171 :
+t478 := #0 - #401185948
+ARG v35
+ARG t478
+ARG v31
+ARG v30
+t475 := CALL i_func_52
 ARG v35
 ARG v39
 ARG t487
@@ -893,6 +893,27 @@ v30 := t496
 t500 := v35 - #5
 v35 := t500
 LABEL label177 :
+ARG v35
+ARG #1654015146
+ARG v55
+ARG v54
+t525 := CALL i_func_52
+ARG v35
+ARG v53
+ARG #1845518318
+ARG v39
+t520 := CALL i_func_52
+t517 := #0
+IF v37 > v38 GOTO label181
+GOTO label182
+LABEL label181 :
+t517 := #1
+LABEL label182 :
+ARG v35
+ARG v34
+ARG #1192477706
+ARG #555232918
+t512 := CALL i_func_52
 t506 := #0 - #1801008591
 ARG v35
 ARG v33
@@ -901,27 +922,6 @@ ARG v31
 ARG t506
 ARG v30
 t504 := CALL i_func_53
-ARG v35
-ARG v34
-ARG #1192477706
-ARG #555232918
-t512 := CALL i_func_52
-t517 := #0
-IF v37 > v38 GOTO label181
-GOTO label182
-LABEL label181 :
-t517 := #1
-LABEL label182 :
-ARG v35
-ARG v53
-ARG #1845518318
-ARG v39
-t520 := CALL i_func_52
-ARG v35
-ARG #1654015146
-ARG v55
-ARG v54
-t525 := CALL i_func_52
 ARG v35
 ARG t525
 ARG t520
@@ -947,14 +947,18 @@ t534 := v30
 v62 := t534
 t538 := v35 - #3
 v35 := t538
-ARG v31
-ARG v30
-t542 := CALL safe_mul
+t558 := #0 - #1160146843
 ARG v35
-ARG v34
-ARG v33
-ARG v32
-t545 := CALL i_func_52
+ARG v55
+ARG t558
+ARG v54
+t556 := CALL i_func_52
+t553 := #0
+IF v39 >= v53 GOTO label188
+GOTO label189
+LABEL label188 :
+t553 := #1
+LABEL label189 :
 t550 := #0
 IF v37 != #0 GOTO label185
 GOTO label187
@@ -964,18 +968,14 @@ GOTO label186
 LABEL label185 :
 t550 := #1
 LABEL label186 :
-t553 := #0
-IF v39 >= v53 GOTO label188
-GOTO label189
-LABEL label188 :
-t553 := #1
-LABEL label189 :
-t558 := #0 - #1160146843
 ARG v35
-ARG v55
-ARG t558
-ARG v54
-t556 := CALL i_func_52
+ARG v34
+ARG v33
+ARG v32
+t545 := CALL i_func_52
+ARG v31
+ARG v30
+t542 := CALL safe_mul
 ARG v35
 ARG t556
 ARG t553
@@ -986,15 +986,6 @@ t541 := CALL i_func_53
 v63 := t541
 t563 := v35 - #2
 v35 := t563
-t567 := #0
-IF v30 > v31 GOTO label190
-GOTO label191
-LABEL label190 :
-t567 := #1
-LABEL label191 :
-ARG v33
-ARG v32
-t570 := CALL safe_sub
 ARG v35
 ARG v53
 ARG v39
@@ -1002,6 +993,15 @@ ARG v38
 ARG v37
 ARG v34
 t573 := CALL i_func_53
+ARG v33
+ARG v32
+t570 := CALL safe_sub
+t567 := #0
+IF v30 > v31 GOTO label190
+GOTO label191
+LABEL label190 :
+t567 := #1
+LABEL label191 :
 ARG v35
 ARG t573
 ARG t570

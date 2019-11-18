@@ -498,29 +498,29 @@ v41 := #1261395931
 t221 := v32 - #3
 v32 := t221
 ARG v32
-ARG v31
-ARG v30
-ARG v29
-ARG v28
-t225 := CALL i_func_2
-t231 := #0
-IF v34 >= v35 GOTO label128
-GOTO label129
-LABEL label128 :
-t231 := #1
-LABEL label129 :
+ARG v41
+ARG v40
+ARG v39
+ARG v38
+t237 := CALL i_func_2
 t234 := #0
 IF v36 >= v37 GOTO label130
 GOTO label131
 LABEL label130 :
 t234 := #1
 LABEL label131 :
+t231 := #0
+IF v34 >= v35 GOTO label128
+GOTO label129
+LABEL label128 :
+t231 := #1
+LABEL label129 :
 ARG v32
-ARG v41
-ARG v40
-ARG v39
-ARG v38
-t237 := CALL i_func_2
+ARG v31
+ARG v30
+ARG v29
+ARG v28
+t225 := CALL i_func_2
 ARG v32
 ARG t237
 ARG t234

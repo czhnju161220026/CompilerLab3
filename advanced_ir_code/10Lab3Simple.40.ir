@@ -425,19 +425,10 @@ t166 := #0 - #1558736496
 v28 := t166
 t168 := v23 - #2
 v23 := t168
-t171 := #0
-IF v18 > v19 GOTO label120
-GOTO label121
-LABEL label120 :
-t171 := #1
-LABEL label121 :
-t174 := v20 / v21
-t179 := #0 - #1047273565
-ARG t179
-ARG v22
-t177 := CALL safe_mul
-t183 := #0 - #1420453769
+v27 := v28
+t190 := v27
 t185 := #0 - #232664604
+t183 := #0 - #1420453769
 ARG v23
 ARG #1170914763
 ARG v26
@@ -445,8 +436,17 @@ ARG t185
 ARG t183
 ARG v25
 t181 := CALL i_func_44
-v27 := v28
-t190 := v27
+t179 := #0 - #1047273565
+ARG t179
+ARG v22
+t177 := CALL safe_mul
+t174 := v20 / v21
+t171 := #0
+IF v18 > v19 GOTO label120
+GOTO label121
+LABEL label120 :
+t171 := #1
+LABEL label121 :
 ARG v23
 ARG t190
 ARG t181

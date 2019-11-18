@@ -470,32 +470,32 @@ v29 := #261184557
 v30 := #0
 t221 := v22 - #3
 v22 := t221
-t231 := #0 - #1148734201
-t227 := #1148734201 + t231
-t228 := #4 * t227
-t229 := v45 + t228
-t225 := t229
-t236 := #4 * #0
-t237 := v44 + t236
-t233 := t237
-ARG v22
-ARG v19
-ARG v18
-ARG *t233
-ARG *t225
-t224 := CALL i_func_93
-t241 := #0
-IF v20 != #0 GOTO label121
-GOTO label120
-LABEL label120 :
-t241 := #1
-LABEL label121 :
 ARG v22
 ARG v27
 ARG v24
 ARG v21
 ARG #1589622995
 t244 := CALL i_func_93
+t241 := #0
+IF v20 != #0 GOTO label121
+GOTO label120
+LABEL label120 :
+t241 := #1
+LABEL label121 :
+t236 := #4 * #0
+t237 := v44 + t236
+t233 := t237
+t231 := #0 - #1148734201
+t227 := #1148734201 + t231
+t228 := #4 * t227
+t229 := v45 + t228
+t225 := t229
+ARG v22
+ARG v19
+ARG v18
+ARG *t233
+ARG *t225
+t224 := CALL i_func_93
 ARG v22
 ARG t244
 ARG #1998275548
@@ -656,6 +656,21 @@ WRITE v28
 WRITE v29
 t410 := v22 - #2
 v22 := t410
+t440 := #0
+IF v28 > v29 GOTO label135
+GOTO label136
+LABEL label135 :
+t440 := #1
+LABEL label136 :
+ARG v22
+ARG v27
+ARG v24
+ARG v21
+ARG v20
+t434 := CALL i_func_93
+ARG v19
+ARG v18
+t431 := CALL safe_mul
 t421 := #0 - #1736518929
 t418 := t421 + #1736518929
 t419 := #4 * t418
@@ -667,21 +682,6 @@ t426 := #4 * t425
 t427 := v45 + t426
 t416 := t427
 t414 := *t415 - *t416
-ARG v19
-ARG v18
-t431 := CALL safe_mul
-ARG v22
-ARG v27
-ARG v24
-ARG v21
-ARG v20
-t434 := CALL i_func_93
-t440 := #0
-IF v28 > v29 GOTO label135
-GOTO label136
-LABEL label135 :
-t440 := #1
-LABEL label136 :
 ARG v22
 ARG t440
 ARG t434

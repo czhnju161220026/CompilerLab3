@@ -629,6 +629,12 @@ v32 := t360
 t367 := #4 * #0
 t368 := v45 + t367
 t363 := t368
+t372 := #0
+IF v36 != v37 GOTO label138
+GOTO label139
+LABEL label138 :
+t372 := #1
+LABEL label139 :
 t369 := #0
 IF v34 != #0 GOTO label137
 GOTO label136
@@ -638,12 +644,6 @@ GOTO label136
 LABEL label135 :
 t369 := #1
 LABEL label136 :
-t372 := #0
-IF v36 != v37 GOTO label138
-GOTO label139
-LABEL label138 :
-t372 := #1
-LABEL label139 :
 ARG v32
 ARG t372
 ARG t369

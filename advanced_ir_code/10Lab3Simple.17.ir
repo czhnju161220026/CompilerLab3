@@ -419,6 +419,24 @@ v28 := t163
 v29 := #1580699168
 t166 := v22 - #3
 v22 := t166
+ARG v22
+ARG v29
+ARG v28
+ARG v27
+ARG v26
+t182 := CALL i_func_17
+t180 := #0
+IF v25 != #0 GOTO label123
+GOTO label122
+LABEL label122 :
+t180 := #1
+LABEL label123 :
+t177 := #0
+IF v21 <= v24 GOTO label120
+GOTO label121
+LABEL label120 :
+t177 := #1
+LABEL label121 :
 t173 := #0 - #1770348911
 ARG v22
 ARG v20
@@ -426,24 +444,6 @@ ARG t173
 ARG v19
 ARG v18
 t170 := CALL i_func_17
-t177 := #0
-IF v21 <= v24 GOTO label120
-GOTO label121
-LABEL label120 :
-t177 := #1
-LABEL label121 :
-t180 := #0
-IF v25 != #0 GOTO label123
-GOTO label122
-LABEL label122 :
-t180 := #1
-LABEL label123 :
-ARG v22
-ARG v29
-ARG v28
-ARG v27
-ARG v26
-t182 := CALL i_func_17
 ARG v22
 ARG t182
 ARG t180

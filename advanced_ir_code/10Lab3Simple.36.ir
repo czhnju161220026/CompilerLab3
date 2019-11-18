@@ -697,13 +697,13 @@ v46 := t349
 LABEL label159 :
 t352 := v46 - #2
 v46 := t352
+t361 := #0 - #1495824572
+v44 := t361
+t360 := v44
 ARG v46
 ARG #1363856131
 ARG #2097243706
 t356 := CALL i_func_41
-t361 := #0 - #1495824572
-v44 := t361
-t360 := v44
 ARG v46
 ARG t360
 ARG t356
@@ -731,12 +731,6 @@ v51 := #0
 t373 := v46 - #1
 v46 := t373
 LABEL label164 :
-t377 := #0
-IF v44 != #0 GOTO label169
-GOTO label168
-LABEL label168 :
-t377 := #1
-LABEL label169 :
 t379 := #0
 IF v45 != #0 GOTO label170
 GOTO label172
@@ -746,6 +740,12 @@ GOTO label171
 LABEL label170 :
 t379 := #1
 LABEL label171 :
+t377 := #0
+IF v44 != #0 GOTO label169
+GOTO label168
+LABEL label168 :
+t377 := #1
+LABEL label169 :
 ARG v46
 ARG t379
 ARG t377

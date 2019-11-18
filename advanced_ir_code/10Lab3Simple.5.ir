@@ -411,12 +411,12 @@ t151 := v18
 v23 := t151
 t155 := v20 - #2
 v20 := t155
-v18 := #107817084
-t159 := v18
 ARG v20
 ARG v22
 ARG v19
 t161 := CALL i_func_4
+v18 := #107817084
+t159 := v18
 ARG v20
 ARG t161
 ARG t159
@@ -652,8 +652,6 @@ t319 := v27
 v48 := t319
 t321 := v25 - #2
 v25 := t321
-ARG v25
-t324 := CALL top_caller
 t326 := #0
 IF v27 != #0 GOTO label156
 GOTO label155
@@ -663,6 +661,8 @@ GOTO label155
 LABEL label154 :
 t326 := #1
 LABEL label155 :
+ARG v25
+t324 := CALL top_caller
 ARG v25
 ARG t326
 ARG t324
@@ -792,13 +792,13 @@ t409 := v28 + v29
 v27 := t409
 t412 := v25 - #2
 v25 := t412
-ARG v28
-ARG v27
-t415 := CALL safe_add
 ARG v25
 ARG v30
 ARG v29
 t418 := CALL i_func_4
+ARG v28
+ARG v27
+t415 := CALL safe_add
 ARG v25
 ARG t418
 ARG t415

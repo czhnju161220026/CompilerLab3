@@ -409,22 +409,22 @@ t160 := #0 - #1154914541
 v27 := t160
 t162 := v21 - #4
 v21 := t162
-ARG v21
-ARG v20
-ARG v19
-ARG v18
-t166 := CALL i_func_54
-ARG v21
-ARG v25
-ARG v24
-ARG v23
-t171 := CALL i_func_54
 t179 := #0 - #1946905586
 ARG v21
 ARG t179
 ARG v27
 ARG v26
 t176 := CALL i_func_54
+ARG v21
+ARG v25
+ARG v24
+ARG v23
+t171 := CALL i_func_54
+ARG v21
+ARG v20
+ARG v19
+ARG v18
+t166 := CALL i_func_54
 ARG v21
 ARG t176
 ARG t171

@@ -34,7 +34,7 @@ char* concat(int n, ...) {
 char* getTemp() {
     char str[256];
     sprintf(str, "t%d", global_temp_num++);
-    char* temp = (char*) malloc(strlen(str) + 32);
+    char* temp = (char*) malloc(256);
     strcpy(temp, str);
     return temp;
 }
@@ -42,7 +42,7 @@ char* getTemp() {
 char* getVariable() {
     char str[256];
     sprintf(str, "v%d", global_variable_num++);
-    char* temp = (char*) malloc(strlen(str) + 2);
+    char* temp = (char*) malloc(256);
     strcpy(temp, str);
     return temp;
 }
@@ -50,7 +50,7 @@ char* getVariable() {
 char* getLabel() {
     char str[256];
     sprintf(str, "label%d", global_label_num++);
-    char* temp = (char*) malloc(strlen(str) + 2);
+    char* temp = (char*) malloc(256);
     strcpy(temp, str);
     return temp;
 }

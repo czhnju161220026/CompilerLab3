@@ -751,8 +751,8 @@ t384 := v43
 v50 := t384
 t388 := v47 - #1
 v47 := t388
-t393 := #0 - #725605568
 t396 := #0 - #2077217855
+t393 := #0 - #725605568
 ARG v47
 ARG v45
 ARG t396
@@ -828,23 +828,23 @@ WRITE v57
 WRITE v58
 t454 := v52 - #2
 v52 := t454
-t458 := #0
-IF v54 <= #512754229 GOTO label171
-GOTO label172
-LABEL label171 :
-t458 := #1
-LABEL label172 :
-ARG v52
-t461 := CALL top_caller
+ARG v56
+ARG #1901564046
+t465 := CALL safe_mul
 t463 := #0
 IF v55 != #0 GOTO label174
 GOTO label173
 LABEL label173 :
 t463 := #1
 LABEL label174 :
-ARG v56
-ARG #1901564046
-t465 := CALL safe_mul
+ARG v52
+t461 := CALL top_caller
+t458 := #0
+IF v54 <= #512754229 GOTO label171
+GOTO label172
+LABEL label171 :
+t458 := #1
+LABEL label172 :
 ARG v52
 ARG t465
 ARG t463

@@ -455,18 +455,13 @@ t186 := #0 - #1975259175
 v36 := t186
 t188 := v33 - #1
 v33 := t188
-t192 := #0
-IF v28 == v29 GOTO label122
-GOTO label123
-LABEL label122 :
-t192 := #1
-LABEL label123 :
-t195 := #0
-IF v30 > v31 GOTO label124
-GOTO label125
-LABEL label124 :
-t195 := #1
-LABEL label125 :
+t204 := #0
+IF #2014810629 != #0 GOTO label130
+GOTO label129
+LABEL label129 :
+t204 := #1
+LABEL label130 :
+t201 := v35 + v36
 t198 := #0
 IF #16563257 != #0 GOTO label128
 GOTO label127
@@ -476,13 +471,18 @@ GOTO label127
 LABEL label126 :
 t198 := #1
 LABEL label127 :
-t201 := v35 + v36
-t204 := #0
-IF #2014810629 != #0 GOTO label130
-GOTO label129
-LABEL label129 :
-t204 := #1
-LABEL label130 :
+t195 := #0
+IF v30 > v31 GOTO label124
+GOTO label125
+LABEL label124 :
+t195 := #1
+LABEL label125 :
+t192 := #0
+IF v28 == v29 GOTO label122
+GOTO label123
+LABEL label122 :
+t192 := #1
+LABEL label123 :
 ARG v33
 ARG t204
 ARG t201

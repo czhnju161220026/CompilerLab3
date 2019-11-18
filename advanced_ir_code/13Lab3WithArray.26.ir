@@ -442,6 +442,18 @@ WRITE v24
 WRITE v25
 t181 := v22 - #2
 v22 := t181
+t204 := #0
+IF v25 <= #1966757660 GOTO label123
+GOTO label124
+LABEL label123 :
+t204 := #1
+LABEL label124 :
+ARG v24
+ARG #682080683
+t201 := CALL safe_add
+ARG v21
+ARG v20
+t198 := CALL safe_add
 t191 := #0 - #1666537682
 t188 := t191 + #1666537682
 t189 := #4 * t188
@@ -453,18 +465,6 @@ ARG #1999334766
 ARG v18
 ARG *t186
 t185 := CALL i_func_82
-ARG v21
-ARG v20
-t198 := CALL safe_add
-ARG v24
-ARG #682080683
-t201 := CALL safe_add
-t204 := #0
-IF v25 <= #1966757660 GOTO label123
-GOTO label124
-LABEL label123 :
-t204 := #1
-LABEL label124 :
 ARG v22
 ARG t204
 ARG t201

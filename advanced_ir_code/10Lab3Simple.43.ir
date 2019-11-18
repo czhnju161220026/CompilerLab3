@@ -480,28 +480,28 @@ t210 := v18
 v32 := t210
 t212 := v20 - #1
 v20 := t212
+t218 := v22 / v23
 t215 := #0
 IF v18 > v19 GOTO label128
 GOTO label129
 LABEL label128 :
 t215 := #1
 LABEL label129 :
-t218 := v22 / v23
 ARG v20
 ARG t218
 ARG t215
 t222 := CALL i_func_50
 t223 := v20 - #3
 v20 := t223
+ARG v20
+ARG v22
+ARG v19
+t231 := CALL i_func_50
 t227 := #0 - #1175504247
 ARG v20
 ARG v18
 ARG t227
 t226 := CALL i_func_50
-ARG v20
-ARG v22
-ARG v19
-t231 := CALL i_func_50
 ARG v20
 ARG t231
 ARG t226

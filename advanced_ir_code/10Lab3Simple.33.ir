@@ -453,12 +453,12 @@ GOTO label129
 LABEL label128 :
 t173 := v21 - #1
 v21 := t173
-t177 := #0
-IF v18 != v19 GOTO label133
-GOTO label134
-LABEL label133 :
-t177 := #1
-LABEL label134 :
+t184 := #0
+IF v23 == v24 GOTO label137
+GOTO label138
+LABEL label137 :
+t184 := #1
+LABEL label138 :
 t180 := #0
 t181 := #0 - #1421510641
 IF t181 >= v20 GOTO label135
@@ -466,12 +466,12 @@ GOTO label136
 LABEL label135 :
 t180 := #1
 LABEL label136 :
-t184 := #0
-IF v23 == v24 GOTO label137
-GOTO label138
-LABEL label137 :
-t184 := #1
-LABEL label138 :
+t177 := #0
+IF v18 != v19 GOTO label133
+GOTO label134
+LABEL label133 :
+t177 := #1
+LABEL label134 :
 ARG v21
 ARG t184
 ARG t180
@@ -493,19 +493,19 @@ t188 := v18
 v28 := t188
 t193 := v21 - #1
 v21 := t193
-t197 := #0
-IF v18 != #2066139829 GOTO label142
-GOTO label143
-LABEL label142 :
-t197 := #1
-LABEL label143 :
+t202 := v20 - v23
 t200 := #0
 IF v19 != #0 GOTO label145
 GOTO label144
 LABEL label144 :
 t200 := #1
 LABEL label145 :
-t202 := v20 - v23
+t197 := #0
+IF v18 != #2066139829 GOTO label142
+GOTO label143
+LABEL label142 :
+t197 := #1
+LABEL label143 :
 ARG v21
 ARG t202
 ARG t200

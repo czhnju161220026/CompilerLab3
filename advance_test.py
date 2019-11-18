@@ -3,6 +3,7 @@ import hashlib
 
 path = 'advance_log/'
 files = os.listdir(path)
+files.sort()
 for f in files:
     if f.endswith('.log'):
         f_result = open('Test_advanced/%s' % f, 'rb')

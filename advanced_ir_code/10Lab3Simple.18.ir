@@ -477,12 +477,6 @@ t198 := v25
 v32 := t198
 t202 := v29 - #2
 v29 := t202
-t206 := #0
-IF v25 < v26 GOTO label127
-GOTO label128
-LABEL label127 :
-t206 := #1
-LABEL label128 :
 t211 := #0 - #1806631032
 ARG v29
 ARG v31
@@ -490,6 +484,12 @@ ARG v28
 ARG v27
 ARG t211
 t210 := CALL i_func_19
+t206 := #0
+IF v25 < v26 GOTO label127
+GOTO label128
+LABEL label127 :
+t206 := #1
+LABEL label128 :
 ARG v29
 ARG v32
 ARG t210
