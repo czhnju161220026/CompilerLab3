@@ -6,6 +6,7 @@
 #include "symbol.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
 {
     //printf("Translating Exp\n");
@@ -251,7 +252,9 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
 
     return NULL;
 }
+//移除该优化，如果出现x+f(x)，f(x)将不被执行，这是错误的
 //如果Exp是Exp Semi的形式，那么只有赋值和函数调用是有意义的，其他的Exp可以不翻译，直接返回空串
+
 char* translateExpLikeExpSemi(Morpheme* exp, HashSet* symTable) {
     if (exp == NULL)
     {
@@ -364,8 +367,9 @@ char *translateStmt(Morpheme *stmt, HashSet *symTable)
     if (c != NULL && c->type == _Exp && c->siblings != NULL && c->siblings->type == _SEMI)
     {
         //printf("Stmt -> Exp ;\n");
-        //char *t1 = getTemp();
-        char *code = translateExpLikeExpSemi(c, symTable);
+        char *t1 = getTemp();
+        char *code = translateExp(c, symTable, t1);
+        //char* code = translateExpLikeExpSemi(c,symTable);
         return code;
     }
     else if (c->type == _CompSt && c->siblings == NULL)
@@ -1005,6 +1009,7 @@ char *translateVarDecFromParamDec(Morpheme *varDec, HashSet *symTable)
         char *code = concat(3, "PARAM ", s->variable, " \n");
         return code;
     }
-    printf("\033[31mUnsupport vardec\n\033[0m");
+    printf("\033[31mCan not translate: Unsupport parameter's type.\n\033[0m");
+    exit(-1);
     return NULL;
 }

@@ -1,6 +1,7 @@
 #include "semantic.h"
 #include "grammarTree.h"
 #include "log.h"
+#include <stdlib.h>
 int anonymous = 0;
 extern HashSet *symbolTable;
 Symbol *currentFunction = NULL;
@@ -451,6 +452,12 @@ bool handleVarDec(Morpheme *root, Symbol *s)
             setSymbolType(s, ARRAY_SYMBOL);
         }
         addArrayDimension(s, c->siblings->siblings->intValue);
+        //Warning: 注意，实验3中我们移除对多维数组对支持：
+        if(c->child->type != _ID) {
+            printf("\033[31mCan not translate: Code contains variable of multi-dimensional array type of parameters of array type.\n\033[0m");
+            exit(-1);
+        }
+
         return handleVarDec(c, s);
     }
     else
