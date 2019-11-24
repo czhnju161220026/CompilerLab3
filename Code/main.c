@@ -15,9 +15,9 @@ extern HashSet *symbolTable;
 
 int main(int argc, char **argv)
 {
-    if (argc <= 1)
+    if (argc <= 2)
     {
-        printf("pass filename to scanner\n");
+        printf("pass filename to scanner and output path\n");
         return -1;
     }
     else
@@ -43,9 +43,13 @@ int main(int argc, char **argv)
             //outputHashSet(symbolTable);
             outputLog(SemanticError);
             char* code = translateProgram(root, symbolTable);
-            printf("%s", code);
+            //printf("%s", code);
+            FILE* ir_code= fopen(argv[2], "w");
+            fprintf(ir_code, "%s", code);
+            fclose(ir_code);
         }
         destructMorpheme(root);
+        fclose(f);
         return 0;
     }
 }
