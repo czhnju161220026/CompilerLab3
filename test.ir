@@ -1,0 +1,11 @@
+FUNCTION func :
+PARAM v3 
+v3 := #2
+RETURN v3
+FUNCTION main :
+v6 := #3
+t3 := #0 - #2
+v7 := t3
+t5 := v6 / v7
+WRITE t5
+RETURN #0

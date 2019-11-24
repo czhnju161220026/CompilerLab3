@@ -1,0 +1,11 @@
+int func(int n) {
+    n = 2;
+    return n;
+}
+
+int main() {
+    int a = 1923484461;
+  int b = 1517367171;
+  write(a/b);
+return 0;
+}
