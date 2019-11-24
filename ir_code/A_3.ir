@@ -1,42 +1,50 @@
 FUNCTION main :
 v8 := #0
-READ t1
-v4 := t1
 READ t2
-v5 := t2
+v4 := t2
+t1 := v4
+READ t4
+v5 := t4
+t3 := v5
 IF v4 > v5 GOTO label0
 GOTO label1
 LABEL label0 :
 v7 := v4
+t7 := v7
 GOTO label2
 LABEL label1 :
 v7 := v5
+t9 := v7
 LABEL label2 :
 LABEL label3 :
 IF v8 == #0 GOTO label4
 GOTO label5
 LABEL label4 :
-t11 := v7 / v4
-t10 := t11 * v4
-IF v7 == t10 GOTO label6
+t15 := v7 / v4
+t14 := t15 * v4
+IF v7 == t14 GOTO label6
 GOTO label7
 LABEL label6 :
-t17 := v7 / v5
-t16 := t17 * v5
-IF v7 == t16 GOTO label9
+t21 := v7 / v5
+t20 := t21 * v5
+IF v7 == t20 GOTO label9
 GOTO label10
 LABEL label9 :
 v6 := v7
+t25 := v6
 v8 := #1
+t27 := v8
 GOTO label11
 LABEL label10 :
-t23 := v7 + #1
-v7 := t23
+t30 := v7 + #1
+v7 := t30
+t29 := v7
 LABEL label11 :
 GOTO label8
 LABEL label7 :
-t26 := v7 + #1
-v7 := t26
+t34 := v7 + #1
+v7 := t34
+t33 := v7
 LABEL label8 :
 GOTO label3
 LABEL label5 :

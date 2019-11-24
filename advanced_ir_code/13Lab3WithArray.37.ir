@@ -384,48 +384,57 @@ LABEL label115 :
 RETURN #1869039250
 GOTO label117
 LABEL label116 :
-t143 := v18 - #1
-v18 := t143
+t144 := v18 - #1
+v18 := t144
+t143 := v18
 LABEL label117 :
 v20 := #1933454451
-t148 := #0 - #1662655154
+t147 := v20
+t151 := #0 - #1662655154
 ARG v20
-ARG t148
-t147 := CALL safe_mul
-v21 := t147
-t151 := v18 - #1
-v18 := t151
+ARG t151
+t150 := CALL safe_mul
+v21 := t150
+t149 := v21
+t155 := v18 - #1
+v18 := t155
+t154 := v18
 ARG v18
-t155 := CALL top_caller
-v21 := t155
-t154 := v21
-v22 := t154
+t160 := CALL top_caller
+v21 := t160
+t159 := v21
+v22 := t159
+t158 := v22
 v21 := v22
-t158 := v21
-v20 := t158
-t157 := v20
-v23 := t157
-t161 := #0
+t164 := v21
+v20 := t164
+t163 := v20
+v23 := t163
+t162 := v23
+t168 := #0
 IF v21 < v22 GOTO label118
 GOTO label119
 LABEL label118 :
-t161 := #1
+t168 := #1
 LABEL label119 :
-v20 := t161
-t160 := v20
-v24 := t160
+v20 := t168
+t167 := v20
+v24 := t167
+t166 := v24
 v20 := v21
+t171 := v20
 WRITE v20
 WRITE v21
 WRITE v22
 WRITE v23
 WRITE v24
-t170 := v18 - #1
-v18 := t170
+t184 := v18 - #1
+v18 := t184
+t183 := v18
 ARG v18
-t173 := CALL top_caller
-RETURN t173
+t187 := CALL top_caller
+RETURN t187
 FUNCTION main :
 ARG #10
-t176 := CALL top_caller
+t189 := CALL top_caller
 RETURN #0

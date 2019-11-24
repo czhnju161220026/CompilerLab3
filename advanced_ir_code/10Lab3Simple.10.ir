@@ -378,47 +378,58 @@ LABEL label113 :
 RETURN v15
 FUNCTION i_func_9 :
 PARAM v18 
-t140 := v18 - #1
-v18 := t140
+t141 := v18 - #1
+v18 := t141
+t140 := v18
 v20 := #326275304
+t144 := v20
 v21 := v20
+t146 := v21
 v22 := v21
-t146 := v18 - #1
-v18 := t146
+t148 := v22
+t151 := v18 - #1
+v18 := t151
+t150 := v18
 ARG v18
-t150 := CALL i_func_9
-v22 := t150
-t149 := v22
-v23 := t149
-t152 := v18 - #1
-v18 := t152
+t156 := CALL i_func_9
+v22 := t156
+t155 := v22
+v23 := t155
+t154 := v23
+t159 := v18 - #1
+v18 := t159
+t158 := v18
 ARG v18
-t155 := CALL i_func_9
-v24 := t155
-t158 := #0
+t163 := CALL i_func_9
+v24 := t163
+t162 := v24
+t167 := #0
 IF v21 < v22 GOTO label115
 GOTO label116
 LABEL label115 :
-t158 := #1
+t167 := #1
 LABEL label116 :
-v20 := t158
-t157 := v20
-v25 := t157
-t161 := v18 - #1
-v18 := t161
+v20 := t167
+t166 := v20
+v25 := t166
+t165 := v25
+t171 := v18 - #1
+v18 := t171
+t170 := v18
 ARG v18
-t164 := CALL i_func_9
-v20 := t164
+t175 := CALL i_func_9
+v20 := t175
+t174 := v20
 WRITE v20
 WRITE v21
 WRITE v22
 WRITE v23
 WRITE v24
 WRITE v25
-t173 := v21 - v22
-v20 := t173
-t172 := v20
-RETURN t172
+t190 := v21 - v22
+v20 := t190
+t189 := v20
+RETURN t189
 FUNCTION i_func_10 :
 PARAM v26 
 PARAM v27 
@@ -427,54 +438,61 @@ PARAM v29
 IF v29 <= #0 GOTO label117
 GOTO label118
 LABEL label117 :
-t178 := #0 - #206196810
-RETURN t178
+t195 := #0 - #206196810
+RETURN t195
 GOTO label119
 LABEL label118 :
-t180 := v29 - #1
-v29 := t180
+t198 := v29 - #1
+v29 := t198
+t197 := v29
 LABEL label119 :
 v27 := v28
-t184 := v27
-v26 := t184
-t183 := v26
-v31 := t183
-t186 := v29 - #1
-v29 := t186
+t203 := v27
+v26 := t203
+t202 := v26
+v31 := t202
+t201 := v31
+t206 := v29 - #1
+v29 := t206
+t205 := v29
 ARG v29
 ARG v31
 ARG v28
 ARG v27
-t190 := CALL i_func_10
-v26 := t190
-t189 := v26
-v32 := t189
-t196 := #0
+t211 := CALL i_func_10
+v26 := t211
+t210 := v26
+v32 := t210
+t209 := v32
+t218 := #0
 IF v27 != #0 GOTO label121
 GOTO label120
 LABEL label120 :
-t196 := #1
+t218 := #1
 LABEL label121 :
-v26 := t196
-t195 := v26
-v33 := t195
+v26 := t218
+t217 := v26
+v33 := t217
+t216 := v33
 ARG #1440161816
 ARG v27
-t198 := CALL safe_sub
-v26 := t198
+t221 := CALL safe_sub
+v26 := t221
+t220 := v26
 v26 := #712616014
+t224 := v26
 WRITE v31
 WRITE v32
 WRITE v33
-t206 := #0
+t233 := #0
 IF v27 > v28 GOTO label122
 GOTO label123
 LABEL label122 :
-t206 := #1
+t233 := #1
 LABEL label123 :
-v26 := t206
-t205 := v26
-RETURN t205
+v26 := t233
+t232 := v26
+RETURN t232
 FUNCTION top_caller :
 PARAM v34 
 IF v34 <= #0 GOTO label124
@@ -483,94 +501,113 @@ LABEL label124 :
 RETURN #1523955219
 GOTO label126
 LABEL label125 :
-t212 := v34 - #1
-v34 := t212
+t240 := v34 - #1
+v34 := t240
+t239 := v34
 LABEL label126 :
-t215 := #0 - #1266896762
-v36 := t215
-t217 := #0 - #1846480210
-v37 := t217
-t219 := #0 - #798069839
-v38 := t219
-t221 := v34 - #1
-v34 := t221
+t244 := #0 - #1266896762
+v36 := t244
+t243 := v36
+t247 := #0 - #1846480210
+v37 := t247
+t246 := v37
+t250 := #0 - #798069839
+v38 := t250
+t249 := v38
+t253 := v34 - #1
+v34 := t253
+t252 := v34
 ARG v34
 ARG v38
 ARG v37
 ARG v36
-t224 := CALL i_func_10
-v39 := t224
-t230 := #0 - #826217499
-v39 := t230
-t229 := v39
-v40 := t229
-t233 := #0
+t257 := CALL i_func_10
+v39 := t257
+t256 := v39
+t264 := #0 - #826217499
+v39 := t264
+t263 := v39
+v40 := t263
+t262 := v40
+t268 := #0
 IF #55205152 > v37 GOTO label127
 GOTO label128
 LABEL label127 :
-t233 := #1
+t268 := #1
 LABEL label128 :
-v36 := t233
-t232 := v36
-v41 := t232
-t236 := v34 - #1
-v34 := t236
+v36 := t268
+t267 := v36
+v41 := t267
+t266 := v41
+t272 := v34 - #1
+v34 := t272
+t271 := v34
 ARG v34
-t240 := CALL top_caller
-v36 := t240
-t239 := v36
-v42 := t239
+t277 := CALL top_caller
+v36 := t277
+t276 := v36
+v42 := t276
+t275 := v42
 v43 := #0
-t243 := #1880978029 / v37
-v36 := t243
+t279 := v43
+t282 := #1880978029 / v37
+v36 := t282
+t281 := v36
 LABEL label129 :
 ARG v38
 ARG v37
-t247 := CALL safe_mul
-v36 := t247
-t246 := v36
-IF t246 != #0 GOTO label132
+t286 := CALL safe_mul
+v36 := t286
+t285 := v36
+IF t285 != #0 GOTO label132
 GOTO label131
 LABEL label132 :
-t250 := #0
+t289 := #0
 IF v43 < #4 GOTO label133
 GOTO label134
 LABEL label133 :
-t250 := #1
+t289 := #1
 LABEL label134 :
-IF t250 != #0 GOTO label130
+IF t289 != #0 GOTO label130
 GOTO label131
 LABEL label130 :
-t253 := v34 - #1
-v34 := t253
+t293 := v34 - #1
+v34 := t293
+t292 := v34
 ARG v34
 ARG v39
 ARG v38
 ARG v37
-t257 := CALL i_func_10
-v36 := t257
-t256 := v36
-v44 := t256
-t262 := v34 - #1
-v34 := t262
+t298 := CALL i_func_10
+v36 := t298
+t297 := v36
+v44 := t297
+t296 := v44
+t304 := v34 - #1
+v34 := t304
+t303 := v34
 ARG v34
-t265 := CALL top_caller
-v45 := t265
+t308 := CALL top_caller
+v45 := t308
+t307 := v45
 ARG v38
 ARG v37
-t268 := CALL safe_add
-v36 := t268
-t267 := v36
-v46 := t267
-t271 := v43 + #1
-v43 := t271
-t274 := #0
+t312 := CALL safe_add
+v36 := t312
+t311 := v36
+v46 := t311
+t310 := v46
+t316 := v43 + #1
+v43 := t316
+t315 := v43
+t320 := #0
 IF v37 < v38 GOTO label135
 GOTO label136
 LABEL label135 :
-t274 := #1
+t320 := #1
 LABEL label136 :
-v36 := t274
+v36 := t320
+t319 := v36
 WRITE v44
 WRITE v45
 WRITE v46
@@ -583,11 +620,11 @@ WRITE v39
 WRITE v40
 WRITE v41
 WRITE v42
-t288 := #0 - #426929393
-v36 := t288
-t287 := v36
-RETURN t287
+t344 := #0 - #426929393
+v36 := t344
+t343 := v36
+RETURN t343
 FUNCTION main :
 ARG #10
-t291 := CALL top_caller
+t346 := CALL top_caller
 RETURN #0

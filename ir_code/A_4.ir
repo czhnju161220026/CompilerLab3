@@ -2,84 +2,99 @@ FUNCTION main :
 DEC v4 20
 v9 := &v4
 v5 := #0
+t0 := v5
 LABEL label0 :
 IF v5 < #5 GOTO label1
 GOTO label2
 LABEL label1 :
-t7 := #4 * v5
-t8 := v9 + t7
-t3 := t8
-READ t4
-*t3 := t4
-t9 := v5 + #1
-v5 := t9
+t9 := #4 * v5
+t10 := v9 + t9
+t5 := t10
+READ t6
+*t5 := t6
+t4 := t6
+t12 := v5 + #1
+v5 := t12
+t11 := v5
 GOTO label0
 LABEL label2 :
 v7 := #1
+t15 := v7
 LABEL label3 :
 IF v7 == #1 GOTO label4
 GOTO label5
 LABEL label4 :
 v7 := #0
+t19 := v7
 v5 := #1
+t21 := v5
 LABEL label6 :
 IF v5 < #5 GOTO label7
 GOTO label8
 LABEL label7 :
 v6 := v5
+t25 := v6
 LABEL label9 :
 IF v6 > #0 GOTO label12
 GOTO label11
 LABEL label12 :
-t26 := #4 * v6
-t27 := v9 + t26
-t22 := t27
-t29 := v6 - #1
-t30 := #4 * t29
-t31 := v9 + t30
-t23 := t31
-IF *t22 < *t23 GOTO label10
+t33 := #4 * v6
+t34 := v9 + t33
+t29 := t34
+t36 := v6 - #1
+t37 := #4 * t36
+t38 := v9 + t37
+t30 := t38
+IF *t29 < *t30 GOTO label10
 GOTO label11
 LABEL label10 :
-t37 := #4 * v6
-t38 := v9 + t37
-t34 := t38
-v8 := *t34
-t43 := #4 * v6
-t44 := v9 + t43
-t39 := t44
-t46 := v6 - #1
-t47 := #4 * t46
-t48 := v9 + t47
-t40 := t48
-*t39 := *t40
-t54 := v6 - #1
-t55 := #4 * t54
-t56 := v9 + t55
-t51 := t56
-*t51 := v8
+t45 := #4 * v6
+t46 := v9 + t45
+t42 := t46
+v8 := *t42
+t41 := v8
+t52 := #4 * v6
+t53 := v9 + t52
+t48 := t53
+t55 := v6 - #1
+t56 := #4 * t55
+t57 := v9 + t56
+t49 := t57
+*t48 := *t49
+t47 := *t49
+t64 := v6 - #1
+t65 := #4 * t64
+t66 := v9 + t65
+t61 := t66
+*t61 := v8
+t60 := v8
 v7 := #1
-t60 := v6 - #1
-v6 := t60
+t69 := v7
+t72 := v6 - #1
+v6 := t72
+t71 := v6
 GOTO label9
 LABEL label11 :
-t63 := v5 + #1
-v5 := t63
+t76 := v5 + #1
+v5 := t76
+t75 := v5
 GOTO label6
 LABEL label8 :
 GOTO label3
 LABEL label5 :
 v5 := #0
+t79 := v5
 LABEL label13 :
 IF v5 < #5 GOTO label14
 GOTO label15
 LABEL label14 :
-t72 := #4 * v5
-t73 := v9 + t72
-t69 := t73
-WRITE *t69
-t74 := v5 + #1
-v5 := t74
+t87 := #4 * v5
+t88 := v9 + t87
+t84 := t88
+WRITE *t84
+t90 := v5 + #1
+v5 := t90
+t89 := v5
 GOTO label13
 LABEL label15 :
 RETURN #0

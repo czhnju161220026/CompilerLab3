@@ -386,85 +386,97 @@ LABEL label115 :
 RETURN #2095123334
 GOTO label117
 LABEL label116 :
-t143 := v18 - #1
-v18 := t143
+t144 := v18 - #1
+v18 := t144
+t143 := v18
 LABEL label117 :
-t146 := #0 - #812266056
-v20 := t146
+t148 := #0 - #812266056
+v20 := t148
+t147 := v20
 v21 := #203469366
-t149 := #0
+t150 := v21
+t153 := #0
 IF v20 != v21 GOTO label118
 GOTO label119
 LABEL label118 :
-t149 := #1
+t153 := #1
 LABEL label119 :
-v22 := t149
-t152 := v18 - #1
-v18 := t152
-ARG v18
-t156 := CALL top_caller
-v22 := t156
-t155 := v22
-v23 := t155
-t158 := v18 - #1
-v18 := t158
+v22 := t153
+t152 := v22
+t157 := v18 - #1
+v18 := t157
+t156 := v18
 ARG v18
 t162 := CALL top_caller
-v20 := t162
-t161 := v20
-v24 := t161
-t168 := #4 * #1
-t169 := v27 + t168
-t164 := t169
-t170 := #0
+v22 := t162
+t161 := v22
+v23 := t161
+t160 := v23
+t165 := v18 - #1
+v18 := t165
+t164 := v18
+ARG v18
+t170 := CALL top_caller
+v20 := t170
+t169 := v20
+v24 := t169
+t168 := v24
+t177 := #4 * #1
+t178 := v27 + t177
+t173 := t178
+t179 := #0
 IF v21 != #0 GOTO label122
 GOTO label121
 LABEL label122 :
 IF v22 != #0 GOTO label120
 GOTO label121
 LABEL label120 :
-t170 := #1
+t179 := #1
 LABEL label121 :
-v20 := t170
-t165 := v20
-*t164 := t165
-t173 := v18 - #1
-v18 := t173
-t180 := #4 * #0
-t181 := v27 + t180
-t176 := t181
+v20 := t179
+t174 := v20
+*t173 := t174
+t172 := t174
+t183 := v18 - #1
+v18 := t183
+t182 := v18
+t191 := #4 * #0
+t192 := v27 + t191
+t187 := t192
 ARG v18
-t177 := CALL top_caller
-*t176 := t177
-t187 := #4 * v20
-t188 := v27 + t187
-t183 := t188
-t184 := #0
-t189 := #0 - #1813145808
-IF t189 != v21 GOTO label123
+t188 := CALL top_caller
+*t187 := t188
+t186 := t188
+t199 := #4 * v20
+t200 := v27 + t199
+t195 := t200
+t196 := #0
+t201 := #0 - #1813145808
+IF t201 != v21 GOTO label123
 GOTO label124
 LABEL label123 :
-t184 := #1
+t196 := #1
 LABEL label124 :
-*t183 := t184
+*t195 := t196
+t194 := t196
 WRITE v20
 WRITE v21
 WRITE v22
 WRITE v23
 WRITE v24
-t202 := #4 * v20
-t203 := v27 + t202
-t198 := t203
-t199 := #0
+t219 := #4 * v20
+t220 := v27 + t219
+t215 := t220
+t216 := #0
 IF #2147483647 != #0 GOTO label126
 GOTO label125
 LABEL label125 :
-t199 := #1
+t216 := #1
 LABEL label126 :
-*t198 := t199
-t197 := t199
-RETURN t197
+*t215 := t216
+t214 := t216
+RETURN t214
 FUNCTION main :
 ARG #10
-t206 := CALL top_caller
+t222 := CALL top_caller
 RETURN #0

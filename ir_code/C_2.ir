@@ -22,13 +22,15 @@ t15 := t16 - #2
 IF v9 > t15 GOTO label1
 GOTO label2
 LABEL label1 :
-t26 := v11 * v8
-v11 := t26
-t32 := #2 * v9
-t33 := #1 * v9
-t30 := t32 - t33
-t29 := t30 - #1
-v9 := t29
+t27 := v11 * v8
+v11 := t27
+t26 := v11
+t34 := #2 * v9
+t35 := #1 * v9
+t32 := t34 - t35
+t31 := t32 - #1
+v9 := t31
+t30 := v9
 GOTO label0
 LABEL label2 :
 RETURN v11
@@ -38,31 +40,35 @@ v14 := #0
 IF v12 < #0 GOTO label3
 GOTO label4
 LABEL label3 :
-t42 := #0 - #1
-RETURN t42
+t44 := #0 - #1
+RETURN t44
 LABEL label4 :
 LABEL label5 :
 IF v12 > #0 GOTO label6
 GOTO label7
 LABEL label6 :
-t46 := v12 / #10
-v12 := t46
-t49 := v14 + #2
-v14 := t49
-t52 := v14 + #2
-v14 := t52
-t55 := v14 - #3
-v14 := t55
+t49 := v12 / #10
+v12 := t49
+t48 := v12
+t53 := v14 + #2
+v14 := t53
+t52 := v14
+t57 := v14 + #2
+v14 := t57
+t56 := v14
+t61 := v14 - #3
+v14 := t61
+t60 := v14
 GOTO label5
 LABEL label7 :
 RETURN v14
 FUNCTION isNarcissistic :
 PARAM v15 
-t61 := #1 + v15
-t60 := t61 - #1
-ARG t60
-t59 := CALL getNumDigits
-v17 := t59
+t67 := #1 + v15
+t66 := t67 - #1
+ARG t66
+t65 := CALL getNumDigits
+v17 := t65
 v18 := #0
 v19 := v15
 LABEL label8 :
@@ -71,16 +77,19 @@ GOTO label10
 LABEL label9 :
 ARG #10
 ARG v19
-t69 := CALL mod
-v20 := t69
-t73 := v19 - v20
-t72 := t73 / #10
-v19 := t72
+t76 := CALL mod
+v20 := t76
+t75 := v20
+t81 := v19 - v20
+t80 := t81 / #10
+v19 := t80
+t79 := v19
 ARG v17
 ARG v20
-t79 := CALL power
-t77 := v18 + t79
-v18 := t77
+t88 := CALL power
+t86 := v18 + t88
+v18 := t86
+t85 := v18
 GOTO label8
 LABEL label10 :
 IF v18 == v15 GOTO label11
@@ -99,16 +108,18 @@ IF v23 < #500 GOTO label15
 GOTO label16
 LABEL label15 :
 ARG v23
-t90 := CALL isNarcissistic
-IF t90 == #1 GOTO label17
+t99 := CALL isNarcissistic
+IF t99 == #1 GOTO label17
 GOTO label18
 LABEL label17 :
 WRITE v23
-t94 := v22 + #1
-v22 := t94
+t105 := v22 + #1
+v22 := t105
+t104 := v22
 LABEL label18 :
-t97 := v23 + #1
-v23 := t97
+t109 := v23 + #1
+v23 := t109
+t108 := v23
 GOTO label14
 LABEL label16 :
 WRITE v22

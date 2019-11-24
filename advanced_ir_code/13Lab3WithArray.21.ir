@@ -386,91 +386,103 @@ LABEL label115 :
 RETURN #299101310
 GOTO label117
 LABEL label116 :
-t143 := v18 - #1
-v18 := t143
+t144 := v18 - #1
+v18 := t144
+t143 := v18
 LABEL label117 :
-t146 := #0 - #890699390
-v20 := t146
+t148 := #0 - #890699390
+v20 := t148
+t147 := v20
 v21 := #1888564875
-t149 := v20 + v21
-v22 := t149
-t156 := #4 * #0
-t157 := v27 + t156
-t152 := t157
-t158 := #0
+t150 := v21
+t153 := v20 + v21
+v22 := t153
+t152 := v22
+t161 := #4 * #0
+t162 := v27 + t161
+t157 := t162
+t163 := #0
 IF #1105094057 != #0 GOTO label119
 GOTO label118
 LABEL label118 :
-t158 := #1
+t163 := #1
 LABEL label119 :
-v22 := t158
-t153 := v22
-*t152 := t153
-t160 := v18 - #1
-v18 := t160
+v22 := t163
+t158 := v22
+*t157 := t158
+t156 := t158
+t166 := v18 - #1
+v18 := t166
+t165 := v18
 ARG #1
 ARG v20
-t167 := CALL safe_index
-t168 := #4 * t167
-t169 := v27 + t168
-t164 := t169
+t174 := CALL safe_index
+t175 := #4 * t174
+t176 := v27 + t175
+t171 := t176
 ARG v18
-t165 := CALL top_caller
-*t164 := t165
-t163 := t165
-v24 := t163
-ARG #1
-ARG v20
-t177 := CALL safe_index
-t178 := #4 * t177
-t179 := v27 + t178
-t174 := t179
-*t174 := v21
-t173 := v21
-v25 := t173
+t172 := CALL top_caller
+*t171 := t172
+t170 := t172
+v24 := t170
+t169 := v24
 ARG #1
 ARG v20
 t185 := CALL safe_index
 t186 := #4 * t185
 t187 := v27 + t186
 t182 := t187
-t183 := #0
+*t182 := v21
+t181 := v21
+v25 := t181
+t180 := v25
+ARG #1
+ARG v20
+t194 := CALL safe_index
+t195 := #4 * t194
+t196 := v27 + t195
+t191 := t196
+t192 := #0
 IF v21 != v22 GOTO label120
 GOTO label121
 LABEL label120 :
-t183 := #1
+t192 := #1
 LABEL label121 :
-*t182 := t183
-t192 := v18 - #1
-v18 := t192
+*t191 := t192
+t190 := t192
+t202 := v18 - #1
+v18 := t202
+t201 := v18
 ARG #1
 ARG v20
-t198 := CALL safe_index
-t199 := #4 * t198
-t200 := v27 + t199
-t195 := t200
+t209 := CALL safe_index
+t210 := #4 * t209
+t211 := v27 + t210
+t206 := t211
 ARG v18
-t196 := CALL top_caller
-*t195 := t196
+t207 := CALL top_caller
+*t206 := t207
+t205 := t207
 WRITE v20
 WRITE v21
 WRITE v22
 WRITE v24
 WRITE v25
-t209 := v18 - #1
-v18 := t209
+t226 := v18 - #1
+v18 := t226
+t225 := v18
 ARG #1
 ARG v20
-t216 := CALL safe_index
-t217 := #4 * t216
-t218 := v27 + t217
-t213 := t218
+t233 := CALL safe_index
+t234 := #4 * t233
+t235 := v27 + t234
+t230 := t235
 ARG v18
-t214 := CALL top_caller
-*t213 := t214
-t212 := t214
-RETURN t212
+t231 := CALL top_caller
+*t230 := t231
+t229 := t231
+RETURN t229
 FUNCTION main :
 ARG #10
-t223 := CALL top_caller
+t239 := CALL top_caller
 RETURN #0

@@ -386,75 +386,88 @@ LABEL label115 :
 RETURN #1766917148
 GOTO label117
 LABEL label116 :
-t143 := v18 - #1
-v18 := t143
+t144 := v18 - #1
+v18 := t144
+t143 := v18
 LABEL label117 :
-t146 := #0 - #316163085
-v20 := t146
+t148 := #0 - #316163085
+v20 := t148
+t147 := v20
 v21 := #663424651
-t149 := #0
+t150 := v21
+t153 := #0
 IF v20 == v21 GOTO label118
 GOTO label119
 LABEL label118 :
-t149 := #1
+t153 := #1
 LABEL label119 :
-v22 := t149
-t152 := v18 - #1
-v18 := t152
-ARG v18
-t156 := CALL top_caller
-v22 := t156
-t155 := v22
-v23 := t155
-t158 := v18 - #1
-v18 := t158
+v22 := t153
+t152 := v22
+t157 := v18 - #1
+v18 := t157
+t156 := v18
 ARG v18
 t162 := CALL top_caller
-v20 := t162
-t161 := v20
-v24 := t161
-t164 := v18 - #1
-v18 := t164
-t171 := #4 * #1
-t172 := v27 + t171
-t167 := t172
+v22 := t162
+t161 := v22
+v23 := t161
+t160 := v23
+t165 := v18 - #1
+v18 := t165
+t164 := v18
 ARG v18
-t173 := CALL top_caller
-v20 := t173
-t168 := v20
-*t167 := t168
-t179 := #4 * #0
-t180 := v27 + t179
-t175 := t180
-t181 := #0
+t170 := CALL top_caller
+v20 := t170
+t169 := v20
+v24 := t169
+t168 := v24
+t173 := v18 - #1
+v18 := t173
+t172 := v18
+t181 := #4 * #1
+t182 := v27 + t181
+t177 := t182
+ARG v18
+t183 := CALL top_caller
+v20 := t183
+t178 := v20
+*t177 := t178
+t176 := t178
+t190 := #4 * #0
+t191 := v27 + t190
+t186 := t191
+t192 := #0
 IF v21 != v22 GOTO label120
 GOTO label121
 LABEL label120 :
-t181 := #1
+t192 := #1
 LABEL label121 :
-v20 := t181
-t176 := v20
-*t175 := t176
-t184 := v18 - #1
-v18 := t184
-t191 := #4 * v20
-t192 := v27 + t191
-t187 := t192
+v20 := t192
+t187 := v20
+*t186 := t187
+t185 := t187
+t196 := v18 - #1
+v18 := t196
+t195 := v18
+t204 := #4 * v20
+t205 := v27 + t204
+t200 := t205
 ARG v18
-t188 := CALL top_caller
-*t187 := t188
+t201 := CALL top_caller
+*t200 := t201
+t199 := t201
 WRITE v20
 WRITE v21
 WRITE v22
 WRITE v23
 WRITE v24
-t204 := #4 * v20
-t205 := v27 + t204
-t200 := t205
-*t200 := v21
-t199 := v21
-RETURN t199
+t222 := #4 * v20
+t223 := v27 + t222
+t218 := t223
+*t218 := v21
+t217 := v21
+RETURN t217
 FUNCTION main :
 ARG #10
-t207 := CALL top_caller
+t224 := CALL top_caller
 RETURN #0
