@@ -140,7 +140,7 @@ char *translateExp(Morpheme *exp, HashSet *symTable, char *place)
         strcpy(code0, str);
 
         char *code1 = translateCond(exp, label1, label2, symTable);
-        sprintf(str, "LABEL %s :\n%s := 1\n", label1, place);
+        sprintf(str, "LABEL %s :\n%s := #1\n", label1, place);
         char *code2 = (char *)malloc(strlen(str) + 1);
         strcpy(code2, str);
 
@@ -554,7 +554,7 @@ char *translateArgs(Morpheme *args, HashSet *symTable, Argument **arglist)
         arg->next = *arglist;
         *arglist = arg;
         char *code2 = translateArgs(c->siblings->siblings, symTable, arglist);
-        char *code = concat(2, code1, code2);
+        char *code = concat(2, code2, code1);
         return code;
     }
     printf("\033[31mInvalid Args node.\n\033[0m");
